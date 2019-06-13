@@ -3,3 +3,6 @@
 ################################################################################
 
 /.vs
+/RegiVeSec/RegiVeSec/obj
+/RegiVeSec/RegiVeSec/bin
+/RegiVeSec/.vs/RegiVeSec/v16
