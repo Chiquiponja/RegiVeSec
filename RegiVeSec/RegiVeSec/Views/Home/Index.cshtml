@@ -38,23 +38,23 @@
                     <tbody>
                         <tr v-for="item in vehiculo ">
                             <td> {{ item.id }}</td>
-                            <th>{{ item.FechaDeIngreso }}</th>
-                            <th>{{ item.Propietario}} </th>
-                            <th>{{ item.Dominio }} </th>
-                            <th>{{ item.Tipo }}</th>
-                            <th>{{ item.Marca}} </th>
-                            <th>{{ item.Color}}  </th>
-                            <th>{{ item.Modelo}} </th>
-                            <th>{{ item.Causa}} </th>
-                            <th>{{ item.Estado }}</th>
-                            <th>{{ item.NumeroSumario}} </th>
-                            <th>{{ item.Dependencia }} </th>
-                            <th>{{ item.Orden }} </th>
-                            <th>{{ item.DependenciaProcedente}} </th>
-                            <th>{{ item.Observaciones}} </th>
-                            <th>{{ item.Recibe  }}</th>
-                            <th>{{ item.Entrega }}</th>
-                            <th>{{ item.FechaDeEntrega }}</th>
+                            <th>{{ item.fechaDeIngreso }}</th>
+                            <th>{{ item.propietario}} </th>
+                            <th>{{ item.dominio }} </th>
+                            <th>{{ item.tipo }}</th>
+                            <th>{{ item.marca}} </th>
+                            <th>{{ item.color}}  </th>
+                            <th>{{ item.modelo}} </th>
+                            <th>{{ item.causa}} </th>
+                            <th>{{ item.estado }}</th>
+                            <th>{{ item.numeroSumario}} </th>
+                            <th>{{ item.dependencia }} </th>
+                            <th>{{ item.orden }} </th>
+                            <th>{{ item.dependenciaProcedente}} </th>
+                            <th>{{ item.dbservaciones}} </th>
+                            <th>{{ item.recibe  }}</th>
+                            <th>{{ item.entrega }}</th>
+                            <th>{{ item.fechaDeEntrega }}</th>
                             <td>
 
                                 <a :href="'/Vehiculo/Eliminar/' + item.id" class="btn btn-danger">Eliminar</a>
