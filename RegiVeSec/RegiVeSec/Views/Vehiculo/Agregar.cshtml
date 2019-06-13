@@ -1,0 +1,39 @@
+﻿
+@{
+    ViewData["Title"] = "Agregar";
+}
+<div id="appAutos">
+    <div class="text-center">
+        <h1 class="display-4">REGISTRO DE AUTOS</h1>
+        <form method="post" action="/Vehiculo/Add" id="vehiculoform">
+            <fieldset>
+                <div class="form">
+                    <div class="col-md-4 mb-3">
+                        <label>Tipo </label>
+                        <input v-model="auto.Tipo" @@keyup.enter="crearAuto" type="text" name="Tipo" class="form-control" id="Tipo" />
+
+
+                    </div>
+                    <div class="col-md-4 mb-3">
+                        <label>Propietario </label>
+                        <input v-model="auto.Propietario" @@keyup.enter="crearAuto" type="text" name="Propietario" id="Propietario" class="form-control" />
+
+                    </div>
+
+
+
+                    <button id="submit" class="btn btn-primary" v-on:click="auto">Enviar</button>
+                </div>
+            </fieldset>
+
+        </form>
+    </div>
+</div>
+
+@section ScriptsSection {
+    <script src="~/js/Formulario.js"></script>
+ >
+
+
+}
+

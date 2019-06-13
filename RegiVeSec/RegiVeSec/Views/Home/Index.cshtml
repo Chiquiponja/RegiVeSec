@@ -1,8 +1,84 @@
 ﻿@{
     ViewData["Title"] = "Home Page";
 }
+@model VehiculoRegiVeSec
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+<div id="app">
+    <section>
+        <div class="row">
+            <div class="col-md-12 animated fadeInLeft notransition">
+                <h1 class="list-group-item active">
+                    <span>Registro de Autos</span>
+                </h1>
+                <table class=" col-md- table table-default table-hover  display" id="example" style="width:100%">
+                    <thead>
+                        <tr>
+
+                            <th>Id</th>
+                            <th>FechaDeIngreso </th>
+                            <th>Propietario </th>
+                            <th>Dominio  </th>
+                            <th>Tipo </th>
+                            <th>Marca </th>
+                            <th>Color  </th>
+                            <th>Modelo </th>
+                            <th>Causa </th>
+                            <th>Estado </th>
+                            <th>NumeroSumario </th>
+                            <th>Dependencia  </th>
+                            <th>Orden  </th>
+                            <th>DependenciaProcedente </th>
+                            <th>Observaciones </th>
+                            <th>Recibe  </th>
+                            <th>Entrega </th>
+                            <th>FechaDeEntrega </th>
+
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr v-for="item in vehiculo ">
+                            <td> {{ item.id }}</td>
+                            <th>{{ item.FechaDeIngreso }}</th>
+                            <th>{{ item.Propietario}} </th>
+                            <th>{{ item.Dominio }} </th>
+                            <th>{{ item.Tipo }}</th>
+                            <th>{{ item.Marca}} </th>
+                            <th>{{ item.Color}}  </th>
+                            <th>{{ item.Modelo}} </th>
+                            <th>{{ item.Causa}} </th>
+                            <th>{{ item.Estado }}</th>
+                            <th>{{ item.NumeroSumario}} </th>
+                            <th>{{ item.Dependencia }} </th>
+                            <th>{{ item.Orden }} </th>
+                            <th>{{ item.DependenciaProcedente}} </th>
+                            <th>{{ item.Observaciones}} </th>
+                            <th>{{ item.Recibe  }}</th>
+                            <th>{{ item.Entrega }}</th>
+                            <th>{{ item.FechaDeEntrega }}</th>
+                            <td>
+
+                                <a :href="'/Vehiculo/Eliminar/' + item.id" class="btn btn-danger">Eliminar</a>
+                                <a :href="'/Vehiculo/Editar/' + item.id" class="btn btn-primary">Editar</a>
+                            </td>
+                        </tr>
+
+                    </tbody>
+                </table>
+
+            </div>
+        </div>
+    </section>
 </div>
+<a href="/Vehiculo/Agregar" class="btn btn-success">Agregar</a>
+
+@section ScriptsSection {
+ 
+    <script src="~/js/ListaDeVehiculos.js"></script>
+    <script>
+
+        $(document).ready(function () {
+            initVue();
+            vm.obtenerVehiculo();
+        });
+    </script>
+}
