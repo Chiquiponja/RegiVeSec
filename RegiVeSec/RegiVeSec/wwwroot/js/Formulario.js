@@ -4,16 +4,16 @@ document.addEventListener('DOMContentLoaded', function () {
         el: '#appAutos',
         data: {
 
-            auto: {
+            vehiculo: {
                 Id: 0,
                FechaDeIngreso: '',
                 Propietario: '',
                 Dominio: '',
                 Tipo: '',
-               Marca : '',
-               Color : '',
-               Modelo: '',
-               Causa : '',
+                Marca : '',
+                Color : '',
+                Modelo: '',
+                Causa : '',
                 Estado: '',
                 NumeroSumario: '',
                 Dependencia: '',
@@ -28,7 +28,7 @@ document.addEventListener('DOMContentLoaded', function () {
             Autos: []
         },
         methods: {
-            crearAuto: function () {
+            crearvehiculo: function () {
 
                 //var data = JSON.stringify(vm.$data.auto);
 
@@ -54,10 +54,10 @@ document.addEventListener('DOMContentLoaded', function () {
                     // Formato de datos que se espera en la respuesta
                     dataType: "json",
                     // URL a la que se enviará la solicitud Ajax
-                    url: "/Vehiculo/GetAutoId/" + id,
+                    url: "/Vehiculo/GetVehiculoRegiVeSecId/" + id,
                 })
                     .done(function (data) {
-                        vm.$data.auto = data;
+                        vm.$data.vehiculo = data;
                     })
                     .fail(function (jqXHR, textStatus, errorThrown) {
                         if (console && console.log) {
