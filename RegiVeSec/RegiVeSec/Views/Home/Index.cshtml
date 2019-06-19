@@ -4,81 +4,82 @@
 @model VehiculoRegiVeSec
 
 <div id="app">
-    <section>
-        <div class="row">
-            <div class="col-md-12 animated fadeInLeft notransition">
-                <h1 class="list-group-item active">
-                    <span>Registro de Autos</span>
-                </h1>
-                <table class=" col-md- table table-default table-hover  display" id="example" style="width:100%">
-                    <thead>
-                        <tr>
+    <div class="row table-wrapper">
 
-                            <th>Id</th>
-                            <th>FechaDeIngreso </th>
-                            <th>Propietario </th>
-                            <th>Dominio  </th>
-                            <th>Tipo </th>
-                            <th>Marca </th>
-                            <th>Color  </th>
-                            <th>Modelo </th>
-                            <th>Causa </th>
-                            <th>Estado </th>
-                            <th>NumeroSumario </th>
-                            <th>Dependencia  </th>
-                            <th>Orden  </th>
-                            <th>DependenciaProcedente </th>
-                            <th>Observaciones </th>
-                            <th>Recibe  </th>
-                            <th>Entrega </th>
-                            <th>FechaDeEntrega </th>
+        <div class="col-md-12 animated fadeInLeft notransition">
+            <h1 class="list-group-item active">
+                <span>Registro de Autos</span>
+            </h1>
+            <table class=" col-md- table table-default table-hover  display fl-table" id="example" style="width:100%">
+                <thead>
+                    <tr>
 
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr v-for="item in vehiculo ">
-                            <td> {{ item.id }}</td>
-                            <th>{{ item.fechaDeIngreso }}</th>
-                            <th>{{ item.propietario}} </th>
-                            <th>{{ item.dominio }} </th>
-                            <th>{{ item.tipo }}</th>
-                            <th>{{ item.marca}} </th>
-                            <th>{{ item.color}}  </th>
-                            <th>{{ item.modelo}} </th>
-                            <th>{{ item.causa}} </th>
-                            <th>{{ item.estado }}</th>
-                            <th>{{ item.numeroSumario}} </th>
-                            <th>{{ item.dependencia }} </th>
-                            <th>{{ item.orden }} </th>
-                            <th>{{ item.dependenciaProcedente}} </th>
-                            <th>{{ item.observaciones}} </th>
-                            <th>{{ item.recibe  }}</th>
-                            <th>{{ item.entrega }}</th>
-                            <th>{{ item.fechaDeEntrega }}</th>
-                            <td>
+                        <th>Id</th>
+                        <th>FechaDeIngreso </th>
+                        <th>Propietario </th>
+                        <th>Dominio  </th>
+                        <th>Tipo </th>
+                        <th>Marca </th>
+                        <th>Color  </th>
+                        <th>Modelo </th>
+                        <th>Causa </th>
+                        <th>Estado </th>
+                        <th>NumeroSumario </th>
+                        <th>Dependencia  </th>
+                        <th>Orden  </th>
+                        <th>DependenciaProcedente </th>
+                        <th>Observaciones </th>
+                        <th>Recibe  </th>
+                        <th>Entrega </th>
+                        <th>FechaDeEntrega </th>
 
-                                <a :href="'/Vehiculo/Eliminar/' + item.id" class="btn btn-danger">Eliminar</a>
-                                <a :href="'/Vehiculo/Editar/' + item.id" class="btn btn-primary">Editar</a>
-                            </td>
-                        </tr>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr v-for="item in vehiculo ">
+                        <td> {{ item.id }}</td>
+                        <th>{{ item.fechaDeIngreso }}</th>
+                        <th>{{ item.propietario}} </th>
+                        <th>{{ item.dominio }} </th>
+                        <th>{{ item.tipo }}</th>
+                        <th>{{ item.marca}} </th>
+                        <th>{{ item.color}}  </th>
+                        <th>{{ item.modelo}} </th>
+                        <th>{{ item.causa}} </th>
+                        <th>{{ item.estado }}</th>
+                        <th>{{ item.numeroSumario}} </th>
+                        <th>{{ item.dependencia }} </th>
+                        <th>{{ item.orden }} </th>
+                        <th>{{ item.dependenciaProcedente}} </th>
+                        <th>{{ item.observaciones}} </th>
+                        <th>{{ item.recibe  }}</th>
+                        <th>{{ item.entrega }}</th>
+                        <th>{{ item.fechaDeEntrega }}</th>
+                        <td>
 
-                    </tbody>
-                </table>
+                            <a :href="'/Vehiculo/Eliminar/' + item.id" class="btn btn-danger">Eliminar</a>
+                            <a :href="'/Vehiculo/Editar/' + item.id" class="btn btn-primary">Editar</a>
+                        </td>
+                    </tr>
 
-            </div>
+                </tbody>
+            </table>
+
         </div>
-    </section>
+    </div>
 </div>
-<a href="/Vehiculo/Agregar" class="btn btn-success">Agregar</a>
+<div style="text-align: center;">
+    <a href="/Vehiculo/Agregar" class="btn btn-success">Agregar</a>
+    </div>
+    @section ScriptsSection {
 
-@section ScriptsSection {
- 
-    <script src="~/js/ListaDeVehiculos.js"></script>
-    <script>
+        <link href="~/css/tabla.css" rel="stylesheet" />
+        <script src="~/js/ListaDeVehiculos.js"></script>
+        <script>
 
-        $(document).ready(function () {
-            initVue();
-            vm.obtenerVehiculo();
-        });
-    </script>
-}
+            $(document).ready(function () {
+                initVue();
+                vm.obtenerVehiculo();
+            });
+        </script>
+    }

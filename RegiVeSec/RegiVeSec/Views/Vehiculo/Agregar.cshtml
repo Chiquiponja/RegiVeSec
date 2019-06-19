@@ -4,7 +4,7 @@
         <h1 class="display-4">REGISTRO DE AUTOS</h1>
         <form method="post" action="/Vehiculo/Add" id="vehiculoform">
             <fieldset>
-                <div class="form">
+                <div class="row">
                     <div class="col-md-4 mb-3">
                         <label>Fecha De Ingreso </label>
                         <input v-model="vehiculo.FechaDeIngreso" @@keyup.enter="crearvehiculo" type="date" name="FechaDeIngreso" class="form-control" id="FechaDeIngreso" />
@@ -72,6 +72,9 @@
                         <label>FechaDeEntrega </label>
                         <input v-model="vehiculo.FechaDeEntrega" @@keyup.enter="crearvehiculo" type="date" name="FechaDeEntrega" id="FechaDeEntrega" class="form-control" />
                     </div>
+
+                </div>
+                <div style="text-align: center;">
                     <button id="submit" class="btn btn-primary" v-on:click="vehiculo">Enviar</button>
                 </div>
             </fieldset>

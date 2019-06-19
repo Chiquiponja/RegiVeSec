@@ -7,93 +7,90 @@
 <h4>Editar</h4>
 <hr />
 <div id="appAutos">
-    <div class="row">
-        <div class="col-md-6">
-            <form action="/Vehiculo/Edit" id="vehiculoform">
-                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-                <input type="hidden" asp-for="Id" name="Id" />
+    <form action="/Vehiculo/Edit" id="vehiculoform">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <input type="hidden" asp-for="Id" name="Id" />
+        <div class="row">
+            <div class="col-md-4">
+                <label class="control-label" for="checkbox">Fecha De Ingreso</label>
+                <input v-model="vehiculo.fechaDeIngreso" @@keyup.enter="crearvehiculo" type="date" name="FechaDeIngreso" class="form-control" id="fechaDeIngreso" />
+            </div>
 
-                <div class="form-group">
-                    <label class="control-label" for="checkbox">fecha De Ingreso</label>
-                    <input v-model="vehiculo.fechaDeIngreso" @@keyup.enter="crearvehiculo" type="date" name="FechaDeIngreso" class="form-control" id="fechaDeIngreso" />
-                </div>
+            <div class="col-md-4">
+                <label class="control-label" for="checkbox">Propietario</label>
+                <input v-model="vehiculo.propietario" @@keyup.enter="crearvehiculo" name="Propietario" class="form-control" id="propietario" />
+            </div>
 
-                <div class="form-group">
-                    <label class="control-label" for="checkbox">propietario</label>
-                    <input v-model="vehiculo.propietario" @@keyup.enter="crearvehiculo" name="Propietario" class="form-control" id="propietario" />
-                </div>
+            <div class="col-md-4">
+                <label class="control-label" for="checkbox">Dominio</label>
+                <input v-model="vehiculo.dominio" @@keyup.enter="crearvehiculo" name="Dominio" class="form-control" id="dominio" />
+            </div>
 
-                <div class="form-group">
-                    <label class="control-label" for="checkbox">dominio</label>
-                    <input v-model="vehiculo.dominio" @@keyup.enter="crearvehiculo" name="Dominio" class="form-control" id="dominio" />
-                </div>
+            <div class="col-md-4">
+                <label class="control-label" for="checkbox">Marca</label>
+                <input v-model="vehiculo.marca" @@keyup.enter="crearvehiculo" name="Marca" class="form-control" id="marca" />
+            </div>
 
-                <div class="form-group">
-                    <label class="control-label" for="checkbox">marca</label>
-                    <input v-model="vehiculo.marca" @@keyup.enter="crearvehiculo" name="Marca" class="form-control" id="marca" />
-                </div>
+            <div class="col-md-4">
+                <label class="control-label" for="checkbox">Tipo</label>
+                <input v-model="vehiculo.tipo" @@keyup.enter="crearvehiculo" name="Tipo" class="form-control" id="tipo" />
+            </div>
+            <div class="col-md-4 ">
+                <label class="control-label" for="checkbox">Color</label>
+                <input v-model="vehiculo.color" @@keyup.enter="crearvehiculo" name="Color" class="form-control" id="color" />
+            </div>
 
-                <div class="form-group">
-                    <label class="control-label" for="checkbox">tipo</label>
-                    <input v-model="vehiculo.tipo" @@keyup.enter="crearvehiculo" name="Tipo" class="form-control" id="tipo" />
-                </div>
-                <div class="form-group">
-                    <label class="control-label" for="checkbox">color</label>
-                    <input v-model="vehiculo.color" @@keyup.enter="crearvehiculo" name="Color" class="form-control" id="color" />
-                </div>
+            <div class="col-md-4">
+                <label class="control-label" for="checkbox">Modelo</label>
+                <input v-model="vehiculo.modelo" @@keyup.enter="crearvehiculo" name="Modelo" class="form-control" id="modelo" />
+            </div>
+            <div class="col-md-4">
+                <label class="control-label" for="checkbox">Causa</label>
+                <input v-model="vehiculo.causa" @@keyup.enter="crearvehiculo" name="Causa" class="form-control" id="causa" />
+            </div>
+            <div class="col-md-4">
+                <label class="control-label" for="checkbox">Estado</label>
+                <input v-model="vehiculo.estado" @@keyup.enter="crearvehiculo" name="Estado" class="form-control" id="estado" />
+            </div>
+            <div class="col-md-4">
+                <label class="control-label" for="checkbox">Numero Sumario</label>
+                <input v-model="vehiculo.numeroSumario" @@keyup.enter="crearvehiculo" name="NumeroSumario" class="form-control" id="numeroSumario" />
+            </div>
+            <div class="col-md-4">
+                <label class="control-label" for="checkbox">Dependencia</label>
+                <input v-model="vehiculo.dependencia" @@keyup.enter="crearvehiculo" name="Dependencia" class="form-control" id="dependencia" />
+            </div>
+            <div class="col-md-4">
+                <label class="control-label" for="checkbox">Orden</label>
+                <input v-model="vehiculo.orden" @@keyup.enter="crearvehiculo" name="Orden" class="form-control" id="orden" />
+            </div>
+            <div class="col-md-4">
+                <label class="control-label" for="checkbox">Dependencia Procedente</label>
+                <input v-model="vehiculo.dependenciaProcedente" @@keyup.enter="crearvehiculo" name="DependenciaProcedente" class="form-control" id="dependenciaProcedente" />
+            </div>
+            <div class="col-md-4">
+                <label class="control-label" for="checkbox">Observaciones</label>
+                <input v-model="vehiculo.observaciones" @@keyup.enter="crearvehiculo" name="Observaciones" class="form-control" id="observaciones" />
+            </div>
+            <div class="col-md-4">
+                <label class="control-label" for="checkbox">Recibe</label>
+                <input v-model="vehiculo.recibe" @@keyup.enter="crearvehiculo" name="Recibe" class="form-control" id="recibe" />
+            </div>
+            <div class="col-md-4">
+                <label class="control-label" for="checkbox">Entrega</label>
+                <input v-model="vehiculo.entrega" @@keyup.enter="crearvehiculo" name="Entrega" class="form-control" id="entrega" />
+            </div>
 
-                <div class="form-group">
-                    <label class="control-label" for="checkbox">modelo</label>
-                    <input v-model="vehiculo.modelo" @@keyup.enter="crearvehiculo" name="Modelo" class="form-control" id="modelo" />
-                </div>
-                <div class="form-group">
-                    <label class="control-label" for="checkbox">causa</label>
-                    <input v-model="vehiculo.causa" @@keyup.enter="crearvehiculo" name="Causa" class="form-control" id="causa" />
-                </div>
-                <div class="form-group">
-                    <label class="control-label" for="checkbox">estado</label>
-                    <input v-model="vehiculo.estado" @@keyup.enter="crearvehiculo" name="Estado" class="form-control" id="estado" />
-                </div>
-                <div class="form-group">
-                    <label class="control-label" for="checkbox">numeroSumario</label>
-                    <input v-model="vehiculo.numeroSumario" @@keyup.enter="crearvehiculo" name="NumeroSumario" class="form-control" id="numeroSumario" />
-                </div>
-                <div class="form-group">
-                    <label class="control-label" for="checkbox">dependencia</label>
-                    <input v-model="vehiculo.dependencia" @@keyup.enter="crearvehiculo" name="Dependencia" class="form-control" id="dependencia" />
-                </div>
-                <div class="form-group">
-                    <label class="control-label" for="checkbox">orden</label>
-                    <input v-model="vehiculo.orden" @@keyup.enter="crearvehiculo" name="Orden" class="form-control" id="orden" />
-                </div>
-                <div class="form-group">
-                    <label class="control-label" for="checkbox">dependencia Procedente</label>
-                    <input v-model="vehiculo.dependenciaProcedente" @@keyup.enter="crearvehiculo" name="DependenciaProcedente" class="form-control" id="dependenciaProcedente" />
-                </div>
-                <div class="form-group">
-                    <label class="control-label" for="checkbox">observaciones</label>
-                    <input v-model="vehiculo.observaciones" @@keyup.enter="crearvehiculo" name="Observaciones" class="form-control" id="observaciones" />
-                </div>
-                <div class="form-group">
-                    <label class="control-label" for="checkbox">recibe</label>
-                    <input v-model="vehiculo.recibe" @@keyup.enter="crearvehiculo" name="Recibe" class="form-control" id="recibe" />
-                </div>
-                <div class="form-group">
-                    <label class="control-label" for="checkbox">entrega</label>
-                    <input v-model="vehiculo.entrega" @@keyup.enter="crearvehiculo" name="Entrega" class="form-control" id="entrega" />
-                </div>
-
-                <div class="form-group">
-                    <label class="control-label" for="checkbox">fechaDeEntrega</label>
-                    <input v-model="vehiculo.fechaDeEntrega" @@keyup.enter="crearvehiculo" name="FechaDeEntrega" type="date" class="form-control" id="fechaDeEntrega" />
-                </div>
-                <div class="form-group">
-                    <input type="submit" value="Enviar" v-on:click="vehiculo" class="btn btn-primary" />
-                </div>
-
-            </form>
+            <div class="col-md-4">
+                <label class="control-label" for="checkbox">Fecha De Entrega</label>
+                <input v-model="vehiculo.fechaDeEntrega" @@keyup.enter="crearvehiculo" name="FechaDeEntrega" type="date" class="form-control" id="fechaDeEntrega" />
+            </div>
         </div>
-    </div>
+        <hr />
+        <div style="text-align: center;">
+            <input type="submit" value="Enviar" v-on:click="vehiculo" class="btn btn-primary" />
+        </div>
+    </form>
 </div>
 @section ScriptsSection {
     <script src="~/js/Formulario.js"></script>

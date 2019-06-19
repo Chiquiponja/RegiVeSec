@@ -30,8 +30,6 @@ document.addEventListener('DOMContentLoaded', function () {
         methods: {
             crearvehiculo: function () {
 
-                //var data = JSON.stringify(vm.$data.auto);
-
                 $.ajax({
                     url: "/Vehiculo/Add",
                     contentType: "application/json",
