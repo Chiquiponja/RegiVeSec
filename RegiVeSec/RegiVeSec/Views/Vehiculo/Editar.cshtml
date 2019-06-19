@@ -13,7 +13,7 @@
         <div class="row">
             <div class="col-md-4">
                 <label class="control-label" for="checkbox">Fecha De Ingreso</label>
-                <input v-model="vehiculo.fechaDeIngreso" @@keyup.enter="crearvehiculo" type="date" name="FechaDeIngreso" class="form-control" id="fechaDeIngreso" />
+                <input v-model="vehiculo.fechaDeIngreso" @@keyup.enter="crearvehiculo" type="text" name="FechaDeIngreso" class="form-control" id="fechaDeIngreso" />
             </div>
 
             <div class="col-md-4">
@@ -83,7 +83,7 @@
 
             <div class="col-md-4">
                 <label class="control-label" for="checkbox">Fecha De Entrega</label>
-                <input v-model="vehiculo.fechaDeEntrega" @@keyup.enter="crearvehiculo" name="FechaDeEntrega" type="date" class="form-control" id="fechaDeEntrega" />
+                <input v-model="vehiculo.fechaDeEntrega" @@keyup.enter="crearvehiculo" name="FechaDeEntrega" type="text" class="form-control" id="fechaDeEntrega" />
             </div>
         </div>
         <hr />
