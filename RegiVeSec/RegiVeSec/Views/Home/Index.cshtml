@@ -2,84 +2,86 @@
     ViewData["Title"] = "Home Page";
 }
 @model VehiculoRegiVeSec
+    <div id="app">
 
-<div id="app">
-    <div class="row table-wrapper">
+        <h1 class="list-group-item active">
+            <span>Registro de Autos</span>
+        </h1>
 
-        <div class="col-md-12 animated fadeInLeft notransition">
-            <h1 class="list-group-item active">
-                <span>Registro de Autos</span>
-            </h1>
-            <table class=" col-md- table table-default table-hover  display fl-table" id="example" style="width:100%">
-                <thead>
-                    <tr>
+        <div class="row">
+            <div class=" col-md-12  pt-1 ">
+                <div class="table-responsive">
+                    <table class="  table-hover display fl-table table-bordered" id="example" style="width:100%">
+                        <thead>
+                            <tr>
+                                <th>Id</th>
+                                <th>FechaDeIngreso </th>
+                                <th>Propietario </th>
+                                <th>Dominio  </th>
+                                <th>Tipo </th>
+                                <th>Marca </th>
+                                <th>Color  </th>
+                                <th>Modelo </th>
+                                <th>Causa </th>
+                                <th>Estado </th>
+                                <th>NumeroSumario </th>
+                                <th>Dependencia  </th>
+                                <th>Orden  </th>
+                                <th>DependenciaProcedente </th>
+                                <th>Observaciones </th>
+                                <th>Recibe  </th>
+                                <th>Entrega </th>
+                                <th>FechaDeEntrega </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr v-for="item in vehiculo ">
+                                <td> {{ item.id }}</td>
+                                <th>{{ item.fechaDeIngreso }}</th>
+                                <th>{{ item.propietario}} </th>
+                                <th>{{ item.dominio }} </th>
+                                <th>{{ item.tipo }}</th>
+                                <th>{{ item.marca}} </th>
+                                <th>{{ item.color}}  </th>
+                                <th>{{ item.modelo}} </th>
+                                <th>{{ item.causa}} </th>
+                                <th>{{ item.estado }}</th>
+                                <th>{{ item.numeroSumario}} </th>
+                                <th>{{ item.dependencia }} </th>
+                                <th>{{ item.orden }} </th>
+                                <th>{{ item.dependenciaProcedente}} </th>
+                                <th>{{ item.observaciones}} </th>
+                                <th>{{ item.recibe  }}</th>
+                                <th>{{ item.entrega }}</th>
+                                <th>{{ item.fechaDeEntrega }}</th>
+                                <td>
 
-                        <th>Id</th>
-                        <th>FechaDeIngreso </th>
-                        <th>Propietario </th>
-                        <th>Dominio  </th>
-                        <th>Tipo </th>
-                        <th>Marca </th>
-                        <th>Color  </th>
-                        <th>Modelo </th>
-                        <th>Causa </th>
-                        <th>Estado </th>
-                        <th>NumeroSumario </th>
-                        <th>Dependencia  </th>
-                        <th>Orden  </th>
-                        <th>DependenciaProcedente </th>
-                        <th>Observaciones </th>
-                        <th>Recibe  </th>
-                        <th>Entrega </th>
-                        <th>FechaDeEntrega </th>
+                                    <a :href="'/Vehiculo/Eliminar/' + item.id" class="btn btn-danger">Eliminar</a>
+                                    <a :href="'/Vehiculo/Editar/' + item.id" class="btn btn-primary">Editar</a>
+                                </td>
+                            </tr>
 
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr v-for="item in vehiculo ">
-                        <td> {{ item.id }}</td>
-                        <th>{{ item.fechaDeIngreso }}</th>
-                        <th>{{ item.propietario}} </th>
-                        <th>{{ item.dominio }} </th>
-                        <th>{{ item.tipo }}</th>
-                        <th>{{ item.marca}} </th>
-                        <th>{{ item.color}}  </th>
-                        <th>{{ item.modelo}} </th>
-                        <th>{{ item.causa}} </th>
-                        <th>{{ item.estado }}</th>
-                        <th>{{ item.numeroSumario}} </th>
-                        <th>{{ item.dependencia }} </th>
-                        <th>{{ item.orden }} </th>
-                        <th>{{ item.dependenciaProcedente}} </th>
-                        <th>{{ item.observaciones}} </th>
-                        <th>{{ item.recibe  }}</th>
-                        <th>{{ item.entrega }}</th>
-                        <th>{{ item.fechaDeEntrega }}</th>
-                        <td>
-
-                            <a :href="'/Vehiculo/Eliminar/' + item.id" class="btn btn-danger">Eliminar</a>
-                            <a :href="'/Vehiculo/Editar/' + item.id" class="btn btn-primary">Editar</a>
-                        </td>
-                    </tr>
-
-                </tbody>
-            </table>
-
+                        </tbody>
+                    </table>
+                </div>
+            </div>
         </div>
     </div>
-</div>
-<div style="text-align: center;">
-    <a href="/Vehiculo/Agregar" class="btn btn-success">Agregar</a>
-    </div>
-    @section ScriptsSection {
+       <hr />
+        <div style="text-align: center;">
+            <a href="/Vehiculo/Agregar" class="btn btn-success">Agregar</a>
+        </div>
+        @section ScriptsSection {
+            <meta name="viewport" content="width=device-width, initial-scale=1">
+            <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+            <link href="~/css/tabla.css" rel="stylesheet" />
+            <script src="~/js/ListaDeVehiculos.js"></script>
+            <script>
 
-        <link href="~/css/tabla.css" rel="stylesheet" />
-        <script src="~/js/ListaDeVehiculos.js"></script>
-        <script>
-
-            $(document).ready(function () {
-                initVue();
-                vm.obtenerVehiculo();
-            });
-        </script>
-    }
+                $(document).ready(function () {
+                    initVue();
+                    vm.obtenerVehiculo();
+                });
+            </script>
+        }

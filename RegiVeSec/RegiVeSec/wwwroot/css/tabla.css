@@ -1,9 +1,11 @@
 ﻿
-.container {
+/*.container {
     margin: 0 auto;
     display: table;
+}*/
+.margin-xs {
+    margin: .25em;
 }
-
 .fl-table {
     border-radius: 5px;
     font-size: 12px;
