@@ -25,6 +25,7 @@ namespace RegiVeSec.Models
         public string Recibe  { get; set; }
         public string Entrega { get; set; }
         public DateTime FechaDeEntrega { get; set; }
+        public string DetallesVehiculo { get; set; }
 
 
     }

@@ -75,6 +75,7 @@ namespace RegiVeSec.Controllers
                 dto.FechaDeIngreso = item.FechaDeIngreso;
                 dto.Propietario = item.Propietario;
                 dto.Dominio = item.Dominio;
+                dto.DetallesVehiculo = "Dominio: ("+item.Dominio +") Tipo: (" + item.Tipo + ") Marca: (" +  item.Marca + ") Color: (" + item.Color+") Modelo: ("+ item.Modelo+") Estado: ("+ item.Estado + ") " ;
                 dto.Tipo = item.Tipo;
                 dto.Marca = item.Marca;
                 dto.Color = item.Color;
