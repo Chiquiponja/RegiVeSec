@@ -96,6 +96,8 @@ namespace RegiVeSec.Controllers
             }
             return VehiculoRegiVeSecsPrueba;
         }
+    [HttpGet]
+    [Route("/Vehiculo/Buscar/{filtro}")]
     public List<VehiculoRegiVeSecDto> Buscar(string filtro)
     {
 
