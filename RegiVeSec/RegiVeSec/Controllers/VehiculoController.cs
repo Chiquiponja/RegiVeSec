@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Linq;
@@ -96,8 +96,44 @@ namespace RegiVeSec.Controllers
             }
             return VehiculoRegiVeSecsPrueba;
         }
+    public List<VehiculoRegiVeSecDto> Buscar(string filtro)
+    {
 
-        public async Task<IActionResult> Delete(VehiculoRegiVeSec en)
+      var filtros = filtro.Split("|");
+
+      List<VehiculoRegiVeSecDto> VehiculoRegiVeSecsPrueba = new List<VehiculoRegiVeSecDto>();
+
+      foreach (var item in db.Vehiculos.Where(x=>x.FechaDeEntrega<=Convert.ToDateTime(filtros[1])
+      && x.FechaDeIngreso>=Convert.ToDateTime(filtros[0])))
+      {
+        VehiculoRegiVeSecDto dto = new VehiculoRegiVeSecDto();
+
+        dto.Id = item.Id;
+        dto.FechaDeIngreso = item.FechaDeIngreso;
+        dto.Propietario = item.Propietario;
+        dto.Dominio = item.Dominio;
+        dto.DetallesVehiculo = "Dominio: (" + item.Dominio + ") Tipo: (" + item.Tipo + ") Marca: (" + item.Marca + ") Color: (" + item.Color + ") Modelo: (" + item.Modelo + ") Estado: (" + item.Estado + ") ";
+        dto.Tipo = item.Tipo;
+        dto.Marca = item.Marca;
+        dto.Color = item.Color;
+        dto.Modelo = item.Modelo;
+        dto.Causa = item.Causa;
+        dto.Estado = item.Estado;
+        dto.NumeroSumario = item.NumeroSumario;
+        dto.Dependencia = item.Dependencia;
+        dto.Orden = item.Orden;
+        dto.DependenciaProcedente = item.DependenciaProcedente;
+        dto.Observaciones = item.Observaciones;
+        dto.Recibe = item.Recibe;
+        dto.Entrega = item.Entrega;
+        dto.FechaDeEntrega = item.FechaDeEntrega;
+
+
+        VehiculoRegiVeSecsPrueba.Add(dto);
+      }
+      return VehiculoRegiVeSecsPrueba;
+    }
+    public async Task<IActionResult> Delete(VehiculoRegiVeSec en)
         {
 
             try

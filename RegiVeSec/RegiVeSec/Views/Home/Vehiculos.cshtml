@@ -1,4 +1,4 @@
-﻿
+
 @{
     ViewData["Title"] = "Vehiculos";
 }
@@ -8,13 +8,13 @@
         <h1 class="list-group-item active">
             <span>Registro de Vehiculos</span>
         </h1>
-        @*<form class="form-inline waves-light" mdbWavesEffect>
+        <form class="form-inline waves-light" mdbWavesEffect>
             <div class="md-form mt-0">
-                <input class="form-control mr-sm-2" type="date" placeholder="Hasta" />
-                <input class="form-control mr-sm-2" type="date" placeholder="Ahora" />
-                <button>Search</button>
+                <input class="form-control mr-sm-2" type="date" v-model="p_Desde" name="fecha" placeholder="Hasta" />
+                <input class="form-control mr-sm-2" type="date" v-model="p_Hasta" name="fecha1" placeholder="Ahora" />
+                <button>Buscar</button>
             </div>
-        </form>*@
+        </form>
         <div class="row">
             <div class=" col-md-12  pt-1 ">
                 <div class="table-responsive">
@@ -57,6 +57,7 @@
                     vm.obtenerVehiculo();
                 });
     </script>
+
 }
 
 
