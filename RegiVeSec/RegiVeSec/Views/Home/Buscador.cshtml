@@ -2,6 +2,69 @@
 @{
     ViewData["Title"] = "Buscador";
 }
+@model VehiculoRegiVeSec
+<div id="app">
+    <hr />
+    <div class="row">
+        <div class=" col-md-12  pt-1 ">
+            <div class="table-responsive">
+                <table class="  table-hover display fl-table table-bordered" id="tblCustomers" style="width:100%">
+                    <thead>
+                        <tr>
+                            <th>Id</th>
+                            <th>Fecha De Ingreso </th>
+                            <th>Propietario </th>
+                            <th>Detalles </th>
+                            <th>Fecha De Entrega </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr v-for="item in vehiculo ">
+                            <td> {{ item.id }}</td>
+                            <th>{{ item.fechaDeIngreso }}</th>
+                            <th>{{ item.propietario}} </th>
+                            <th>{{ item.detallesVehiculo }}</th>
+                            <th>{{ item.fechaDeEntrega }}</th>
 
-<h1>Buscador</h1>
+                        </tr>
 
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <input type="button" id="btnExport" value="Export" onclick="Export()" />
+</div>
+
+
+
+@section ScriptsSection {
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.22/pdfmake.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.4.1/html2canvas.min.js"></script>
+    <link href="~/css/tabla.css" rel="stylesheet" />
+    <script src="~/js/ListaDeVehiculos.js"></script>
+    <script>
+
+        $(document).ready(function () {
+            initVue();
+            vm.obtenerVehiculo();
+        });
+    </script>
+    <script type="text/javascript">
+        function Export() {
+            html2canvas(document.getElementById('tblCustomers'), {
+                onrendered: function (canvas) {
+                    var data = canvas.toDataURL();
+                    var docDefinition = {
+                        content: [{
+                            image: data,
+                            width: 500
+                        }]
+                    };
+                    pdfMake.createPdf(docDefinition).download("Table.pdf");
+                }
+            });
+        }
+    </script>
+
+}
