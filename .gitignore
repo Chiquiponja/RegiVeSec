@@ -2,7 +2,9 @@
 # Este archivo .gitignore ha sido creado automáticamente por Microsoft(R) Visual Studio.
 ################################################################################
 
-/.vs
+/.vs/*
 /RegiVeSec/RegiVeSec/obj
 /RegiVeSec/RegiVeSec/bin
-/RegiVeSec/.vs/RegiVeSec/v16
+/RegiVeSec/.vs/*
+/RegiVeSec/RegiVeSec/wwwroot/css
+appsettings.json
