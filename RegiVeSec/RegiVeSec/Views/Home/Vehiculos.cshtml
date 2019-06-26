@@ -1,70 +1,107 @@
 
 @{
-    ViewData["Title"] = "Vehiculos";
+  ViewData["Title"] = "Vehiculos";
 }
 @model VehiculoRegiVeSec
-    <div id="app">
+  <div id="app">
 
-        <h1 class="list-group-item active">
-            <span>Registro de Vehiculos</span>
-        </h1>
+    <h1 class="list-group-item active">
+      <span>Registro de Vehiculos</span>
+    </h1>
 
+
+
+    <hr />
+
+    <form class="form-inline waves-light" mdbWavesEffect>
+      <div class="md-form mt-0">
+        <input class="form-control mr-sm-2" type="date" v-model="p_Desde" name="fecha" placeholder="Hasta" />
+        <input class="form-control mr-sm-2" type="date" v-model="p_Hasta" name="fecha1" placeholder="Ahora" />
+        <button type="button" @@click="BuscarVehiculo()" class="btn btn-primary">Buscar</button>
+
+        <button type="button" @@click="obtenerVehiculo()" class="btn btn-primary">Restaurar</button>
+      </div>
+    </form>
+    <a href="javascript:pruebaDivAPdf()" class="button">Pasar a PDF</a>
+    <div id="imprimir">
       <hr />
+      <div class="row">
+        <div class=" col-md-12  pt-1 ">
+          <div class="table-responsive">
+            <table class="  table-hover display fl-table table-bordered" id="example" style="width:100%">
+              <thead>
+                <tr>
+                  <th>Id</th>
+                  <th>Fecha De Ingreso </th>
+                  <th>Propietario </th>
+                  <th>Detalles </th>
+                  <th>Fecha De Entrega </th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr v-for="item in vehiculo ">
+                  <td> {{ item.id }}</td>
+                  <th>{{ item.fechaDeIngreso }}</th>
+                  <th>{{ item.propietario}} </th>
+                  <th>{{ item.detallesVehiculo }}</th>
+                  <th>{{ item.fechaDeEntrega }}</th>
 
-        <hr />
+                </tr>
 
-        <form class="form-inline waves-light" mdbWavesEffect>
-          <div class="md-form mt-0">
-            <input class="form-control mr-sm-2" type="date" v-model="p_Desde" name="fecha" placeholder="Hasta" />
-            <input class="form-control mr-sm-2" type="date" v-model="p_Hasta" name="fecha1" placeholder="Ahora" />
-            <button type="button" @@click="BuscarVehiculo()" class="btn btn-primary">Buscar</button>
-            <button type="button" @@click="obtenerVehiculo()" class="btn btn-primary">Restaurar</button>
+              </tbody>
+            </table>
           </div>
-        </form>
-      <hr />
-        <div class="row">
-            <div class=" col-md-12  pt-1 ">
-                <div class="table-responsive">
-                    <table class="  table-hover display fl-table table-bordered" id="example" style="width:100%">
-                        <thead>
-                            <tr>
-                                <th>Id</th>
-                                <th>Fecha De Ingreso </th>
-                                <th>Propietario </th>
-                                <th>Detalles </th>
-                                <th>Fecha De Entrega </th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr v-for="item in vehiculo ">
-                                <td> {{ item.id }}</td>
-                                <th>{{ item.fechaDeIngreso }}</th>
-                                <th>{{ item.propietario}} </th>
-                                <th>{{ item.detallesVehiculo }}</th>
-                                <th>{{ item.fechaDeEntrega }}</th>
-
-                            </tr>
-
-                        </tbody>
-                    </table>
-                </div>
-            </div>
         </div>
+      </div>
+
     </div>
-@section ScriptsSection {
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
-    <link href="~/css/tabla.css" rel="stylesheet" />
-    <script src="~/js/ListaDeVehiculos.js"></script>
-    <script>
+  </div>
+    @section ScriptsSection {
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.3.2/jspdf.min.js"></script>
+      <script>
+        function pruebaDivAPdf() {
+          var pdf = new jsPDF('p', 'pt', 'letter', 'a4');
+          source = $('#imprimir')[0];
 
-                $(document).ready(function () {
-                    initVue();
-                    vm.obtenerVehiculo();
-                });
-    </script>
+          specialElementHandlers = {
+            '#bypassme': function (element, renderer) {
+              return true
+            }
+          };
+          margins = {
+            top: 10,
+            bottom: 6,
+            left: 4,
+            width: 52,
+          };
 
-}
+          pdf.fromHTML(
+            source,
+            margins.left, // x coord
+            margins.top, { // y coord
+              'width': margins.width,
+              'elementHandlers': specialElementHandlers
+            },
+
+            function (dispose) {
+              pdf.save('Prueba.pdf');
+            }, margins
+          );
+        }
+      </script>
+      <link href="~/css/tabla.css" rel="stylesheet" />
+      <script src="~/js/ListaDeVehiculos.js"></script>
+      <script>
+
+        $(document).ready(function () {
+          initVue();
+          vm.obtenerVehiculo();
+        });
+      </script>
+
+    }
 
 
