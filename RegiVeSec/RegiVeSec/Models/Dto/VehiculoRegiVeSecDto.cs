@@ -8,7 +8,7 @@ namespace RegiVeSec.Models
     public class VehiculoRegiVeSecDto
     {
         public int Id { get; set; }
-        public DateTime FechaDeIngreso { get; set; }
+        public string FechaDeIngreso { get; set; }
         public string Propietario { get; set; }
         public string Dominio  { get; set; }
         public string Tipo { get; set; }
@@ -24,7 +24,7 @@ namespace RegiVeSec.Models
         public string Observaciones { get; set; }
         public string Recibe  { get; set; }
         public string Entrega { get; set; }
-        public DateTime FechaDeEntrega { get; set; }
+        public string FechaDeEntrega { get; set; }
         public string DetallesVehiculo { get; set; }
 
 

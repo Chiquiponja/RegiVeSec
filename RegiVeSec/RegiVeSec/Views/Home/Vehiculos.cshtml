@@ -8,11 +8,7 @@
         <h1 class="list-group-item active">
             <span>Registro de Vehiculos</span>
         </h1>
-
-
-
         <hr />
-
         <form class="form-inline waves-light" mdbWavesEffect>
             <div class="md-form mt-0">
                 <input class="form-control mr-sm-2" type="date" v-model="p_Desde" name="fecha" placeholder="Hasta" />
@@ -27,7 +23,7 @@
             <div class="row">
                 <div class=" col-md-12  pt-1 ">
                     <div class="table-responsive">
-                        <table class="  table-hover display fl-table table-bordered" id="example" style="width:100%">
+                        <table class="  table-hover display fl-table table-bordered" id="example" >
                             <thead>
                                 <tr>
                                     <th>Id</th>
@@ -71,22 +67,22 @@
             }
           };
           margins = {
-            top: 10,
-            bottom: 6,
-            left: 4,
-            width: 52,
+            top: 19.05,
+            bottom: 19.05,
+            left: 19.05,
+              width: 19.05,
           };
 
           pdf.fromHTML(
-            source,
-            margins.left, // x coord
+              source,
+              margins.left, // x coord
             margins.top, { // y coord
               'width': margins.width,
               'elementHandlers': specialElementHandlers
             },
 
             function (dispose) {
-              pdf.save('Prueba.pdf');
+              pdf.save('Regristro.pdf');
             }, margins
           );
         }

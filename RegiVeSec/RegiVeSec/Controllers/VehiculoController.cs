@@ -57,10 +57,6 @@ namespace RegiVeSec.Controllers
                 return View("Error");
             }
 
-
-
-
-
         }
 
         public List<VehiculoRegiVeSecDto> Listar()
@@ -72,7 +68,7 @@ namespace RegiVeSec.Controllers
                 VehiculoRegiVeSecDto dto = new VehiculoRegiVeSecDto();
 
                 dto.Id = item.Id;
-                dto.FechaDeIngreso = item.FechaDeIngreso;
+                dto.FechaDeIngreso = item.FechaDeIngreso.ToShortDateString();
                 dto.Propietario = item.Propietario;
                 dto.Dominio = item.Dominio;
                 dto.DetallesVehiculo = "Dominio: ("+item.Dominio +") Tipo: (" + item.Tipo + ") Marca: (" +  item.Marca + ") Color: (" + item.Color+") Modelo: ("+ item.Modelo+") Estado: ("+ item.Estado + ") " ;
@@ -89,10 +85,10 @@ namespace RegiVeSec.Controllers
                 dto.Observaciones = item.Observaciones;
                 dto.Recibe = item.Recibe;
                 dto.Entrega = item.Entrega;
-                dto.FechaDeEntrega = item.FechaDeEntrega;
+                dto.FechaDeEntrega = item.FechaDeEntrega.ToShortDateString();
 
 
-        VehiculoRegiVeSecsPrueba.Add(dto);
+                VehiculoRegiVeSecsPrueba.Add(dto);
             }
             return VehiculoRegiVeSecsPrueba;
         }
@@ -105,13 +101,13 @@ namespace RegiVeSec.Controllers
 
       List<VehiculoRegiVeSecDto> VehiculoRegiVeSecsPrueba = new List<VehiculoRegiVeSecDto>();
 
-      foreach (var item in db.Vehiculos.Where(x=>x.FechaDeEntrega<=Convert.ToDateTime(filtros[1])
+      foreach (var item in db.Vehiculos.Where(x=>x.FechaDeIngreso <= Convert.ToDateTime(filtros[1])
       && x.FechaDeIngreso>=Convert.ToDateTime(filtros[0])))
       {
         VehiculoRegiVeSecDto dto = new VehiculoRegiVeSecDto();
 
         dto.Id = item.Id;
-        dto.FechaDeIngreso = item.FechaDeIngreso;
+        dto.FechaDeIngreso = item.FechaDeIngreso.ToShortDateString();
         dto.Propietario = item.Propietario;
         dto.Dominio = item.Dominio;
         dto.DetallesVehiculo = "Dominio: (" + item.Dominio + ") Tipo: (" + item.Tipo + ") Marca: (" + item.Marca + ") Color: (" + item.Color + ") Modelo: (" + item.Modelo + ") Estado: (" + item.Estado + ") ";
@@ -128,7 +124,7 @@ namespace RegiVeSec.Controllers
         dto.Observaciones = item.Observaciones;
         dto.Recibe = item.Recibe;
         dto.Entrega = item.Entrega;
-        dto.FechaDeEntrega = item.FechaDeEntrega;
+        dto.FechaDeEntrega = item.FechaDeEntrega.ToShortDateString();
 
 
         VehiculoRegiVeSecsPrueba.Add(dto);
