@@ -3,7 +3,10 @@
         max-width: 1335px !important;
     }
 }
-
+button {
+    font-size: 1rem;
+    line-height: inherit;
+}
 
 .fl-table {
     border-radius: 5px;
