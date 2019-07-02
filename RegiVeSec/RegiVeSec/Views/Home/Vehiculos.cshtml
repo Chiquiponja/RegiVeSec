@@ -3,27 +3,25 @@
     ViewData["Title"] = "Vehiculos";
 }
 @model VehiculoRegiVeSec
-<div id="app">
+    <div id="app">
 
-    <h1 class="list-group-item active">
-        <span>Registro de Vehiculos</span>
-    </h1>
-    <hr />
-    <form class="form-inline waves-light" mdbWavesEffect>
-        <div class="md-form mt-0">
-            <input class="form-control mr-sm-2" type="date" v-model="p_Desde" name="fecha" placeholder="Hasta" />
-            <input class="form-control mr-sm-2" type="date" v-model="p_Hasta" name="fecha1" placeholder="Ahora" />
-            <button type="button" @@click="BuscarVehiculo()" class="btn btn-primary">Buscar</button>
-            <button type="button" @@click="obtenerVehiculo()" class="btn btn-primary">Restaurar</button>
-            <button @@click="javascript:pruebaDivAPdf()" type="button" class="btn btn-primary">Pasar a PDF/EXCEL</button>
-        </div>
-    </form>
-    <div id="imprimir">
+        <h1 class="list-group-item active">
+            <span>Registro de Vehiculos</span>
+        </h1>
         <hr />
+        <form class="form-inline waves-light" mdbWavesEffect>
+            <div class="md-form mt-0">
+                <input class="form-control mr-sm-2" type="date" v-model="p_Desde" name="fecha" placeholder="Hasta" />
+                <input class="form-control mr-sm-2" type="date" v-model="p_Hasta" name="fecha1" placeholder="Ahora" />
+                <button type="button" @@click="BuscarVehiculo()" class="btn btn-primary">Buscar</button>
+                <button type="button" @@click="obtenerVehiculo()" class="btn btn-primary">Restaurar</button>
+            </div>
+        </form>
         <div class="row">
             <div class=" col-md-12  pt-1 ">
                 <div class="table-responsive">
-                    <table id="example"class="  table-hover display fl-table table-bordered" style="width:100%">
+
+                    <table id="example" class="  table-hover display fl-table table-bordered" style="width:100%">
                         <thead>
                             <tr>
                                 <th>Id</th>
@@ -48,10 +46,7 @@
                 </div>
             </div>
         </div>
-
     </div>
-   
-</div>
 @section ScriptsSection {
 
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -65,26 +60,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
     <script src="https://cdn.datatables.net/buttons/1.5.6/js/buttons.html5.min.js"></script>
 
-    <script>
-        function pruebaDivAPdf() {
-            $(document).ready(function () {
-                $('#example').DataTable({
-                    dom: 'Bfrtip',
-                    searching: false,
-                    paging: false,
-                    info: false,
-                    sorting: false,
-                    retrieve: true,
-                    buttons: [
-                        { extend: 'excel', className: 'btn btn-primary' },
-                        { extend: 'pdf', className: 'btn btn-primary' }
-                    ]
-                });
-               
-            });
-            
-        }
-    </script>
+
     <link href="~/css/tabla.css" rel="stylesheet" />
     <script src="~/js/ListaDeVehiculos.js"></script>
     <script>
