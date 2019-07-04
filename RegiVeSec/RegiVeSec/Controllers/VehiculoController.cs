@@ -99,6 +99,7 @@ namespace RegiVeSec.Controllers
 
             return VehiculoRegiVeSecsPrueba;
         }
+
         [HttpGet]
     [Route("/Vehiculo/Buscar/{filtro}")]
     public List<VehiculoRegiVeSecDto> Buscar(string filtro)
@@ -163,8 +164,8 @@ namespace RegiVeSec.Controllers
 
 
             }
-
-            return VehiculoRegiVeSecsPrueba;
+      var Listar = VehiculoRegiVeSecsPrueba;
+            return Listar;
 
         }
         public async Task<IActionResult> Delete(VehiculoRegiVeSec en)
