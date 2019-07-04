@@ -36,7 +36,12 @@ function initVue() {
                                 searching: true,
                                 paging: true,
                                 info: true,
-                                sorting: false,
+                                sorting: true,
+                                "serverSide": true,
+                                "ajax":{
+                                    "url": "/Vehiculo/Tabla",
+                                    "type": "POST",
+                                },
                                 buttons: [
                                     { extend: 'excel', className: 'btn btn-primary' },
                                     { extend: 'pdf', className: 'btn btn-primary' }
@@ -87,9 +92,14 @@ function initVue() {
                         dataTable = $('#example').DataTable({
                             dom: 'Bfrtip',
                             searching: false,
-                            paging: false,
+                            paging: true,
                             info: false,
                             sorting: false,
+                            "serverSide": true,
+                            "ajax": {
+                                "url": "/Vehiculo/Tabla",
+                                "type": "POST",
+                            },
                             buttons: [
                                 { extend: 'excel', className: 'btn btn-primary' },
                                 { extend: 'pdf', className: 'btn btn-primary' }

@@ -6,6 +6,8 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using RegiVeSec.Data;
 using RegiVeSec.Models;
+using Microsoft.AspNetCore.Http;
+using Newtonsoft.Json;
 
 namespace RegiVeSec.Controllers
 {
@@ -61,6 +63,7 @@ namespace RegiVeSec.Controllers
 
         public List<VehiculoRegiVeSecDto> Listar()
         {
+
             List<VehiculoRegiVeSecDto> VehiculoRegiVeSecsPrueba = new List<VehiculoRegiVeSecDto>();
 
             foreach (var item in db.Vehiculos.ToList())
@@ -71,7 +74,7 @@ namespace RegiVeSec.Controllers
                 dto.FechaDeIngreso = item.FechaDeIngreso.ToShortDateString();
                 dto.Propietario = item.Propietario;
                 dto.Dominio = item.Dominio;
-                dto.DetallesVehiculo = "Dominio: ("+item.Dominio +") Tipo: (" + item.Tipo + ") Marca: (" +  item.Marca + ") Color: (" + item.Color+") Modelo: ("+ item.Modelo+") Estado: ("+ item.Estado + ") " ;
+                dto.DetallesVehiculo = "Dominio: (" + item.Dominio + ") Tipo: (" + item.Tipo + ") Marca: (" + item.Marca + ") Color: (" + item.Color + ") Modelo: (" + item.Modelo + ") Estado: (" + item.Estado + ") ";
                 dto.Tipo = item.Tipo;
                 dto.Marca = item.Marca;
                 dto.Color = item.Color;
@@ -90,9 +93,13 @@ namespace RegiVeSec.Controllers
 
                 VehiculoRegiVeSecsPrueba.Add(dto);
             }
+
+
+            HttpContext.Session.SetString("Datos", JsonConvert.SerializeObject(VehiculoRegiVeSecsPrueba));
+
             return VehiculoRegiVeSecsPrueba;
         }
-    [HttpGet]
+        [HttpGet]
     [Route("/Vehiculo/Buscar/{filtro}")]
     public List<VehiculoRegiVeSecDto> Buscar(string filtro)
     {
@@ -131,7 +138,36 @@ namespace RegiVeSec.Controllers
       }
       return VehiculoRegiVeSecsPrueba;
     }
-    public async Task<IActionResult> Delete(VehiculoRegiVeSec en)
+
+
+
+
+
+
+
+        [HttpPost]
+        [Route("/Vehiculo/Tabla")]
+        public List<VehiculoRegiVeSecDto> Tabla()
+        {
+
+            string searchValue = Request.Form["search[value]"];
+
+
+            var VehiculoRegiVeSecsPrueba = JsonConvert.DeserializeObject<List<VehiculoRegiVeSecDto>>(HttpContext.Session.GetString("Datos"));
+
+
+            if (!string.IsNullOrEmpty(searchValue))//filter
+            {
+                VehiculoRegiVeSecsPrueba = VehiculoRegiVeSecsPrueba.
+                    Where(x => x.Marca.ToLower().Contains(searchValue.ToLower())).ToList<VehiculoRegiVeSecDto>();
+
+
+            }
+
+            return VehiculoRegiVeSecsPrueba;
+
+        }
+        public async Task<IActionResult> Delete(VehiculoRegiVeSec en)
         {
 
             try
@@ -176,7 +212,6 @@ namespace RegiVeSec.Controllers
                 ViewData["ErrorMessage"] = ex.Message;
                 return View("Error");
             }
-
 
         }
 
