@@ -1,0 +1,22 @@
+﻿@model Login
+@{
+    ViewData["Title"] = "ContraseñaCorrecta";
+}
+<div id="appLogin">
+    <h1 class="list-group-item-success">
+        <span>Bienvenido al Usuario</span>
+    </h1>
+    <hr />
+    <div style="text-align: center;">
+        <a href="/Home/Index" class="btn btn-success">Ir a la Tabla</a>
+    </div>
+</div>
+@section ScriptsSection {
+    <script src="~/js/vue.min.js"></script>
+    <script src="~/js/ListaDeSesion.js"></script>
+    <script>
+            $(document).ready(function () {
+                vm.obtenerLoginById(@ViewData["Id"]);
+            });
+    </script>
+}

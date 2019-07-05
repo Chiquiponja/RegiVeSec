@@ -1,36 +1,45 @@
-﻿
+﻿@model Login
 @{
     ViewData["Title"] = "Sesion";
 }
-<h1 class="list-group-item active">
-    <span>Registar Cuenta</span>
-</h1>
-<hr />
-<a href="~/Sesion/Registrar" class="btn btn-outline-primary">Iniciar Sesion</a>
-<div id="appLogin">
-    <div class="text-center">
-        <form method="post" action="/Sesion/Add" id="vehiculoform">
-            <fieldset>
-                <div class="row">
-                    <div class="col-md-4 mb-3 ">
-                        <label>Nombre </label>
-                        <input v-model="sesion.Nombre" @@keyup.enter="crearsesion" type="text" name="Nombre" class="form-control" id="Nombre" />
-                    </div>
-                    <div class="col-md-4 mb-3 ">
-                        <label>Contraseña </label>
-                        <input v-model="sesion.Contrasenia" @@keyup.enter="crearsesion" type="password" name="Contrasenia" class="form-control" id="Contrasenia" />
-                    </div>
-                </div>
-                <div style="text-align: center;">
-                    <button id="submit" class="btn btn-primary" v-on:click="Nombre">Agregar</button>
-                </div>
-            </fieldset>
 
-        </form>
+
+    <div id="appLogin">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
+                    <div class="card card-signin my-5">
+                        <div class="card-body">
+                            <h5 class="card-title text-center">Registar Cuenta</h5>
+                            <form class="form-signin" method="post" action="/Sesion/Add" id="vehiculoform">
+                                <div class="form-label-group">
+                                    <input type="text" id="Nombre" class="form-control" name="Nombre"  @@keyup.enter="crearsesion" required autofocus>
+                                    <label v-model="sesion.Nombre">Nombre</label>
+                                </div>
+
+                                <div class="form-label-group">
+                                    <input type="password" id="Contrasenia" class="form-control" name="Contrasenia" @@keyup.enter="crearsesion" required>
+                                    <label  v-model="sesion.Contrasenia">Password</label>
+                                </div>
+
+                                <div class="custom-control custom-checkbox mb-3">
+                                    <input type="checkbox" class="custom-control-input" id="customCheck1">
+                                    <label class="custom-control-label" for="customCheck1">Remember password</label>
+                                </div>
+                                <button class="btn btn-lg btn-primary btn-block text-uppercase" type="submit">Registrate</button>
+                                <a href="~/Sesion/Registrar"  class="btn btn-lg btn-success btn-block text-uppercase">Iniciar Sesion</a>
+
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
-</div>
 
 @section ScriptsSection {
+    <script src="~/js/vue.min.js"></script>
+    <link href="~/css/Seccion.css" rel="stylesheet" />
     <script src="~/js/Vehiculo-validator.js"></script>
     <script>
         $("#vehiculoform").validate();

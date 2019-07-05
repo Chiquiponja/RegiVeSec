@@ -5,6 +5,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.IdentityModel.Protocols;
 using Newtonsoft.Json;
 using RegiVeSec.Data;
 using RegiVeSec.Models;
@@ -39,12 +40,48 @@ namespace RegiVeSec.Controllers
             }
 
         }
-      
+
+        [HttpPost]
+        public IActionResult LogIn(Login admin)
+        {
+            var _admin = db.Logins.Where(s => s.Nombre == admin.Nombre);
+            if (_admin.Any())
+            {
+                if (_admin.Where(s => s.Contrasenia == admin.Contrasenia).Any())
+                {
+
+                    return Redirect("/Sesion/ContraseñaCorrecta");
+                }
+                else
+                {
+                    return Redirect("/Sesion/ContraseñaIncorrecta");
+                }
+            }
+            else
+            {
+                return Redirect("/Sesion/ContraseñaIncorrecta");
+            }
+        }
+        public Login GetLoginId(int id)
+        {
+
+            var Login = db.Logins.FirstOrDefault(x => x.Id == id);
+            return Login;
+        }
         public IActionResult Index()
         {
             return View();
         }
         public IActionResult Registrar()
+        {
+            return View();
+        }
+        public IActionResult ContraseñaCorrecta(int id)
+        {
+            ViewData["Id"] = id;
+            return View(GetLoginId(id));
+        }
+        public IActionResult ContraseñaIncorrecta()
         {
             return View();
         }
