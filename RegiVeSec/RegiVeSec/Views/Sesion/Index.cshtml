@@ -1,0 +1,39 @@
+﻿
+@{
+    ViewData["Title"] = "Sesion";
+}
+<h1 class="list-group-item active">
+    <span>Registar Cuenta</span>
+</h1>
+<hr />
+<a href="~/Sesion/Registrar" class="btn btn-outline-primary">Iniciar Sesion</a>
+<div id="appLogin">
+    <div class="text-center">
+        <form method="post" action="/Sesion/Add" id="vehiculoform">
+            <fieldset>
+                <div class="row">
+                    <div class="col-md-4 mb-3 ">
+                        <label>Nombre </label>
+                        <input v-model="sesion.Nombre" @@keyup.enter="crearsesion" type="text" name="Nombre" class="form-control" id="Nombre" />
+                    </div>
+                    <div class="col-md-4 mb-3 ">
+                        <label>Contraseña </label>
+                        <input v-model="sesion.Contrasenia" @@keyup.enter="crearsesion" type="password" name="Contrasenia" class="form-control" id="Contrasenia" />
+                    </div>
+                </div>
+                <div style="text-align: center;">
+                    <button id="submit" class="btn btn-primary" v-on:click="Nombre">Agregar</button>
+                </div>
+            </fieldset>
+
+        </form>
+    </div>
+</div>
+
+@section ScriptsSection {
+    <script src="~/js/Vehiculo-validator.js"></script>
+    <script>
+        $("#vehiculoform").validate();
+    </script>
+    <script src="~/js/ListaDeSesion.js"></script>
+}

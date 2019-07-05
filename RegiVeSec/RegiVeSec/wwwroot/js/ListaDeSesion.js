@@ -4,7 +4,7 @@ document.addEventListener('DOMContentLoaded', function () {
         el: '#appLogin',
         data: {
 
-           seccion: {
+           sesion: {
                 Id: 0,
                 Nombre: '',
                 Contrasenia: '',
@@ -14,10 +14,10 @@ document.addEventListener('DOMContentLoaded', function () {
             Autos: []
         },
         methods: {
-            crearseccion: function () {
+            crearsesion: function () {
 
                 $.ajax({
-                    url: "/Seccion/Add",
+                    url: "/Sesion/Add",
                     contentType: "application/json",
                     async: true,
                     type: "POST",

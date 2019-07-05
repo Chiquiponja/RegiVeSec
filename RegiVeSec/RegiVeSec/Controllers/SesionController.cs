@@ -11,11 +11,11 @@ using RegiVeSec.Models;
 
 namespace RegiVeSec.Controllers
 {
-    public class SeccionController : Controller
+    public class SesionController : Controller
     {
         private Conexionbd db = new Conexionbd();
         public SqlConnection conectarbd = new SqlConnection();
-        public SeccionController(Conexionbd _db)
+        public SesionController(Conexionbd _db)
         {
             db = _db;
         }
@@ -39,10 +39,14 @@ namespace RegiVeSec.Controllers
             }
 
         }
+      
         public IActionResult Index()
         {
             return View();
         }
-
+        public IActionResult Registrar()
+        {
+            return View();
+        }
     }
 }
