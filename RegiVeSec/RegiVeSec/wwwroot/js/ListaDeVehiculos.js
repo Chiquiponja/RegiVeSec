@@ -37,11 +37,11 @@ function initVue() {
                                 paging: true,
                                 info: true,
                                 sorting: true,
-                                "serverSide": true,
-                                "ajax":{
-                                    "url": "/Vehiculo/Tabla",
-                                    "type": "POST",
-                                },
+                                //"serverSide": true,
+                                //"ajax":{
+                                //    "url": "/Vehiculo/Tabla",
+                                //    "type": "POST",
+                                //},
                                 buttons: [
                                     { extend: 'excel', className: 'btn btn-primary' },
                                     { extend: 'pdf', className: 'btn btn-primary' }
@@ -95,11 +95,11 @@ function initVue() {
                             paging: true,
                             info: false,
                             sorting: false,
-                            "serverSide": true,
-                            "ajax": {
-                                "url": "/Vehiculo/Tabla",
-                                "type": "POST",
-                            },
+                            //"serverSide": true,
+                            //"ajax": {
+                            //    "url": "/Vehiculo/Tabla",
+                            //    "type": "POST",
+                            //},
                             buttons: [
                                 { extend: 'excel', className: 'btn btn-primary' },
                                 { extend: 'pdf', className: 'btn btn-primary' }

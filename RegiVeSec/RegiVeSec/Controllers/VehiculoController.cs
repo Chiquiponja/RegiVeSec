@@ -168,6 +168,26 @@ namespace RegiVeSec.Controllers
             return Listar;
 
         }
+        public async Task<IActionResult> Iniciar(VehiculoRegiVeSec en)
+        {
+            try
+            {
+                //throw new Exception("No se pudo guardar el vehiculo.");
+
+
+                db.Vehiculos.Add(en);
+                await db.SaveChangesAsync();
+
+                return Redirect("/Home/Index");
+            }
+            catch (Exception ex)
+            {
+
+                ViewData["ErrorMessage"] = ex.Message;
+                return View("Error");
+            }
+
+        }
         public async Task<IActionResult> Delete(VehiculoRegiVeSec en)
         {
 
