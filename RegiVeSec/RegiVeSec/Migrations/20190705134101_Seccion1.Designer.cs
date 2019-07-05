@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using RegiVeSec.Data;
 
 namespace RegiVeSec.Migrations
 {
     [DbContext(typeof(Conexionbd))]
-    partial class ConexionbdModelSnapshot : ModelSnapshot
+    [Migration("20190705134101_Seccion1")]
+    partial class Seccion1
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

@@ -95,7 +95,15 @@ $().ready((function () {
             required: true,
             minlength: 3
 
-        }
+            },
+            Nombre: {
+                required: true,
+                minlength: 3
+            },
+            Contrasenia: {
+                required: true,
+                minlength: 8
+            }
         
 
         },
@@ -185,7 +193,16 @@ $().ready((function () {
             Entrega: {
                 required: "Escribi la Entrega... ",
                 minlength: "Minimo 3 caracter"
+            },
+            Nombre: {
+                required: "Escribi el Nombre... ",
+                minlength: "Minimo 3 caracter"
+            },
+             Contrasenia: {
+                required: "Escribi la Contraseña... ",
+                minlength: "Minimo 8 caracter"
             }
+
 
 
         },

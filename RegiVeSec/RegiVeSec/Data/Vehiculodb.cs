@@ -18,6 +18,7 @@ namespace RegiVeSec.Data
                     : base(options)
             { }
             public DbSet<VehiculoRegiVeSec> Vehiculos { get; set; }
-        }
+        public DbSet<Login> Logins { get; set; }
+    }
     
 }
