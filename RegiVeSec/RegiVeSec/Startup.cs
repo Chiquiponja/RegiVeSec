@@ -12,6 +12,8 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using RegiVeSec.Data;
 using Microsoft.AspNetCore.Session;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.UI;
 
 namespace RegiVeSec
 {
@@ -35,6 +37,9 @@ namespace RegiVeSec
             });
 
             services.AddDbContext<Conexionbd>(options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+            services.AddDefaultIdentity<IdentityUser>()
+               .AddDefaultUI(UIFramework.Bootstrap4)
+               .AddEntityFrameworkStores<Conexionbd>();
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
             services.AddDistributedMemoryCache();
             services.AddSession();
@@ -56,8 +61,9 @@ namespace RegiVeSec
 
             app.UseHttpsRedirection();
             app.UseStaticFiles();
-            app.UseCookiePolicy();
+            app.UseCookiePolicy(); 
             app.UseSession();
+            app.UseAuthentication();
             app.UseMvc(routes =>
             {
                 routes.MapRoute(

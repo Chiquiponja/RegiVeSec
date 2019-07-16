@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using RegiVeSec.Data;
 
 namespace RegiVeSec.Migrations
 {
     [DbContext(typeof(Conexionbd))]
-    partial class ConexionbdModelSnapshot : ModelSnapshot
+    [Migration("20190715135043_Login")]
+    partial class Login
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -55,23 +57,6 @@ namespace RegiVeSec.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("IdentityUser");
-                });
-
-            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<string>", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("ClaimType");
-
-                    b.Property<string>("ClaimValue");
-
-                    b.Property<string>("UserId");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("IdentityUserClaim");
                 });
 
             modelBuilder.Entity("RegiVeSec.Models.Login", b =>

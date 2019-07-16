@@ -1,4 +1,4 @@
-﻿@model VehiculoRegiVeSec
+﻿
 @{
     string urlActual = Context.Request.Path;
 
@@ -22,35 +22,37 @@
     </environment>
     <link rel="stylesheet" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css" />
     <link rel="stylesheet" href="~/css/site.css" />
-
-
+    <link rel="shortcut icon" href="~/img/Escudo_de_la_Provincia_de_Córdoba.svg.png">
+  
 </head>
 <body>
     <header>
-      <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
-        <div class="container">
-          <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">RegiVeSec</a>
-          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                  aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-          </button>
-          <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
-            <ul class="navbar-nav flex-grow-1">
-              <li class="nav-item">
-                <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+            <div class="container">
+                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">RegiVeSec</a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
+                    <partial name="_LoginPartial" />
+                    <ul class="navbar-nav flex-grow-1">
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Inicio</a>
 
-              </li>
-              <li class="nav-item">
-                <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Vehiculos">Vehiculos</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Vehiculos">Vehiculos</a>
 
-              </li>
-           </ul>
-          </div>          
-          <form class="form-inline">          
-              <a class="nav-link text-dark  " asp-area="" asp-controller="Sesion" asp-action="Index">Iniciar Sesion</a>
-          </form>
-        </div>     
-      </nav>
+                        </li>
+                    </ul>
+                </div>
+                <form class="form-inline">
+                    <a class="nav-link text-dark  " asp-area="" asp-controller="Sesion" asp-action="Index">Iniciar Sesion</a>
+                </form>
+
+            </div>
+        </nav>
     </header>
     <div class="container">
         <partial name="_CookieConsentPartial" />
@@ -62,7 +64,7 @@
 
     <footer class="border-top footer text-muted">
         <div class="container">
-            &copy; 2019 - RegiVeSec - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+            &copy; 2019 - RegiVeSec - <a asp-area="" asp-controller="Home" asp-action="Privacy"></a>
         </div>
     </footer>
 
@@ -86,6 +88,7 @@
     </environment>
     <script src="~/js/site.js" asp-append-version="true"></script>
     <script src="~/js/vue.min.js"></script>
+    <script src="~/js/ListaDeSesion.js"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.16.0/jquery.validate.min.js"></script>
     <script src="https://cdn.jsdelivr.net/jquery.validation/1.15.1/jquery.validate.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
@@ -96,5 +99,6 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
     <script src="https://cdn.datatables.net/buttons/1.5.6/js/buttons.html5.min.js"></script>
     @RenderSection("ScriptsSection", false)
+    @RenderSection("Scripts", required: false)
 </body>
 </html>
