@@ -44,7 +44,7 @@ namespace RegiVeSec.Areas.Identity.Pages.Account.Manage
             public string Email { get; set; }
 
             [Phone]
-            [Display(Name = "Phone number")]
+            [Display(Name = "Numero de telefono")]
             public string PhoneNumber { get; set; }
         }
 
@@ -109,7 +109,7 @@ namespace RegiVeSec.Areas.Identity.Pages.Account.Manage
             }
 
             await _signInManager.RefreshSignInAsync(user);
-            StatusMessage = "Your profile has been updated";
+            StatusMessage = "Tu perfil ha sido actualizado";
             return RedirectToPage();
         }
 
@@ -140,7 +140,7 @@ namespace RegiVeSec.Areas.Identity.Pages.Account.Manage
                 "Confirm your email",
                 $"Please confirm your account by <a href='{HtmlEncoder.Default.Encode(callbackUrl)}'>clicking here</a>.");
 
-            StatusMessage = "Verification email sent. Please check your email.";
+            StatusMessage = "El mensaje de verificación ha sido enviado. Por favor revise su correo electrónico.";
             return RedirectToPage();
         }
     }
