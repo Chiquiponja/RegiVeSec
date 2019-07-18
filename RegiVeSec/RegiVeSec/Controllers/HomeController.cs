@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using RegiVeSec.Models;
 
@@ -10,12 +11,15 @@ namespace RegiVeSec.Controllers
 {
     public class HomeController : Controller
     {
+        [Authorize]
         public IActionResult Index()
         {
             return View();
         }
+
+        [Authorize]
         public IActionResult Vehiculos()
-        {
+        {     
             return View();
         }
   

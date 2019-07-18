@@ -8,6 +8,7 @@ using RegiVeSec.Data;
 using RegiVeSec.Models;
 using Microsoft.AspNetCore.Http;
 using Newtonsoft.Json;
+using Microsoft.AspNetCore.Authorization;
 
 namespace RegiVeSec.Controllers
 {
@@ -20,7 +21,7 @@ namespace RegiVeSec.Controllers
             db = _db;
         }
 
-
+        [Authorize]
         public IActionResult Eliminar(int id)
         {
             ViewData["Id"] = id;
@@ -33,6 +34,7 @@ namespace RegiVeSec.Controllers
             }
             return View();
         }
+        [Authorize]
         public IActionResult Agregar(int id)
         {
             ViewData["Id"] = id;
@@ -216,7 +218,7 @@ namespace RegiVeSec.Controllers
             }
 
         }
-
+        [Authorize]
         public IActionResult Editar(int id)
         {
             ViewData["Id"] = id;
