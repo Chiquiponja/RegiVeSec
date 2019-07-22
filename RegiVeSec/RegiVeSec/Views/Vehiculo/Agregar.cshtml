@@ -1,4 +1,7 @@
-﻿
+﻿@model VehiculoRegiVeSec
+@{
+    ViewData["Title"] = "Agregar";
+}
 <div id="appAutos">
     <div class="text-center">
         <h1 class="display-4">REGISTRO DE VEHICULOS</h1>
@@ -7,10 +10,10 @@
                 <div class="row">
                     <div class="col-md-4 mb-3 ">
                         <label>Fecha De Ingreso </label>
-                        <input v-model="vehiculo.FechaDeIngreso" @@keyup.enter="crearvehiculo" type="date"  name="FechaDeIngreso" class="form-control" id="FechaDeIngreso" />
+                        <input v-model="vehiculo.FechaDeIngreso" @@keyup.enter="crearvehiculo" type="date" name="FechaDeIngreso" class="form-control" id="FechaDeIngreso" />
                     </div> <div class="col-md-4 mb-3">
                         <label>Propietario </label>
-                        <input v-model="vehiculo.Propietario" @@keyup.enter="crearvehiculo" type="text"  name="Propietario" id="Propietario" class="form-control" />
+                        <input v-model="vehiculo.Propietario" @@keyup.enter="crearvehiculo" type="text" name="Propietario" id="Propietario" class="form-control" />
                     </div>
                     <div class="col-md-4 mb-3">
                         <label>Dominio</label>
