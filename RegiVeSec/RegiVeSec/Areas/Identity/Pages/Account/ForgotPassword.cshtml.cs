@@ -39,6 +39,15 @@ namespace RegiVeSec.Areas.Identity.Pages.Account
             if (ModelState.IsValid)
             {
                 var user = await _userManager.FindByEmailAsync(Input.Email);
+                ViewData["Correo"] = user;
+                var VehiculoRegiVeSec = (user);
+
+                if (VehiculoRegiVeSec == null)
+                {
+                    ViewData["ErrorMessage"] = ($"El Correo : {user} no existe ");
+                    ModelState.AddModelError(string.Empty, "El correo electronico no existe");
+                    return Page();
+                }
                 if (user == null || !(await _userManager.IsEmailConfirmedAsync(user)))
                 {
                     // Don't reveal that the user does not exist or is not confirmed
@@ -71,15 +80,12 @@ namespace RegiVeSec.Areas.Identity.Pages.Account
                     smtp.Send(msz);
                     return RedirectToPage("./ForgotPasswordConfirmation");
                 }
+               
 
-                // For more information on how to enable account confirmation and password reset please 
-                // visit https://go.microsoft.com/fwlink/?LinkID=532713
-                
 
-                
-                
+
+
             }
-
             return Page();
         }
     }

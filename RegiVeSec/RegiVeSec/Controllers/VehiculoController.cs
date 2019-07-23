@@ -141,13 +141,6 @@ namespace RegiVeSec.Controllers
       }
       return VehiculoRegiVeSecsPrueba;
     }
-
-
-
-
-
-
-
         [HttpPost]
         [Route("/Vehiculo/Tabla")]
         public List<VehiculoRegiVeSecDto> Tabla()
