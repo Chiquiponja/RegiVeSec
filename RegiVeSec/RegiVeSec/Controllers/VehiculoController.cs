@@ -29,7 +29,7 @@ namespace RegiVeSec.Controllers
 
             if (VehiculoRegiVeSec == null)
             {
-                ViewData["ErrorMessage"] = ($"El VehiculoRegiVeSec con id: {id} no existe en la base de datos");
+                ViewData["ErrorMessage"] = ($"El Vehiculo con id: {id} no existe en la base de datos");
                 return View("Error");
             }
             return View();
