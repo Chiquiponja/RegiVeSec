@@ -15,7 +15,7 @@ namespace RegiVeSec.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "2.2.3-servicing-35854")
+                .HasAnnotation("ProductVersion", "2.2.4-servicing-10062")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
@@ -97,54 +97,83 @@ namespace RegiVeSec.Migrations
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("Causa");
+                    b.Property<string>("Causa")
+                        .IsRequired()
+                        .HasMaxLength(30);
 
-                    b.Property<string>("Color");
+                    b.Property<string>("Color")
+                        .IsRequired()
+                        .HasMaxLength(30);
 
-                    b.Property<string>("Dependencia");
+                    b.Property<string>("Dependencia")
+                        .IsRequired()
+                        .HasMaxLength(30);
 
-                    b.Property<string>("DependenciaProcedente");
+                    b.Property<string>("DependenciaProcedente")
+                        .IsRequired()
+                        .HasMaxLength(30);
 
-                    b.Property<string>("Dominio");
+                    b.Property<string>("Dominio")
+                        .IsRequired()
+                        .HasMaxLength(30);
 
-                    b.Property<string>("Entrega");
+                    b.Property<string>("Entrega")
+                        .HasMaxLength(30);
 
-                    b.Property<string>("Estado");
+                    b.Property<string>("Estado")
+                        .IsRequired()
+                        .HasMaxLength(30);
 
                     b.Property<DateTime>("FechaDeEntrega");
 
                     b.Property<DateTime>("FechaDeIngreso");
 
-                    b.Property<string>("Marca");
+                    b.Property<int?>("LoginId");
 
-                    b.Property<string>("Modelo");
+                    b.Property<string>("Marca")
+                        .IsRequired()
+                        .HasMaxLength(30);
 
-                    b.Property<string>("NumeroSumario");
+                    b.Property<string>("Modelo")
+                        .IsRequired()
+                        .HasMaxLength(30);
 
-                    b.Property<string>("Observaciones");
+                    b.Property<string>("NumeroSumario")
+                        .IsRequired()
+                        .HasMaxLength(30);
 
-                    b.Property<string>("Orden");
+                    b.Property<string>("Observaciones")
+                        .IsRequired()
+                        .HasMaxLength(30);
 
-                    b.Property<string>("Propietario");
+                    b.Property<string>("Orden")
+                        .IsRequired()
+                        .HasMaxLength(30);
 
-                    b.Property<string>("Recibe");
+                    b.Property<string>("Propietario")
+                        .IsRequired()
+                        .HasMaxLength(30);
 
-                    b.Property<string>("Tipo");
+                    b.Property<string>("Recibe")
+                        .IsRequired()
+                        .HasMaxLength(30);
 
-                    b.Property<int?>("loginId");
+                    b.Property<string>("Tipo")
+                        .IsRequired()
+                        .HasMaxLength(30);
 
                     b.HasKey("Id");
 
-                    b.HasIndex("loginId");
+                    b.HasIndex("LoginId");
 
                     b.ToTable("Vehiculos");
                 });
 
             modelBuilder.Entity("RegiVeSec.Models.VehiculoRegiVeSec", b =>
                 {
-                    b.HasOne("RegiVeSec.Models.Login", "login")
+                    b.HasOne("RegiVeSec.Models.Login")
                         .WithMany("vehiculoRegiVeSecs")
-                        .HasForeignKey("loginId");
+                        .HasForeignKey("LoginId");
                 });
 #pragma warning restore 612, 618
         }
