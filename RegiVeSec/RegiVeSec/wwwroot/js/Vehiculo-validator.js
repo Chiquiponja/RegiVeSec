@@ -22,11 +22,11 @@ $().ready((function () {
             minlength: 3
 
         },
-            Tipo: {
-            required: true,
-            minlength: 3
+        //    Tipo: {
+        //    required: true,
+        //    minlength: 3
 
-        },
+        //},
             Marca: {
             required: true,
             minlength: 3
@@ -121,11 +121,11 @@ $().ready((function () {
                 minlength: "Minimo 3 caracter"
 
             },
-            Tipo: {
-                required: "Escribi tu Tipo... ",
-                minlength: "Minimo 3 caracter"
+            //Tipo: {
+            //    required: "Escribi tu Tipo... ",
+            //    minlength: "Minimo 3 caracter"
 
-            },
+            //},
             Marca: {
                 required: "Escribi tu Marca... ",
                 minlength: "Minimo 3 caracter"

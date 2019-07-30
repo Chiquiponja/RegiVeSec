@@ -7,5 +7,7 @@ namespace RegiVeSec.Models
 {
     public class Tipo
     {
+        public int Id { get; set; }
+        public String Detalles { get; set; }
     }
 }

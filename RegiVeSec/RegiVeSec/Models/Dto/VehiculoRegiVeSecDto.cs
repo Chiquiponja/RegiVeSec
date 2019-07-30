@@ -11,7 +11,7 @@ namespace RegiVeSec.Models
         public string FechaDeIngreso { get; set; }
         public string Propietario { get; set; }
         public string Dominio  { get; set; }
-        public string Tipo { get; set; }
+        public Tipo Tipo { get; set; }
         public string Marca { get; set; }
         public string Color  { get; set; }
         public string Modelo { get; set; }
@@ -27,6 +27,6 @@ namespace RegiVeSec.Models
         public string FechaDeEntrega { get; set; }
         public string DetallesVehiculo { get; set; }
 
-
+        public int TipoId { get; set; }
     }
 }

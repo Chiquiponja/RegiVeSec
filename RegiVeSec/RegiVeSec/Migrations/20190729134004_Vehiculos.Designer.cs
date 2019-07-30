@@ -10,14 +10,14 @@ using RegiVeSec.Data;
 namespace RegiVeSec.Migrations
 {
     [DbContext(typeof(Conexionbd))]
-    [Migration("20190725143857_tabla1")]
-    partial class tabla1
+    [Migration("20190729134004_Vehiculos")]
+    partial class Vehiculos
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "2.2.4-servicing-10062")
+                .HasAnnotation("ProductVersion", "2.2.3-servicing-35854")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
@@ -93,6 +93,19 @@ namespace RegiVeSec.Migrations
                     b.ToTable("Logins");
                 });
 
+            modelBuilder.Entity("RegiVeSec.Models.Tipo", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Detalles");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Tipo");
+                });
+
             modelBuilder.Entity("RegiVeSec.Models.VehiculoRegiVeSec", b =>
                 {
                     b.Property<int>("Id")
@@ -160,13 +173,13 @@ namespace RegiVeSec.Migrations
                         .IsRequired()
                         .HasMaxLength(30);
 
-                    b.Property<string>("Tipo")
-                        .IsRequired()
-                        .HasMaxLength(30);
+                    b.Property<int>("TipoId");
 
                     b.HasKey("Id");
 
                     b.HasIndex("LoginId");
+
+                    b.HasIndex("TipoId");
 
                     b.ToTable("Vehiculos");
                 });
@@ -176,6 +189,11 @@ namespace RegiVeSec.Migrations
                     b.HasOne("RegiVeSec.Models.Login")
                         .WithMany("vehiculoRegiVeSecs")
                         .HasForeignKey("LoginId");
+
+                    b.HasOne("RegiVeSec.Models.Tipo", "Tipo")
+                        .WithMany()
+                        .HasForeignKey("TipoId")
+                        .OnDelete(DeleteBehavior.Cascade);
                 });
 #pragma warning restore 612, 618
         }

@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace RegiVeSec.Migrations
 {
-    public partial class tabla1 : Migration
+    public partial class Vehiculos : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -64,6 +64,19 @@ namespace RegiVeSec.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Tipo",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                    Detalles = table.Column<string>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Tipo", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Vehiculos",
                 columns: table => new
                 {
@@ -72,7 +85,7 @@ namespace RegiVeSec.Migrations
                     FechaDeIngreso = table.Column<DateTime>(nullable: false),
                     Propietario = table.Column<string>(maxLength: 30, nullable: false),
                     Dominio = table.Column<string>(maxLength: 30, nullable: false),
-                    Tipo = table.Column<string>(maxLength: 30, nullable: false),
+                    TipoId = table.Column<int>(nullable: false),
                     Marca = table.Column<string>(maxLength: 30, nullable: false),
                     Color = table.Column<string>(maxLength: 30, nullable: false),
                     Modelo = table.Column<string>(maxLength: 30, nullable: false),
@@ -97,12 +110,23 @@ namespace RegiVeSec.Migrations
                         principalTable: "Logins",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_Vehiculos_Tipo_TipoId",
+                        column: x => x.TipoId,
+                        principalTable: "Tipo",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateIndex(
                 name: "IX_Vehiculos_LoginId",
                 table: "Vehiculos",
                 column: "LoginId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Vehiculos_TipoId",
+                table: "Vehiculos",
+                column: "TipoId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -118,6 +142,9 @@ namespace RegiVeSec.Migrations
 
             migrationBuilder.DropTable(
                 name: "Logins");
+
+            migrationBuilder.DropTable(
+                name: "Tipo");
         }
     }
 }

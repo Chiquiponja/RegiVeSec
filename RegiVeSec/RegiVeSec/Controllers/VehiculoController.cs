@@ -9,6 +9,7 @@ using RegiVeSec.Models;
 using Microsoft.AspNetCore.Http;
 using Newtonsoft.Json;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.EntityFrameworkCore;
 
 namespace RegiVeSec.Controllers
 {
@@ -42,7 +43,7 @@ namespace RegiVeSec.Controllers
         }
 
 
-        public async Task<IActionResult> Add(VehiculoRegiVeSec en)
+        public async Task<IActionResult> Add(VehiculoRegiVeSecDto en)
         {
             try
             {
@@ -225,6 +226,31 @@ namespace RegiVeSec.Controllers
             }
             return View();
         }
+        public IEnumerable<VehiculoRegiVeSec> Lista()
+        {
+            var Vehiculos = db.Vehiculos.Include("Tipo").ToList();
 
+            return Vehiculos;
+        }
+        //}
+
+        [HttpGet]
+        [Route("/Vehiculo/GetTipos")]
+        public List<Tipo> GetTipos()
+        {
+            var result = db.Tipos;
+            return result.ToList();
+            //    return db.Contactos;
+        }
+
+
+
+        public List<Tipo> ObtenerTodos()
+        {
+            using (var db = new Conexionbd())
+            {
+                return db.Tipos.ToList();
+            }
+        }
     }
 }

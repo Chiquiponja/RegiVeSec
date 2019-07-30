@@ -21,8 +21,8 @@ namespace RegiVeSec.Models
         
         [MaxLength(30)]
         [Required]
-        public string Tipo { get; set; }
-        
+        public Tipo Tipo { get; set; }
+
         [MaxLength(30)]
         [Required]
         public string Marca { get; set; }
@@ -73,6 +73,7 @@ namespace RegiVeSec.Models
         
         
         public DateTime FechaDeEntrega { get; set; }
-       
+        
+
     }
 }
