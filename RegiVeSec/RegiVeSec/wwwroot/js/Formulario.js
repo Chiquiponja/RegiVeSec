@@ -1,4 +1,4 @@
-﻿var vm;
+var vm;
 document.addEventListener('DOMContentLoaded', function () {
     vm = new Vue({
         el: '#appAutos',
@@ -6,7 +6,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
             vehiculo: {
                 Id: 0,
-               FechaDeIngreso: '',
+                FechaDeIngreso: '',
                 Propietario: '',
                 Dominio: '',
                 Tipo: '',
@@ -22,7 +22,9 @@ document.addEventListener('DOMContentLoaded', function () {
                 Observaciones: '',
                 Recibe: '',
                 Entrega: '',
-                FechaDeEntrega: ''
+                FechaDeEntrega: '',
+                TipoId: 0,
+
             },
 
             Autos: [],
@@ -31,12 +33,13 @@ document.addEventListener('DOMContentLoaded', function () {
         methods: {
             crearvehiculo: function () {
 
+            var data = vm.$data.vehiculo;
                 $.ajax({
                     url: "/Vehiculo/Add",
                     contentType: "application/json",
                     async: true,
                     type: "POST",
-                    data: data,
+                  data: JSON.stringify(data),
                     error: function (jqXHR, textStatus, errorThrown) {
                         console.log("FAIL: " + errorThrown);
                     },

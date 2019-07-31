@@ -42,27 +42,50 @@ namespace RegiVeSec.Controllers
             return View(GetVehiculoRegiVeSecId(id));
         }
 
+    [HttpPost]
+    public async Task<IActionResult> Add([FromBody]VehiculoRegiVeSecDto vehiculoRegiVeSecDto)
+    {
+        var nuevoVehiculo = new VehiculoRegiVeSec();
+        nuevoVehiculo.Color = vehiculoRegiVeSecDto.Color;
+        nuevoVehiculo.Causa = vehiculoRegiVeSecDto.Causa;
+        nuevoVehiculo.Dependencia = vehiculoRegiVeSecDto.Dependencia;
+        nuevoVehiculo.DependenciaProcedente = vehiculoRegiVeSecDto.DependenciaProcedente;
+        nuevoVehiculo.Dominio = vehiculoRegiVeSecDto.Dominio;
+        nuevoVehiculo.Entrega = vehiculoRegiVeSecDto.Entrega;
+        nuevoVehiculo.Estado = vehiculoRegiVeSecDto.Estado;
+        nuevoVehiculo.FechaDeEntrega = Convert.ToDateTime( vehiculoRegiVeSecDto.FechaDeEntrega);
+        nuevoVehiculo.FechaDeIngreso = Convert.ToDateTime(vehiculoRegiVeSecDto.FechaDeIngreso);
+        nuevoVehiculo.Id = vehiculoRegiVeSecDto.Id;
+        nuevoVehiculo.Marca = vehiculoRegiVeSecDto.Marca;
+        nuevoVehiculo.Modelo = vehiculoRegiVeSecDto.Modelo;
+        nuevoVehiculo.NumeroSumario = vehiculoRegiVeSecDto.NumeroSumario;
+        nuevoVehiculo.Observaciones = vehiculoRegiVeSecDto.Observaciones;
+        nuevoVehiculo.Orden = vehiculoRegiVeSecDto.Orden;
+        nuevoVehiculo.Propietario = vehiculoRegiVeSecDto.Propietario;
+        nuevoVehiculo.Recibe = vehiculoRegiVeSecDto.Recibe;
 
-        public async Task<IActionResult> Add(VehiculoRegiVeSecDto en)
+      //nuevoVehiculo.Tipo = db.Tipos.FirstOrDefault(x => x.Id == vehiculoRegiVeSecDto.Tipo.Id);
+
+        nuevoVehiculo.Tipo = vehiculoRegiVeSecDto.Tipo;
+      try
         {
-            try
-            {
-                //throw new Exception("No se pudo guardar el vehiculo.");
+
+          //throw new Exception("No se pudo guardar el vehiculo.");
 
 
-                db.Vehiculos.Add(en);
-                await db.SaveChangesAsync();
+          db.Vehiculos.Add(nuevoVehiculo);
+          await db.SaveChangesAsync();
 
-                return Redirect("/Home/Index");
-            }
-            catch (Exception ex)
-            {
-
-                ViewData["ErrorMessage"] = ex.Message;
-                return View("Error");
-            }
-
+          return Redirect("/Home/Index");
         }
+        catch (Exception ex)
+        {
+
+          ViewData["ErrorMessage"] = ex.Message;
+          return View("Error");
+        }
+    
+    }
 
         public List<VehiculoRegiVeSecDto> Listar()
         {

@@ -1,4 +1,4 @@
-﻿@model VehiculoRegiVeSecDto
+@model VehiculoRegiVeSecDto
 @{
     ViewData["Title"] = "Agregar";
 }
@@ -25,11 +25,11 @@
                     </div>
                     <div class="col-md-4 mb-3">
                         <label>Tipo </label>
-                        <select  @@keyup.enter="crearvehiculo" asp-for="Tipo"  name="Tipo">
+                        <select  class="form-control"   @@keyup.enter="crearvehiculo" asp-for="Tipo"  name="Tipo" v-model="vehiculo.Tipo">
 
                             <option selected="selected">Tipo </option>
 
-                            <option v-model="vehiculo.Tipo"  v-for="item in Tipos" v-bind:value="item">{{ item.detalles }}</option>
+                            <option   v-for="item in Tipos" v-bind:value="item">{{ item.detalles }}</option>
 
                         </select>
                         @*<input v-model="vehiculo.Tipo" @@keyup.enter="crearvehiculo" type="text" name="Tipo" id="Tipo" class="form-control" />*@
@@ -85,7 +85,7 @@
 
                 </div>
                 <div style="text-align: center;">
-                    <button id="submit" class="btn btn-primary" v-on:click="vehiculo">Enviar</button>
+                    <button id="submit" class="btn btn-primary" v-on:click="crearvehiculo">Enviar</button>
                 </div>
             </fieldset>
 

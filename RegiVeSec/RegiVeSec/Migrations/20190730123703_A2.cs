@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace RegiVeSec.Migrations
 {
-    public partial class Vehiculos : Migration
+    public partial class A2 : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -64,7 +64,7 @@ namespace RegiVeSec.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Tipo",
+                name: "Tipos",
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
@@ -73,7 +73,7 @@ namespace RegiVeSec.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Tipo", x => x.Id);
+                    table.PrimaryKey("PK_Tipos", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -111,9 +111,9 @@ namespace RegiVeSec.Migrations
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
-                        name: "FK_Vehiculos_Tipo_TipoId",
+                        name: "FK_Vehiculos_Tipos_TipoId",
                         column: x => x.TipoId,
-                        principalTable: "Tipo",
+                        principalTable: "Tipos",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -144,7 +144,7 @@ namespace RegiVeSec.Migrations
                 name: "Logins");
 
             migrationBuilder.DropTable(
-                name: "Tipo");
+                name: "Tipos");
         }
     }
 }
