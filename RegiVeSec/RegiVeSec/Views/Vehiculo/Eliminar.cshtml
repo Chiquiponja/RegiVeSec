@@ -1,4 +1,4 @@
-﻿@model VehiculoRegiVeSec
+@model VehiculoRegiVeSec
 @{
     ViewData["Title"] = "Index";
 }
@@ -121,11 +121,12 @@
             </dd>
         </dl>
         <div style="text-align: center;">
-            <form action="/Vehiculo/Delete">
-                <input type="hidden" name="Id" v-model="vehiculo.id" />
-                <input type="submit" value="Eliminar" v-on:click="vehiculo" class="btn btn-danger" />
+          <form action="/Vehiculo/Delete">
+            <a :href="'/Home/Index/' " class="btn btn-outline-dark">Volver Al Inicio</a>
+            <input type="hidden" name="Id" v-model="vehiculo.id" />
+            <input type="submit" value="Eliminar" v-on:click="vehiculo" class="btn btn-danger" />
 
-            </form>
+          </form>
         </div>
     </div>
 </div>

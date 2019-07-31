@@ -1,4 +1,4 @@
-﻿@model VehiculoRegiVeSec
+@model VehiculoRegiVeSec
 @{
     ViewData["Title"] = "Editar";
 }
@@ -97,7 +97,8 @@
         </div>
         <hr />
         <div style="text-align: center;">
-            <input type="submit" value="Enviar" v-on:click="vehiculo" class="btn btn-primary" />
+          <a :href="'/Home/Index/' " class="btn btn-outline-dark">Volver Al Inicio</a>
+          <input type="submit" value="Enviar" v-on:click="vehiculo" class="btn btn-primary" />
         </div>
     </form>
 </div>
