@@ -21,6 +21,7 @@ namespace RegiVeSec.Models
         
         [MaxLength(30)]
         [Required]
+
         public Tipo Tipo { get; set; }
 
         [MaxLength(30)]

@@ -77,9 +77,8 @@ namespace RegiVeSec.Controllers
         nuevoVehiculo.Propietario = vehiculoRegiVeSecDto.Propietario;
         nuevoVehiculo.Recibe = vehiculoRegiVeSecDto.Recibe;
 
-      //nuevoVehiculo.Tipo = db.Tipos.FirstOrDefault(x => x.Id == vehiculoRegiVeSecDto.Tipo.Id);
+        nuevoVehiculo.Tipo = db.Tipos.FirstOrDefault(x => x.Id == vehiculoRegiVeSecDto.Tipo.Id);
 
-        nuevoVehiculo.Tipo = vehiculoRegiVeSecDto.Tipo;
       try
         {
 
@@ -227,7 +226,9 @@ namespace RegiVeSec.Controllers
         public VehiculoRegiVeSec GetVehiculoRegiVeSecId(int id)
         {
 
-            var VehiculoRegiVeSec = db.Vehiculos.FirstOrDefault(x => x.Id == id);
+            var VehiculoRegiVeSec = db.Vehiculos.Include(i => i.Tipo).FirstOrDefault(x => x.Id == id);
+            //VehiculoRegiVeSec.Tipo = ;
+
             return VehiculoRegiVeSec;
         }
 

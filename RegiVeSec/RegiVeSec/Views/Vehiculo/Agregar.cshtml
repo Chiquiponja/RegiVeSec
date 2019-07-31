@@ -25,9 +25,7 @@
           </div>
           <div class="col-md-4 mb-3">
             <label>Tipo </label>
-            <select class="form-control" @@keyup.enter="crearvehiculo" asp-for="Tipo" name="Tipo" v-model="vehiculo.Tipo">
-
-              <option selected="selected">Tipo </option>
+            <select class="form-control" @@keyup.enter="crearvehiculo" asp-for="Tipo" name="Tipo" v-model="vehiculo.Tipo" placeholder="Tipos">
 
               <option v-for="item in Tipos" v-bind:value="item">{{ item.detalles }}</option>
 
