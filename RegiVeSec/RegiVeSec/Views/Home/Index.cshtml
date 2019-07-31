@@ -1,4 +1,4 @@
-﻿@{
+@{
     ViewData["Title"] = "Home Page";
 }
 @model VehiculoRegiVeSec
@@ -39,9 +39,10 @@
                             <th>{{ item.dominio }} </th>
                             <th>{{ item.fechaDeEntrega }} </th>
                             <td>
-
-                                <a :href="'/Vehiculo/Eliminar/' + item.id" class="btn btn-danger">Eliminar</a>
-                                <a :href="'/Vehiculo/Editar/' + item.id" class="btn btn-primary">Editar</a>
+                              <a :href="'/Vehiculo/Detalles/' + item.id" class="btn btn-outline-dark">Detalles</a>
+                              <a :href="'/Vehiculo/Eliminar/' + item.id" class="btn btn-danger">Eliminar</a>
+                              <a :href="'/Vehiculo/Editar/' + item.id" class="btn btn-primary">Editar</a>
+                              
                             </td>
                         </tr>
                     </tbody>

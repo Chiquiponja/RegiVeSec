@@ -1,0 +1,133 @@
+@model VehiculoRegiVeSec
+@{
+  ViewData["Title"] = "Index";
+}
+
+<h1>Detalles</h1>
+
+<div id="appAutos">
+  <div>
+    <hr />
+    <dl class="row">
+      <dt class="col-sm-2">
+        <partial>Id</partial>
+      </dt>
+      <dd class="col-md-4">
+        {{ vehiculo.id }}
+      </dd>
+      <dt class="col-sm-2">
+        <partial>Fecha De Ingreso</partial>
+      </dt>
+      <dd class="col-md-4">
+        {{ vehiculo.fechaDeIngreso }}
+      </dd>
+      <dt class="col-sm-2">
+        <partial>Propietario</partial>
+      </dt>
+      <dd class="col-md-4">
+        {{ vehiculo.propietario}}
+      </dd>
+      <dt class="col-sm-2">
+        <partial>Dominio</partial>
+      </dt>
+      <dd class="col-md-4">
+        {{ vehiculo.dominio }}
+      </dd>
+      <dt class="col-sm-2">
+        <partial>Tipo</partial>
+      </dt>
+      <dd class="col-md-4">
+        {{ vehiculo.tipo }}
+      </dd>
+      <dt class="col-sm-2">
+        <partial>Marca</partial>
+      </dt>
+      <dd class="col-md-4">
+        {{ vehiculo.marca}}
+      </dd>
+      <dt class="col-sm-2">
+        <partial>Color</partial>
+      </dt>
+      <dd class="col-md-4">
+        {{ vehiculo.color}}
+      </dd>
+      <dt class="col-sm-2">
+        <partial>Modelo</partial>
+      </dt>
+      <dd class="col-md-4">
+        {{ vehiculo.modelo}}
+      </dd>
+      <dt class="col-sm-2">
+        <partial>Causa</partial>
+      </dt>
+      <dd class="col-md-4">
+        {{ vehiculo.causa}}
+      </dd>
+      <dt class="col-sm-2">
+        <partial>Estado</partial>
+      </dt>
+      <dd class="col-md-4">
+        {{ vehiculo.estado }}
+      </dd>
+      <dt class="col-sm-2">
+        <partial>Numero Sumario</partial>
+      </dt>
+      <dd class="col-md-4">
+        {{ vehiculo.numeroSumario}}
+      </dd>
+      <dt class="col-sm-2">
+        <partial>Dependencia</partial>
+      </dt>
+      <dd class="col-md-4">
+        {{ vehiculo.dependencia }}
+      </dd>
+      <dt class="col-sm-2">
+        <partial>Orden</partial>
+      </dt>
+      <dd class="col-md-4">
+        {{ vehiculo.orden }}
+      </dd>
+      <dt class="col-sm-2">
+        <partial>Dependencia Procedente</partial>
+      </dt>
+      <dd class="col-md-4">
+        {{ vehiculo.dependenciaProcedente}}
+      </dd>
+      <dt class="col-sm-2">
+        <partial>Observaciones</partial>
+      </dt>
+      <dd class="col-md-4">
+        {{ vehiculo.observaciones}}
+      </dd>
+      <dt class="col-sm-2">
+        <partial>Recibe </partial>
+      </dt>
+      <dd class="col-md-4">
+        {{ vehiculo.recibe  }}
+      </dd>
+      <dt class="col-sm-2">
+        <partial>Entrega</partial>
+      </dt>
+      <dd class="col-md-4">
+        {{ vehiculo.entrega }}
+      </dd>
+
+
+      <dt class="col-sm-2">
+        <partial>Fecha De Entrega</partial>
+      </dt>
+      <dd class="col-md-4">
+        {{ vehiculo.fechaDeEntrega }}
+      </dd>
+    </dl>
+   
+  </div>
+</div>
+@section ScriptsSection {
+  <script src="~/js/Formulario.js"></script>
+  <script>
+            $(document).ready(function () {
+                vm.obtenerAutoById(@ViewData["Id"]);
+            });
+  </script>
+}

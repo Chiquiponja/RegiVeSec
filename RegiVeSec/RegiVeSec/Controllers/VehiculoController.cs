@@ -35,7 +35,20 @@ namespace RegiVeSec.Controllers
             }
             return View();
         }
-        [Authorize]
+    [Authorize]
+    public IActionResult Detalles(int id)
+    {
+      ViewData["Id"] = id;
+      var VehiculoRegiVeSec = GetVehiculoRegiVeSecId(id);
+
+      if (VehiculoRegiVeSec == null)
+      {
+        ViewData["ErrorMessage"] = ($"El Vehiculo con id: {id} no existe en la base de datos");
+        return View("Error");
+      }
+      return View();
+    }
+    [Authorize]
         public IActionResult Agregar(int id)
         {
             ViewData["Id"] = id;
