@@ -30,6 +30,7 @@ document.addEventListener('DOMContentLoaded', function () {
             Autos: [],
             Tipos: []
         },
+   
         methods: {
             crearvehiculo: function () {
 
@@ -59,6 +60,24 @@ document.addEventListener('DOMContentLoaded', function () {
                 })
                     .done(function (data) {
                         vm.$data.Tipos = data;
+                    })
+                    .fail(function (jqXHR, textStatus, errorThrown) {
+                        if (console && console.log) {
+                            console.log("La solicitud de tipos de contacto ha fallado: " + textStatus);
+                        }
+                    });
+            },
+            ObtenerEdit: function () {
+                $.ajax({
+                    //Cambiar a type: POST si necesario
+                    type: "GET",
+                    // Formato de datos que se espera en la respuesta
+                    dataType: "json",
+                    // URL a la que se enviará la solicitud Ajax
+                    url: "/Vehiculo/Edit",
+                })
+                    .done(function (data) {
+                        vm.$data.vehiculo = data;
                     })
                     .fail(function (jqXHR, textStatus, errorThrown) {
                         if (console && console.log) {

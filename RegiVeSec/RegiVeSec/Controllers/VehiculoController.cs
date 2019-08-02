@@ -234,7 +234,6 @@ namespace RegiVeSec.Controllers
 
         public async Task<IActionResult> Edit(VehiculoRegiVeSec en)
         {
-
             try
             {
                 //throw new Exception("No se pudo Editar el Registro.");
@@ -255,7 +254,7 @@ namespace RegiVeSec.Controllers
             ViewData["Id"] = id;
 
             var VehiculoRegiVeSec = GetVehiculoRegiVeSecId(id);
-
+             VehiculoRegiVeSec = db.Vehiculos.Include(i => i.Tipo).FirstOrDefault(x => x.Id == id);
             if (VehiculoRegiVeSec == null)
             {
                 ViewData["ErrorMessage"] = ($"El VehiculoRegiVeSec con id: {id} no existe en la base de datos");
