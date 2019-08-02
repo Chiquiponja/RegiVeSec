@@ -67,24 +67,41 @@ document.addEventListener('DOMContentLoaded', function () {
                         }
                     });
             },
-            ObtenerEdit: function () {
-                $.ajax({
-                    //Cambiar a type: POST si necesario
-                    type: "GET",
-                    // Formato de datos que se espera en la respuesta
-                    dataType: "json",
-                    // URL a la que se enviará la solicitud Ajax
-                    url: "/Vehiculo/Edit",
-                })
-                    .done(function (data) {
-                        vm.$data.vehiculo = data;
-                    })
-                    .fail(function (jqXHR, textStatus, errorThrown) {
-                        if (console && console.log) {
-                            console.log("La solicitud de tipos de contacto ha fallado: " + textStatus);
-                        }
-                    });
-            },
+          //  ObtenerEdit: function () {
+          //      $.ajax({
+          //          //Cambiar a type: POST si necesario
+          //        type: "POST",
+          //          // Formato de datos que se espera en la respuesta
+          //          dataType: "json",
+          //          // URL a la que se enviará la solicitud Ajax
+          //          url: "/Vehiculo/Edit",
+          //      })
+          //          .done(function (data) {
+          //              vm.$data.vehiculo = data;
+          //          })
+          //          .fail(function (jqXHR, textStatus, errorThrown) {
+          //              if (console && console.log) {
+          //                  console.log("La solicitud de tipos de contacto ha fallado: " + textStatus);
+          //              }
+          //          });
+          //},
+          ObtenerEdit: function () {
+
+            var data = vm.$data.vehiculo;
+            $.ajax({
+              url: "/Vehiculo/Edit",
+              contentType: "application/json",
+              async: true,
+              type: "POST",
+              data: JSON.stringify(data),
+              error: function (jqXHR, textStatus, errorThrown) {
+                console.log("FAIL: " + errorThrown);
+              },
+              success: function (data, textStatus, jqXHR) {
+                console.log("SUCCESS!");
+              }
+            });
+          },
             obtenerAutoById: function (id) {
                 $.ajax({
                     //Cambiar a type: POST si necesario

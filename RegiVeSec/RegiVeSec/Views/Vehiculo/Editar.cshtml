@@ -7,7 +7,7 @@
 <h4>Editar</h4>
 <hr />
 <div id="appAutos">
-    <form action="/Vehiculo/Edit" method="POST" id="vehiculoform">
+    <form action="/Home/Index" method="POST" id="vehiculoform">
         <div asp-validation-summary="ModelOnly" class="text-danger"></div>
         <input type="hidden" asp-for="Id" name="Id" />
         <div class="row">
@@ -103,7 +103,7 @@
         <hr />
         <div style="text-align: center;">
             <a :href="'/Home/Index/' " class="btn btn-outline-dark">Volver Al Inicio</a>
-            <input type="submit" value="Enviar" v-on:click="crearvehiculo" class="btn btn-primary" />
+            <input type="submit" value="Enviar" v-on:click="ObtenerEdit" class="btn btn-primary" />
         </div>
     </form>
 </div>

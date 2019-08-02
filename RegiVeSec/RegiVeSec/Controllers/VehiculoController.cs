@@ -84,7 +84,7 @@ namespace RegiVeSec.Controllers
 
           //throw new Exception("No se pudo guardar el vehiculo.");
 
-
+    
           db.Vehiculos.Add(nuevoVehiculo);
           await db.SaveChangesAsync();
 
@@ -232,23 +232,44 @@ namespace RegiVeSec.Controllers
             return VehiculoRegiVeSec;
         }
 
-        public async Task<IActionResult> Edit(VehiculoRegiVeSec en)
-        {
-            try
-            {
-                //throw new Exception("No se pudo Editar el Registro.");
-                db.Vehiculos.Update(en);
-                await db.SaveChangesAsync();
-                return Redirect("/Home/Index/");
-            }
-            catch (Exception ex)
-            {
-                ViewData["ErrorMessage"] = ex.Message;
-                return View("Error");
-            }
+    [HttpPost]
+    public async Task<IActionResult> Edit([FromBody]VehiculoRegiVeSecDto vehiculoRegiVeSecDto)
+    {
+      var nuevoVehiculo = new VehiculoRegiVeSec();
+      nuevoVehiculo.Color = vehiculoRegiVeSecDto.Color;
+      nuevoVehiculo.Causa = vehiculoRegiVeSecDto.Causa;
+      nuevoVehiculo.Dependencia = vehiculoRegiVeSecDto.Dependencia;
+      nuevoVehiculo.DependenciaProcedente = vehiculoRegiVeSecDto.DependenciaProcedente;
+      nuevoVehiculo.Dominio = vehiculoRegiVeSecDto.Dominio;
+      nuevoVehiculo.Entrega = vehiculoRegiVeSecDto.Entrega;
+      nuevoVehiculo.Estado = vehiculoRegiVeSecDto.Estado;
+      nuevoVehiculo.FechaDeEntrega = Convert.ToDateTime(vehiculoRegiVeSecDto.FechaDeEntrega);
+      nuevoVehiculo.FechaDeIngreso = Convert.ToDateTime(vehiculoRegiVeSecDto.FechaDeIngreso);
+      nuevoVehiculo.Id = vehiculoRegiVeSecDto.Id;
+      nuevoVehiculo.Marca = vehiculoRegiVeSecDto.Marca;
+      nuevoVehiculo.Modelo = vehiculoRegiVeSecDto.Modelo;
+      nuevoVehiculo.NumeroSumario = vehiculoRegiVeSecDto.NumeroSumario;
+      nuevoVehiculo.Observaciones = vehiculoRegiVeSecDto.Observaciones;
+      nuevoVehiculo.Orden = vehiculoRegiVeSecDto.Orden;
+      nuevoVehiculo.Propietario = vehiculoRegiVeSecDto.Propietario;
+      nuevoVehiculo.Recibe = vehiculoRegiVeSecDto.Recibe;
 
-        }
-        [Authorize]
+      nuevoVehiculo.Tipo = db.Tipos.FirstOrDefault(x => x.Id == vehiculoRegiVeSecDto.Tipo.Id);
+      try
+      {
+        //throw new Exception("No se pudo Editar el Registro.");
+        db.Vehiculos.Update(nuevoVehiculo);
+        await db.SaveChangesAsync();
+        return Redirect("/Home/Index/");
+      }
+      catch (Exception ex)
+      {
+        ViewData["ErrorMessage"] = ex.Message;
+        return View("Error");
+      }
+
+    }
+    [Authorize]
         public IActionResult Editar(int id)
         {
             ViewData["Id"] = id;
