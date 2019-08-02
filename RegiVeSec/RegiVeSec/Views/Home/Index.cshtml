@@ -39,10 +39,10 @@
                             <th>{{ item.dominio }} </th>
                             <th>{{ item.fechaDeEntrega }} </th>
                             <td>
-                              <a :href="'/Vehiculo/Detalles/' + item.id" class="btn btn-info">Detalles</a>
-                              <a :href="'/Vehiculo/Eliminar/' + item.id" class="btn btn-danger">Eliminar</a>
-                              <a :href="'/Vehiculo/Editar/' + item.id" class="btn btn-primary">Editar</a>
-                              
+                                <a :href="'/Vehiculo/Detalles/' + item.id" class="btn btn-info">Detalles</a>
+                                <a :href="'/Vehiculo/Eliminar/' + item.id" class="btn btn-danger">Eliminar</a>
+                                <a :href="'/Vehiculo/Editar/' + item.id" class="btn btn-primary">Editar</a>
+
                             </td>
                         </tr>
                     </tbody>
@@ -57,17 +57,22 @@
 </div>
 @section ScriptsSection {
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
-    <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+    <script src="~/cdnhome/ButtonsandDataTables.js"></script>
+    <script src="~/cdnhome/ButtonsforDataTables1.5.6.js"></script>
+    <script src="~/cdnhome/jQueryJavaScriptLibraryv3.3.1.js"></script>
+    <script src="~/cdnhome/DataTables1.10.19.js"></script>
+    <script src="~/cdnhome/jQueryv3.4.0.js"></script>
+    <script src="~/cdnhome/JSZipv3.1.3.js"></script>
+    <script src="~/cdnhome/Licenseajax.js"></script>
+    <script src="~/cdnhome/pdfmakev0.1.53.js"></script>
+    <script src="~/cdnhome/this.pdfMake.js"></script>
+    <link href="~/css/tabla.css" rel="stylesheet" />
+    <script src="~/js/ListaDeVehiculos.js"></script>
     <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
-    <script src="https://cdn.datatables.net/buttons/1.5.6/js/dataTables.buttons.min.js"></script>
+   <script src="https://cdn.datatables.net/buttons/1.5.6/js/dataTables.buttons.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
-    <script src="https://cdn.datatables.net/buttons/1.5.6/js/buttons.html5.min.js"></script>
-    <link href="~/css/tabla.css" rel="stylesheet" />
-    <script src="~/js/ListaDeVehiculos.js"></script>
     <script>
 
         $(document).ready(function () {
