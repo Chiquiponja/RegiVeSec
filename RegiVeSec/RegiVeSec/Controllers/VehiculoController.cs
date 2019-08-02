@@ -60,6 +60,7 @@ namespace RegiVeSec.Controllers
     {
         var nuevoVehiculo = new VehiculoRegiVeSec();
         nuevoVehiculo.Color = vehiculoRegiVeSecDto.Color;
+
         nuevoVehiculo.Causa = vehiculoRegiVeSecDto.Causa;
         nuevoVehiculo.Dependencia = vehiculoRegiVeSecDto.Dependencia;
         nuevoVehiculo.DependenciaProcedente = vehiculoRegiVeSecDto.DependenciaProcedente;
