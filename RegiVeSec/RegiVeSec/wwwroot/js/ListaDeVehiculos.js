@@ -43,8 +43,16 @@ function initVue() {
                                 //    "type": "POST",
                                 //},
                                 buttons: [
-                                    { extend: 'excel', className: 'btn btn-primary' },
-                                    { extend: 'pdf', className: 'btn btn-primary' }
+                                    {
+                                        extend: 'excel', className: 'btn btn-primary', exportOptions: {
+                                            columns: [0, 1, 2, 3, 4]
+                                        }
+                                     },
+                                    {
+                                        extend: 'pdf', className: 'btn btn-primary',
+                                        exportOptions: {
+                                            columns: [0, 1, 2, 3,4]
+                                        }}
                                 ],
                                 "language": {
                                     "zeroRecords": "No hay registros disponibles",
@@ -53,8 +61,10 @@ function initVue() {
                                     "infoFiltered": "(filtered from _MAX_ total records)",
                                     "search": "Buscar: ",
 
-                                }
-                            });
+                                },
+                                
+                            },
+                            );
                         })
                     })
                     .fail(function (jqXHR, textStatus, errorThrown) {

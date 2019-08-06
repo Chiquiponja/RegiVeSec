@@ -21,7 +21,7 @@ namespace RegiVeSec.Data
 
             public DbSet<VehiculoRegiVeSec> Vehiculos { get; set; }
              public DbSet<Tipo> Tipos { get; set; }
-        public DbSet<Login> Logins { get; set; }
+            public DbSet<Login> Logins { get; set; }
             public DbSet<IdentityUser> IdentityUser { get; set; }
             public DbSet<IdentityUserClaim<string>> IdentityUserClaim { get; set; }
 

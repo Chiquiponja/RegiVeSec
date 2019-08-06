@@ -99,6 +99,25 @@ namespace RegiVeSec.Controllers
         }
     
     }
+        [Route("/Vehiculo/Inicializador")]
+
+        public void Inicializador()
+        {
+            InicializerTipos();
+        }
+
+        private void InicializerTipos()
+        {
+            var existentes = db.Tipos.ToList();
+            var nuevos = new List<Tipo>(){        new Tipo{Detalles ="Moto"},        new Tipo{Detalles="Auto"},        new Tipo{Detalles = "Camion"},        new Tipo{Detalles="Camioneta"}      };
+
+            foreach (var item in nuevos.Where(x => existentes.All(f => f.Detalles != x.Detalles)))
+            {
+                db.Tipos.Add(item);
+                db.SaveChangesAsync();
+            }
+
+        }
 
         public List<VehiculoRegiVeSecDto> Listar()
         {
