@@ -108,14 +108,8 @@ namespace RegiVeSec.Controllers
 
         private void InicializerTipos()
         {
-            var existentes = db.Tipos.ToList();
-            var nuevos = new List<Tipo>(){        new Tipo{Detalles ="Moto"},        new Tipo{Detalles="Auto"},        new Tipo{Detalles = "Camion"},        new Tipo{Detalles="Camioneta"}      };
-
-            foreach (var item in nuevos.Where(x => existentes.All(f => f.Detalles != x.Detalles)))
-            {
-                db.Tipos.Add(item);
-                db.SaveChangesAsync();
-            }
+            var iniTipos = new InicializacionTipo(db);
+            iniTipos.IniTipos();
 
         }
 
@@ -212,8 +206,6 @@ namespace RegiVeSec.Controllers
             {
                 VehiculoRegiVeSecsPrueba = VehiculoRegiVeSecsPrueba.
                     Where(x => x.Marca.ToLower().Contains(searchValue.ToLower())).ToList<VehiculoRegiVeSecDto>();
-
-
             }
       var Listar = VehiculoRegiVeSecsPrueba;
             return Listar;
