@@ -193,24 +193,55 @@ namespace RegiVeSec.Controllers
     }
         [HttpPost]
         [Route("/Vehiculo/Tabla")]
-        public List<VehiculoRegiVeSecDto> Tabla()
+        
+        public ActionResult<List<VehiculoRegiVeSec>> Tabla()
         {
-
+            int start = Convert.ToInt32(Request.Form["start"]);
+            int length = Convert.ToInt32(Request.Form["length"]);
             string searchValue = Request.Form["search[value]"];
+            string sortColumnName = Request.Form["columns[" + Request.Form["order[0][column]"] + "][name]"];
+            string sortDirection = Request.Form["order[0][dir]"];
+
+            List<VehiculoRegiVeSec> empList = new List<VehiculoRegiVeSec>();
+            
+            //using (Conexionbd DB = new Conexionbd())
+            //{
+            empList = db.Vehiculos.ToList();
+                int totalrows = empList.Count;
+                if (!string.IsNullOrEmpty(searchValue))//filter
+                {
+                    empList = empList.
+                        Where(x => x.Marca.ToLower().Contains(searchValue.ToLower()) || x.Dependencia.ToLower().Contains(searchValue.ToLower()) || x.Propietario.ToLower().Contains(searchValue.ToLower()) || x.Causa.ToString().Contains(searchValue.ToLower()) || x.Color.ToString().Contains(searchValue.ToLower())).ToList<VehiculoRegiVeSec>();
+                }
+                int totalrowsafterfiltering = empList.Count;
+            //sorting
+                //empList = empList.OrderBy(sortColumnName + " " + sortDirection).ToList<VehiculoRegiVeSec>();
+
+                //empList = empList.OrderBy(sortColumnName, sortDirection);
+            //paging
+            empList = empList.Skip(start).Take(length).ToList<VehiculoRegiVeSec>();
 
 
-            var VehiculoRegiVeSecsPrueba = JsonConvert.DeserializeObject<List<VehiculoRegiVeSecDto>>(HttpContext.Session.GetString("Datos"));
+            //return Json(new { data = empList, draw = Request.Form["Datos"], recordsTotal = totalrows, recordsFiltered = totalrowsafterfiltering }, JsonConvert.SerializeObject(empList));
+
+            return empList;
+        //}
+
+        //      string searchValue = Request.Form["search[value]"];
 
 
-            if (!string.IsNullOrEmpty(searchValue))//filter
-            {
-                VehiculoRegiVeSecsPrueba = VehiculoRegiVeSecsPrueba.
-                    Where(x => x.Marca.ToLower().Contains(searchValue.ToLower())).ToList<VehiculoRegiVeSecDto>();
-            }
-      var Listar = VehiculoRegiVeSecsPrueba;
-            return Listar;
+        //      var VehiculoRegiVeSecsPrueba = JsonConvert.DeserializeObject<List<VehiculoRegiVeSecDto>>(HttpContext.Session.GetString("Datos"));
 
-        }
+
+        //      if (!string.IsNullOrEmpty(searchValue))//filter
+        //      {
+        //          VehiculoRegiVeSecsPrueba = VehiculoRegiVeSecsPrueba.
+        //              Where(x => x.Marca.ToLower().Contains(searchValue.ToLower())).ToList<VehiculoRegiVeSecDto>();
+        //      }
+        //var Listar = VehiculoRegiVeSecsPrueba;
+        //      return Listar;
+
+    }
        
         public async Task<IActionResult> Delete(VehiculoRegiVeSec en)
         {

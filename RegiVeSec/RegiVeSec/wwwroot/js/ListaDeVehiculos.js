@@ -37,6 +37,7 @@ function initVue() {
                                 paging: true,
                                 info: true,
                                 sorting: true,
+                                order:[0,"asc"],
                                 //"serverSide": true,
                                 //"ajax":{
                                 //    "url": "/Vehiculo/Tabla",
