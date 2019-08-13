@@ -35,70 +35,70 @@ namespace RegiVeSec.Controllers
             }
             return View();
         }
-    [Authorize]
-    public IActionResult Detalles(int id)
-    {
-      ViewData["Id"] = id;
-      var VehiculoRegiVeSec = GetVehiculoRegiVeSecId(id);
+        [Authorize]
+        public IActionResult Detalles(int id)
+        {
+            ViewData["Id"] = id;
+            var VehiculoRegiVeSec = GetVehiculoRegiVeSecId(id);
 
-      if (VehiculoRegiVeSec == null)
-      {
-        ViewData["ErrorMessage"] = ($"El Vehiculo con id: {id} no existe en la base de datos");
-        return View("Error");
-      }
-      return View();
-    }
-    [Authorize]
+            if (VehiculoRegiVeSec == null)
+            {
+                ViewData["ErrorMessage"] = ($"El Vehiculo con id: {id} no existe en la base de datos");
+                return View("Error");
+            }
+            return View();
+        }
+        [Authorize]
         public IActionResult Agregar(int id)
         {
             ViewData["Id"] = id;
             return View(GetVehiculoRegiVeSecId(id));
         }
 
-    [HttpPost]
-    public async Task<IActionResult> Add([FromBody]VehiculoRegiVeSecDto vehiculoRegiVeSecDto)
-    {
-        var nuevoVehiculo = new VehiculoRegiVeSec();
-        nuevoVehiculo.Color = vehiculoRegiVeSecDto.Color;
-
-        nuevoVehiculo.Causa = vehiculoRegiVeSecDto.Causa;
-        nuevoVehiculo.Dependencia = vehiculoRegiVeSecDto.Dependencia;
-        nuevoVehiculo.DependenciaProcedente = vehiculoRegiVeSecDto.DependenciaProcedente;
-        nuevoVehiculo.Dominio = vehiculoRegiVeSecDto.Dominio;
-        nuevoVehiculo.Entrega = vehiculoRegiVeSecDto.Entrega;
-        nuevoVehiculo.Estado = vehiculoRegiVeSecDto.Estado;
-        nuevoVehiculo.FechaDeEntrega = Convert.ToDateTime( vehiculoRegiVeSecDto.FechaDeEntrega);
-        nuevoVehiculo.FechaDeIngreso = Convert.ToDateTime(vehiculoRegiVeSecDto.FechaDeIngreso);
-        nuevoVehiculo.Id = vehiculoRegiVeSecDto.Id;
-        nuevoVehiculo.Marca = vehiculoRegiVeSecDto.Marca;
-        nuevoVehiculo.Modelo = vehiculoRegiVeSecDto.Modelo;
-        nuevoVehiculo.NumeroSumario = vehiculoRegiVeSecDto.NumeroSumario;
-        nuevoVehiculo.Observaciones = vehiculoRegiVeSecDto.Observaciones;
-        nuevoVehiculo.Orden = vehiculoRegiVeSecDto.Orden;
-        nuevoVehiculo.Propietario = vehiculoRegiVeSecDto.Propietario;
-        nuevoVehiculo.Recibe = vehiculoRegiVeSecDto.Recibe;
-
-        nuevoVehiculo.Tipo = db.Tipos.FirstOrDefault(x => x.Id == vehiculoRegiVeSecDto.Tipo.Id);
-
-      try
+        [HttpPost]
+        public async Task<IActionResult> Add([FromBody]VehiculoRegiVeSecDto vehiculoRegiVeSecDto)
         {
+            var nuevoVehiculo = new VehiculoRegiVeSec();
+            nuevoVehiculo.Color = vehiculoRegiVeSecDto.Color;
 
-          //throw new Exception("No se pudo guardar el vehiculo.");
+            nuevoVehiculo.Causa = vehiculoRegiVeSecDto.Causa;
+            nuevoVehiculo.Dependencia = vehiculoRegiVeSecDto.Dependencia;
+            nuevoVehiculo.DependenciaProcedente = vehiculoRegiVeSecDto.DependenciaProcedente;
+            nuevoVehiculo.Dominio = vehiculoRegiVeSecDto.Dominio;
+            nuevoVehiculo.Entrega = vehiculoRegiVeSecDto.Entrega;
+            nuevoVehiculo.Estado = vehiculoRegiVeSecDto.Estado;
+            nuevoVehiculo.FechaDeEntrega = Convert.ToDateTime(vehiculoRegiVeSecDto.FechaDeEntrega);
+            nuevoVehiculo.FechaDeIngreso = Convert.ToDateTime(vehiculoRegiVeSecDto.FechaDeIngreso);
+            nuevoVehiculo.Id = vehiculoRegiVeSecDto.Id;
+            nuevoVehiculo.Marca = vehiculoRegiVeSecDto.Marca;
+            nuevoVehiculo.Modelo = vehiculoRegiVeSecDto.Modelo;
+            nuevoVehiculo.NumeroSumario = vehiculoRegiVeSecDto.NumeroSumario;
+            nuevoVehiculo.Observaciones = vehiculoRegiVeSecDto.Observaciones;
+            nuevoVehiculo.Orden = vehiculoRegiVeSecDto.Orden;
+            nuevoVehiculo.Propietario = vehiculoRegiVeSecDto.Propietario;
+            nuevoVehiculo.Recibe = vehiculoRegiVeSecDto.Recibe;
 
-    
-          db.Vehiculos.Add(nuevoVehiculo);
-          await db.SaveChangesAsync();
+            nuevoVehiculo.Tipo = db.Tipos.FirstOrDefault(x => x.Id == vehiculoRegiVeSecDto.Tipo.Id);
 
-          return Redirect("/Home/Index");
+            try
+            {
+
+                //throw new Exception("No se pudo guardar el vehiculo.");
+
+
+                db.Vehiculos.Add(nuevoVehiculo);
+                await db.SaveChangesAsync();
+
+                return Redirect("/Home/Index");
+            }
+            catch (Exception ex)
+            {
+
+                ViewData["ErrorMessage"] = ex.Message;
+                return View("Error");
+            }
+
         }
-        catch (Exception ex)
-        {
-
-          ViewData["ErrorMessage"] = ex.Message;
-          return View("Error");
-        }
-    
-    }
         [Route("/Vehiculo/Inicializador")]
 
         public void Inicializador()
@@ -153,47 +153,57 @@ namespace RegiVeSec.Controllers
         }
 
         [HttpGet]
-    [Route("/Vehiculo/Buscar/{filtro}")]
-    public List<VehiculoRegiVeSecDto> Buscar(string filtro)
-    {
+        [Route("/Vehiculo/Buscar/{filtro}")]
+        public List<VehiculoRegiVeSecDto> Buscar(string filtro)
+        {
 
-      var filtros = filtro.Split("|");
+            var filtros = filtro.Split("|");
 
-      List<VehiculoRegiVeSecDto> VehiculoRegiVeSecsPrueba = new List<VehiculoRegiVeSecDto>();
+            List<VehiculoRegiVeSecDto> VehiculoRegiVeSecsPrueba = new List<VehiculoRegiVeSecDto>();
 
-      foreach (var item in db.Vehiculos.Where(x=>x.FechaDeIngreso <= Convert.ToDateTime(filtros[1])
-      && x.FechaDeIngreso>=Convert.ToDateTime(filtros[0])))
-      {
-        VehiculoRegiVeSecDto dto = new VehiculoRegiVeSecDto();
+            var textoABuscar = filtros[0];
 
-        dto.Id = item.Id;
-        dto.FechaDeIngreso = item.FechaDeIngreso.ToShortDateString();
-        dto.Propietario = item.Propietario;
-        dto.Dominio = item.Dominio;
-        dto.DetallesVehiculo = "Dominio: (" + item.Dominio + ") Tipo: (" + item.Tipo + ") Marca: (" + item.Marca + ") Color: (" + item.Color + ") Modelo: (" + item.Modelo + ") Estado: (" + item.Estado + ") ";
-        dto.Tipo = item.Tipo;
-        dto.Marca = item.Marca;
-        dto.Color = item.Color;
-        dto.Modelo = item.Modelo;
-        dto.Causa = item.Causa;
-        dto.Estado = item.Estado;
-        dto.NumeroSumario = item.NumeroSumario;
-        dto.Dependencia = item.Dependencia;
-        dto.Orden = item.Orden;
-        dto.DependenciaProcedente = item.DependenciaProcedente;
-        dto.Observaciones = item.Observaciones;
-        dto.Recibe = item.Recibe;
-        dto.Entrega = item.Entrega;
-        dto.FechaDeEntrega = item.FechaDeEntrega.ToShortDateString();
+            var filtraTexto = !string.IsNullOrWhiteSpace(textoABuscar);
+
+            var fechaHasta = new DateTime();
+            var fechaDesde = new DateTime();
+            var filtraFecha = DateTime.TryParse(filtros[1], out fechaDesde) && DateTime.TryParse(filtros[2], out fechaHasta);
+
+            foreach (var item in db.Vehiculos.Where(x =>
+            ( !filtraTexto || (x.Dominio.ToLower().Contains(textoABuscar) ||
+            x.Propietario.ToLower().Contains(textoABuscar))) &&
+            (!filtraFecha || (x.FechaDeIngreso >= fechaDesde
+            && x.FechaDeIngreso <= fechaHasta))))
+            {
+                VehiculoRegiVeSecDto dto = new VehiculoRegiVeSecDto();
+
+                dto.Id = item.Id;
+                dto.FechaDeIngreso = item.FechaDeIngreso.ToShortDateString();
+                dto.Propietario = item.Propietario;
+                dto.Dominio = item.Dominio;
+                dto.DetallesVehiculo = "Dominio: (" + item.Dominio + ") Tipo: (" + item.Tipo + ") Marca: (" + item.Marca + ") Color: (" + item.Color + ") Modelo: (" + item.Modelo + ") Estado: (" + item.Estado + ") ";
+                dto.Tipo = item.Tipo;
+                dto.Marca = item.Marca;
+                dto.Color = item.Color;
+                dto.Modelo = item.Modelo;
+                dto.Causa = item.Causa;
+                dto.Estado = item.Estado;
+                dto.NumeroSumario = item.NumeroSumario;
+                dto.Dependencia = item.Dependencia;
+                dto.Orden = item.Orden;
+                dto.DependenciaProcedente = item.DependenciaProcedente;
+                dto.Observaciones = item.Observaciones;
+                dto.Recibe = item.Recibe;
+                dto.Entrega = item.Entrega;
+                dto.FechaDeEntrega = item.FechaDeEntrega.ToShortDateString();
 
 
-        VehiculoRegiVeSecsPrueba.Add(dto);
-      }
-      return VehiculoRegiVeSecsPrueba;
-    }
+                VehiculoRegiVeSecsPrueba.Add(dto);
+            }
+            return VehiculoRegiVeSecsPrueba;
+        }
         [HttpPost]
         [Route("/Vehiculo/Tabla")]
-        
         public ActionResult<List<VehiculoRegiVeSec>> Tabla()
         {
             int start = Convert.ToInt32(Request.Form["start"]);
@@ -203,46 +213,37 @@ namespace RegiVeSec.Controllers
             string sortDirection = Request.Form["order[0][dir]"];
 
             List<VehiculoRegiVeSec> empList = new List<VehiculoRegiVeSec>();
-            
-            //using (Conexionbd DB = new Conexionbd())
-            //{
-            empList = db.Vehiculos.ToList();
-                int totalrows = empList.Count;
-                if (!string.IsNullOrEmpty(searchValue))//filter
-                {
-                    empList = empList.
-                        Where(x => x.Marca.ToLower().Contains(searchValue.ToLower()) || x.Dependencia.ToLower().Contains(searchValue.ToLower()) || x.Propietario.ToLower().Contains(searchValue.ToLower()) || x.Causa.ToString().Contains(searchValue.ToLower()) || x.Color.ToString().Contains(searchValue.ToLower())).ToList<VehiculoRegiVeSec>();
-                }
-                int totalrowsafterfiltering = empList.Count;
-            //sorting
-                //empList = empList.OrderBy(sortColumnName + " " + sortDirection).ToList<VehiculoRegiVeSec>();
 
-                //empList = empList.OrderBy(sortColumnName, sortDirection);
-            //paging
+            empList = db.Vehiculos.ToList();
+            int totalrows = empList.Count;
+            if (!string.IsNullOrEmpty(searchValue))//filter
+            {
+                empList = empList.
+                    Where(x => x.Marca.ToLower().Contains(searchValue.ToLower()) || x.Dependencia.ToLower().Contains(searchValue.ToLower()) || x.Propietario.ToLower().Contains(searchValue.ToLower()) || x.Causa.ToString().Contains(searchValue.ToLower()) || x.Color.ToString().Contains(searchValue.ToLower())).ToList<VehiculoRegiVeSec>();
+            }
+            int totalrowsafterfiltering = empList.Count;
+
             empList = empList.Skip(start).Take(length).ToList<VehiculoRegiVeSec>();
 
+            return new JsonResult(empList);
+            //}
 
-            //return Json(new { data = empList, draw = Request.Form["Datos"], recordsTotal = totalrows, recordsFiltered = totalrowsafterfiltering }, JsonConvert.SerializeObject(empList));
-
-            return empList;
-        //}
-
-        //      string searchValue = Request.Form["search[value]"];
+            //      string searchValue = Request.Form["search[value]"];
 
 
-        //      var VehiculoRegiVeSecsPrueba = JsonConvert.DeserializeObject<List<VehiculoRegiVeSecDto>>(HttpContext.Session.GetString("Datos"));
+            //      var VehiculoRegiVeSecsPrueba = JsonConvert.DeserializeObject<List<VehiculoRegiVeSecDto>>(HttpContext.Session.GetString("Datos"));
 
 
-        //      if (!string.IsNullOrEmpty(searchValue))//filter
-        //      {
-        //          VehiculoRegiVeSecsPrueba = VehiculoRegiVeSecsPrueba.
-        //              Where(x => x.Marca.ToLower().Contains(searchValue.ToLower())).ToList<VehiculoRegiVeSecDto>();
-        //      }
-        //var Listar = VehiculoRegiVeSecsPrueba;
-        //      return Listar;
+            //      if (!string.IsNullOrEmpty(searchValue))//filter
+            //      {
+            //          VehiculoRegiVeSecsPrueba = VehiculoRegiVeSecsPrueba.
+            //              Where(x => x.Marca.ToLower().Contains(searchValue.ToLower())).ToList<VehiculoRegiVeSecDto>();
+            //      }
+            //var Listar = VehiculoRegiVeSecsPrueba;
+            //      return Listar;
 
-    }
-       
+        }
+
         public async Task<IActionResult> Delete(VehiculoRegiVeSec en)
         {
 
@@ -275,50 +276,50 @@ namespace RegiVeSec.Controllers
             return VehiculoRegiVeSec;
         }
 
-    [HttpPost]
-    public async Task<IActionResult> Edit([FromBody]VehiculoRegiVeSecDto vehiculoRegiVeSecDto)
-    {
-      var nuevoVehiculo = new VehiculoRegiVeSec();
-      nuevoVehiculo.Color = vehiculoRegiVeSecDto.Color;
-      nuevoVehiculo.Causa = vehiculoRegiVeSecDto.Causa;
-      nuevoVehiculo.Dependencia = vehiculoRegiVeSecDto.Dependencia;
-      nuevoVehiculo.DependenciaProcedente = vehiculoRegiVeSecDto.DependenciaProcedente;
-      nuevoVehiculo.Dominio = vehiculoRegiVeSecDto.Dominio;
-      nuevoVehiculo.Entrega = vehiculoRegiVeSecDto.Entrega;
-      nuevoVehiculo.Estado = vehiculoRegiVeSecDto.Estado;
-      nuevoVehiculo.FechaDeEntrega = Convert.ToDateTime(vehiculoRegiVeSecDto.FechaDeEntrega);
-      nuevoVehiculo.FechaDeIngreso = Convert.ToDateTime(vehiculoRegiVeSecDto.FechaDeIngreso);
-      nuevoVehiculo.Id = vehiculoRegiVeSecDto.Id;
-      nuevoVehiculo.Marca = vehiculoRegiVeSecDto.Marca;
-      nuevoVehiculo.Modelo = vehiculoRegiVeSecDto.Modelo;
-      nuevoVehiculo.NumeroSumario = vehiculoRegiVeSecDto.NumeroSumario;
-      nuevoVehiculo.Observaciones = vehiculoRegiVeSecDto.Observaciones;
-      nuevoVehiculo.Orden = vehiculoRegiVeSecDto.Orden;
-      nuevoVehiculo.Propietario = vehiculoRegiVeSecDto.Propietario;
-      nuevoVehiculo.Recibe = vehiculoRegiVeSecDto.Recibe;
+        [HttpPost]
+        public async Task<IActionResult> Edit([FromBody]VehiculoRegiVeSecDto vehiculoRegiVeSecDto)
+        {
+            var nuevoVehiculo = new VehiculoRegiVeSec();
+            nuevoVehiculo.Color = vehiculoRegiVeSecDto.Color;
+            nuevoVehiculo.Causa = vehiculoRegiVeSecDto.Causa;
+            nuevoVehiculo.Dependencia = vehiculoRegiVeSecDto.Dependencia;
+            nuevoVehiculo.DependenciaProcedente = vehiculoRegiVeSecDto.DependenciaProcedente;
+            nuevoVehiculo.Dominio = vehiculoRegiVeSecDto.Dominio;
+            nuevoVehiculo.Entrega = vehiculoRegiVeSecDto.Entrega;
+            nuevoVehiculo.Estado = vehiculoRegiVeSecDto.Estado;
+            nuevoVehiculo.FechaDeEntrega = Convert.ToDateTime(vehiculoRegiVeSecDto.FechaDeEntrega);
+            nuevoVehiculo.FechaDeIngreso = Convert.ToDateTime(vehiculoRegiVeSecDto.FechaDeIngreso);
+            nuevoVehiculo.Id = vehiculoRegiVeSecDto.Id;
+            nuevoVehiculo.Marca = vehiculoRegiVeSecDto.Marca;
+            nuevoVehiculo.Modelo = vehiculoRegiVeSecDto.Modelo;
+            nuevoVehiculo.NumeroSumario = vehiculoRegiVeSecDto.NumeroSumario;
+            nuevoVehiculo.Observaciones = vehiculoRegiVeSecDto.Observaciones;
+            nuevoVehiculo.Orden = vehiculoRegiVeSecDto.Orden;
+            nuevoVehiculo.Propietario = vehiculoRegiVeSecDto.Propietario;
+            nuevoVehiculo.Recibe = vehiculoRegiVeSecDto.Recibe;
 
-      nuevoVehiculo.Tipo = db.Tipos.FirstOrDefault(x => x.Id == vehiculoRegiVeSecDto.Tipo.Id);
-      try
-      {
-        //throw new Exception("No se pudo Editar el Registro.");
-        db.Vehiculos.Update(nuevoVehiculo);
-        await db.SaveChangesAsync();
-        return Redirect("/Home/Index/");
-      }
-      catch (Exception ex)
-      {
-        ViewData["ErrorMessage"] = ex.Message;
-        return View("Error");
-      }
+            nuevoVehiculo.Tipo = db.Tipos.FirstOrDefault(x => x.Id == vehiculoRegiVeSecDto.Tipo.Id);
+            try
+            {
+                //throw new Exception("No se pudo Editar el Registro.");
+                db.Vehiculos.Update(nuevoVehiculo);
+                await db.SaveChangesAsync();
+                return Redirect("/Home/Index/");
+            }
+            catch (Exception ex)
+            {
+                ViewData["ErrorMessage"] = ex.Message;
+                return View("Error");
+            }
 
-    }
-    [Authorize]
+        }
+        [Authorize]
         public IActionResult Editar(int id)
         {
             ViewData["Id"] = id;
 
             var VehiculoRegiVeSec = GetVehiculoRegiVeSecId(id);
-             VehiculoRegiVeSec = db.Vehiculos.Include(i => i.Tipo).FirstOrDefault(x => x.Id == id);
+            VehiculoRegiVeSec = db.Vehiculos.Include(i => i.Tipo).FirstOrDefault(x => x.Id == id);
             if (VehiculoRegiVeSec == null)
             {
                 ViewData["ErrorMessage"] = ($"El VehiculoRegiVeSec con id: {id} no existe en la base de datos");
