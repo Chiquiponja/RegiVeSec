@@ -13,10 +13,14 @@ function initVue() {
         },
         methods: {
             obtenerVehiculo: function () {
+                vm.$data.p_Desde = "";
+                vm.$data.p_Hasta = "";
+                vm.$data.p_Texto = "";
+
                 $.ajax({
                     //Cambiar a type: POST si necesario
                     type: "GET",
-
+                   
 
                     // Formato de datos que se espera en la respuesta
                     dataType: "json",
@@ -39,7 +43,6 @@ function initVue() {
                             console.log("La solicitud ha fallado: " + textStatus);
                         }
                     });
-
             },
             BuscarVehiculo: function () {
 
