@@ -44,7 +44,7 @@ namespace RegiVeSec.Areas.Identity.Pages.Account
             [DataType(DataType.Password)]
             public string Password { get; set; }
 
-            [Display(Name = "Remember me?")]
+            [Display(Name = "Recordar?")]
             public bool RememberMe { get; set; }
         }
 

@@ -10,6 +10,7 @@ using Microsoft.AspNetCore.Http;
 using Newtonsoft.Json;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.EntityFrameworkCore;
+using System.Linq.Expressions;
 
 namespace RegiVeSec.Controllers
 {
@@ -147,11 +148,26 @@ namespace RegiVeSec.Controllers
             }
 
 
-            HttpContext.Session.SetString("Datos", JsonConvert.SerializeObject(VehiculoRegiVeSecsPrueba));
+
+            
+        HttpContext.Session.SetString("Datos", JsonConvert.SerializeObject(VehiculoRegiVeSecsPrueba));
 
             return VehiculoRegiVeSecsPrueba;
         }
-
+        //public IEnumerable<VehiculoRegiVeSecDto> ListStores(Expression<Func<VehiculoRegiVeSecDto, string>> sort, bool desc, int page, int pageSize, out int totalRecords)
+        //{
+        //    List<VehiculoRegiVeSecDto> stores = new List<VehiculoRegiVeSecDto>();
+        //    using (var context = new TectonicEntities())
+        //    {
+        //        totalRecords = context.Stores.Count();
+        //        int skipRows = (page - 1) * pageSize;
+        //        if (desc)
+        //            stores = context.Stores.OrderByDescending(sort).Skip(skipRows).Take(pageSize).ToList();
+        //        else
+        //            stores = context.Stores.OrderBy(sort).Skip(skipRows).Take(pageSize).ToList();
+        //    }
+        //    return stores;
+        //}
         [HttpGet]
         [Route("/Vehiculo/Buscar/{filtro}")]
         public List<VehiculoRegiVeSecDto> Buscar(string filtro)

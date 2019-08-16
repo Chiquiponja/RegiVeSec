@@ -31,8 +31,10 @@
                             <th>Fecha De Ingreso </th>
                             <th>Propietario </th>
                             <th>Dominio  </th>
+                            <th>Orden </th>
+                            <th> Causa </th>
                             <th>Fecha De Entrega</th>
-                            <th>  </th>
+                            <th> </th>
                         </tr>
                     </thead>
                     <tbody>
@@ -41,6 +43,8 @@
                             <th>{{ item.fechaDeIngreso }}</th>
                             <th>{{ item.propietario}} </th>
                             <th>{{ item.dominio }} </th>
+                            <th>{{ item.orden }} </th>
+                            <th>{{ item.causa }} </th>
                             <th>{{ item.fechaDeEntrega }} </th>
                             <td>
                                 <a :href="'/Vehiculo/Detalles/' + item.id" class="btn btn-info">Detalles</a>
