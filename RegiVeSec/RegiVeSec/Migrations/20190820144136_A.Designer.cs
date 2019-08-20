@@ -10,8 +10,8 @@ using RegiVeSec.Data;
 namespace RegiVeSec.Migrations
 {
     [DbContext(typeof(Conexionbd))]
-    [Migration("20190820131800_Al")]
-    partial class Al
+    [Migration("20190820144136_A")]
+    partial class A
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
