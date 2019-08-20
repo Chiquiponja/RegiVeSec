@@ -22,7 +22,7 @@
     </form>
 
     <div class="row">
-        <div class=" col-md-12  pt-1 ">            
+        <div class=" col-md-12  pt-1 " >            
             <div class="table-responsive">
                 <table class="  table-hover display fl-table table-bordered" id="TablaVehiculos" style="width:100%">
                     <thead>
@@ -38,7 +38,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr v-for="item in vehiculo ">
+                        <tr v-for="item in vehiculo " v-cloak>
                             <td> {{ item.id }}</td>
                             <th>{{ item.fechaDeIngreso }}</th>
                             <th>{{ item.propietario}} </th>

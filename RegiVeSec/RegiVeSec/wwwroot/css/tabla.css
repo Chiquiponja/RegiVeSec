@@ -7,7 +7,9 @@ button {
     font-size: 1rem;
     line-height: inherit;
 }
-
+[v-cloak] {
+    display: none;
+}
 .fl-table {
     border-radius: 5px;
     font-size: 12px;
