@@ -45,8 +45,12 @@
             <input v-model="vehiculo.Causa" @@keyup.enter="crearvehiculo" type="text" name="Causa" id="Causa" class="form-control" />
           </div>
           <div class="col-md-4 mb-3">
-            <label>Estado </label>
-            <input v-model="vehiculo.Estado" @@keyup.enter="crearvehiculo" type="text" name="Estado" id="Estado" class="form-control" />
+              <label>Estado </label>
+                  <select class="form-control" @@keyup.enter="crearvehiculo" asp-for="Estado" name="Estado" v-model="vehiculo.Estado" placeholder="Estados">
+
+                      <option v-for="item in Estados" v-bind:value="item">{{ item.detalles }}</option>
+
+                  </select>
           </div>
           <div class="col-md-4 mb-3">
             <label>Numero de Sumario </label>
@@ -107,6 +111,7 @@
 
         $(document).ready(function () {
             vm.ObtenerTipos();
+            vm.ObtenerEstados();
         });
 
     </script>

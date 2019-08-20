@@ -38,7 +38,6 @@
                     <option v-for="item in Tipos" v-bind:value="item">{{item.detalles }}</option>
 
                 </select>
-                @*<input v-model="vehiculo.tipo" @@keyup.enter="crearvehiculo" name="Tipo" class="form-control" id="tipo" />*@
             </div>
             <hr />
             <div class="col-md-4 ">
@@ -58,7 +57,11 @@
             <hr />
             <div class="col-md-4">
                 <label class="control-label" for="checkbox">Estado</label>
-                <input v-model="vehiculo.estado" @@keyup.enter="crearvehiculo" name="Estado" class="form-control" id="estado" />
+                <select class="form-control" @@keyup.enter="crearvehiculo"  name="Estado" v-model="vehiculo.estado" id="estado" placeholder="Estados">
+
+                    <option v-for="item in Estados" v-bind:value="item">{{ item.detalles }}</option>
+
+                </select>
             </div>
             <hr />
             <div class="col-md-4">
@@ -122,6 +125,7 @@
 
         $(document).ready(function () {
             vm.ObtenerTipos();
+            vm.ObtenerEstados();
         });
 
     </script>

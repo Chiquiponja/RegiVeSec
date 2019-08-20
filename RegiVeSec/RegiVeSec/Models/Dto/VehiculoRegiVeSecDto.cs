@@ -16,7 +16,7 @@ namespace RegiVeSec.Models
         public string Color  { get; set; }
         public string Modelo { get; set; }
         public string Causa { get; set; }
-        public string Estado { get; set; }
+        public Estado Estado { get; set; }
         public string NumeroSumario { get; set; }
         public string Dependencia  { get; set; }
         public string Orden  { get; set; }
@@ -28,5 +28,6 @@ namespace RegiVeSec.Models
         public string DetallesVehiculo { get; set; }
 
         public int TipoId { get; set; }
+        public int EstadoId { get; set; }
     }
 }

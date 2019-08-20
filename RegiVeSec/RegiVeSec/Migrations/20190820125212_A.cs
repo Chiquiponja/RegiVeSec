@@ -4,10 +4,23 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace RegiVeSec.Migrations
 {
-    public partial class A2 : Migration
+    public partial class A : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.CreateTable(
+                name: "Estados",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                    Detalles = table.Column<string>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Estados", x => x.Id);
+                });
+
             migrationBuilder.CreateTable(
                 name: "IdentityUser",
                 columns: table => new
@@ -90,7 +103,7 @@ namespace RegiVeSec.Migrations
                     Color = table.Column<string>(maxLength: 30, nullable: false),
                     Modelo = table.Column<string>(maxLength: 30, nullable: false),
                     Causa = table.Column<string>(maxLength: 30, nullable: false),
-                    Estado = table.Column<string>(maxLength: 30, nullable: false),
+                    EstadoId = table.Column<int>(nullable: false),
                     NumeroSumario = table.Column<string>(maxLength: 30, nullable: false),
                     Dependencia = table.Column<string>(maxLength: 30, nullable: false),
                     Orden = table.Column<string>(maxLength: 30, nullable: false),
@@ -105,6 +118,12 @@ namespace RegiVeSec.Migrations
                 {
                     table.PrimaryKey("PK_Vehiculos", x => x.Id);
                     table.ForeignKey(
+                        name: "FK_Vehiculos_Estados_EstadoId",
+                        column: x => x.EstadoId,
+                        principalTable: "Estados",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
                         name: "FK_Vehiculos_Logins_LoginId",
                         column: x => x.LoginId,
                         principalTable: "Logins",
@@ -117,6 +136,11 @@ namespace RegiVeSec.Migrations
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Vehiculos_EstadoId",
+                table: "Vehiculos",
+                column: "EstadoId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Vehiculos_LoginId",
@@ -139,6 +163,9 @@ namespace RegiVeSec.Migrations
 
             migrationBuilder.DropTable(
                 name: "Vehiculos");
+
+            migrationBuilder.DropTable(
+                name: "Estados");
 
             migrationBuilder.DropTable(
                 name: "Logins");

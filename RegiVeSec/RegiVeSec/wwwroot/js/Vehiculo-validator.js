@@ -48,7 +48,6 @@ $().ready((function () {
         },
             Estado: {
             required: true,
-            minlength: 3
 
         },
             NumeroSumario:  {

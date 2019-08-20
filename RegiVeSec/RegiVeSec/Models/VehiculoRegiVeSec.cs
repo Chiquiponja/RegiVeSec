@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -14,11 +14,11 @@ namespace RegiVeSec.Models
         [MaxLength(30)]
         [Required]
         public string Propietario { get; set; }
-        
-            [MaxLength(30)]
-            [Required]
-            public string Dominio  { get; set; }
-        
+
+        [MaxLength(30)]
+        [Required]
+        public string Dominio { get; set; }
+
         [MaxLength(30)]
         [Required]
 
@@ -27,54 +27,55 @@ namespace RegiVeSec.Models
         [MaxLength(30)]
         [Required]
         public string Marca { get; set; }
-        
+
         [MaxLength(30)]
         [Required]
-        public string Color  { get; set; }
-        
+        public string Color { get; set; }
+
         [MaxLength(30)]
         [Required]
         public string Modelo { get; set; }
-        
+
         [MaxLength(30)]
         [Required]
         public string Causa { get; set; }
-        
+
         [MaxLength(30)]
         [Required]
-        public string Estado { get; set; }
-        
+        public Estado Estado { get; set; }
+
         [MaxLength(30)]
         [Required]
         public string NumeroSumario { get; set; }
-        
-        [MaxLength(30)]
-         [Required]
-        public string Dependencia  { get; set; }
-        
+
         [MaxLength(30)]
         [Required]
-        public string Orden  { get; set; }
-        
+        public string Dependencia { get; set; }
+
+        [MaxLength(30)]
+        [Required]
+        public string Orden { get; set; }
+
         [MaxLength(30)]
         [Required]
         public string DependenciaProcedente { get; set; }
-        
+
         [MaxLength(30)]
         [Required]
         public string Observaciones { get; set; }
-        
+
         [MaxLength(30)]
         [Required]
-        public string Recibe  { get; set; }
-        
+        public string Recibe { get; set; }
+
         [MaxLength(30)]
         //  //  [Required]
         public string Entrega { get; set; }
-        
-        
+
+
         public DateTime FechaDeEntrega { get; set; }
-        
+
 
     }
 }
+

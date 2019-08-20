@@ -67,7 +67,6 @@ namespace RegiVeSec.Controllers
             nuevoVehiculo.DependenciaProcedente = vehiculoRegiVeSecDto.DependenciaProcedente;
             nuevoVehiculo.Dominio = vehiculoRegiVeSecDto.Dominio;
             nuevoVehiculo.Entrega = vehiculoRegiVeSecDto.Entrega;
-            nuevoVehiculo.Estado = vehiculoRegiVeSecDto.Estado;
             nuevoVehiculo.FechaDeEntrega = Convert.ToDateTime(vehiculoRegiVeSecDto.FechaDeEntrega);
             nuevoVehiculo.FechaDeIngreso = Convert.ToDateTime(vehiculoRegiVeSecDto.FechaDeIngreso);
             nuevoVehiculo.Id = vehiculoRegiVeSecDto.Id;
@@ -78,7 +77,7 @@ namespace RegiVeSec.Controllers
             nuevoVehiculo.Orden = vehiculoRegiVeSecDto.Orden;
             nuevoVehiculo.Propietario = vehiculoRegiVeSecDto.Propietario;
             nuevoVehiculo.Recibe = vehiculoRegiVeSecDto.Recibe;
-
+            nuevoVehiculo.Estado = db.Estados.FirstOrDefault(x => x.Id == vehiculoRegiVeSecDto.Estado.Id);
             nuevoVehiculo.Tipo = db.Tipos.FirstOrDefault(x => x.Id == vehiculoRegiVeSecDto.Tipo.Id);
 
             try
@@ -105,12 +104,19 @@ namespace RegiVeSec.Controllers
         public void Inicializador()
         {
             InicializerTipos();
+            InicializerEstados();
         }
 
         private void InicializerTipos()
         {
             var iniTipos = new InicializacionTipo(db);
             iniTipos.IniTipos();
+
+        }
+        private void InicializerEstados()
+        {
+            var iniEstados = new InicializadorEstados(db);
+            iniEstados.IniEstados();
 
         }
 
@@ -154,20 +160,6 @@ namespace RegiVeSec.Controllers
 
             return VehiculoRegiVeSecsPrueba;
         }
-        //public IEnumerable<VehiculoRegiVeSecDto> ListStores(Expression<Func<VehiculoRegiVeSecDto, string>> sort, bool desc, int page, int pageSize, out int totalRecords)
-        //{
-        //    List<VehiculoRegiVeSecDto> stores = new List<VehiculoRegiVeSecDto>();
-        //    using (var context = new TectonicEntities())
-        //    {
-        //        totalRecords = context.Stores.Count();
-        //        int skipRows = (page - 1) * pageSize;
-        //        if (desc)
-        //            stores = context.Stores.OrderByDescending(sort).Skip(skipRows).Take(pageSize).ToList();
-        //        else
-        //            stores = context.Stores.OrderBy(sort).Skip(skipRows).Take(pageSize).ToList();
-        //    }
-        //    return stores;
-        //}
         [HttpGet]
         [Route("/Vehiculo/Buscar/{filtro}")]
         public List<VehiculoRegiVeSecDto> Buscar(string filtro)
@@ -242,21 +234,6 @@ namespace RegiVeSec.Controllers
             empList = empList.Skip(start).Take(length).ToList<VehiculoRegiVeSec>();
 
             return new JsonResult(empList);
-            //}
-
-            //      string searchValue = Request.Form["search[value]"];
-
-
-            //      var VehiculoRegiVeSecsPrueba = JsonConvert.DeserializeObject<List<VehiculoRegiVeSecDto>>(HttpContext.Session.GetString("Datos"));
-
-
-            //      if (!string.IsNullOrEmpty(searchValue))//filter
-            //      {
-            //          VehiculoRegiVeSecsPrueba = VehiculoRegiVeSecsPrueba.
-            //              Where(x => x.Marca.ToLower().Contains(searchValue.ToLower())).ToList<VehiculoRegiVeSecDto>();
-            //      }
-            //var Listar = VehiculoRegiVeSecsPrueba;
-            //      return Listar;
 
         }
 
@@ -287,11 +264,12 @@ namespace RegiVeSec.Controllers
         {
 
             var VehiculoRegiVeSec = db.Vehiculos.Include(i => i.Tipo).FirstOrDefault(x => x.Id == id);
+             VehiculoRegiVeSec = db.Vehiculos.Include(i => i.Estado).FirstOrDefault(x => x.Id == id);
             //VehiculoRegiVeSec.Tipo = ;
 
             return VehiculoRegiVeSec;
         }
-
+        
         [HttpPost]
         public async Task<IActionResult> Edit([FromBody]VehiculoRegiVeSecDto vehiculoRegiVeSecDto)
         {
@@ -302,7 +280,6 @@ namespace RegiVeSec.Controllers
             nuevoVehiculo.DependenciaProcedente = vehiculoRegiVeSecDto.DependenciaProcedente;
             nuevoVehiculo.Dominio = vehiculoRegiVeSecDto.Dominio;
             nuevoVehiculo.Entrega = vehiculoRegiVeSecDto.Entrega;
-            nuevoVehiculo.Estado = vehiculoRegiVeSecDto.Estado;
             nuevoVehiculo.FechaDeEntrega = Convert.ToDateTime(vehiculoRegiVeSecDto.FechaDeEntrega);
             nuevoVehiculo.FechaDeIngreso = Convert.ToDateTime(vehiculoRegiVeSecDto.FechaDeIngreso);
             nuevoVehiculo.Id = vehiculoRegiVeSecDto.Id;
@@ -313,7 +290,7 @@ namespace RegiVeSec.Controllers
             nuevoVehiculo.Orden = vehiculoRegiVeSecDto.Orden;
             nuevoVehiculo.Propietario = vehiculoRegiVeSecDto.Propietario;
             nuevoVehiculo.Recibe = vehiculoRegiVeSecDto.Recibe;
-
+            nuevoVehiculo.Estado = db.Estados.FirstOrDefault(x => x.Id == vehiculoRegiVeSecDto.Estado.Id);
             nuevoVehiculo.Tipo = db.Tipos.FirstOrDefault(x => x.Id == vehiculoRegiVeSecDto.Tipo.Id);
             try
             {
@@ -336,6 +313,7 @@ namespace RegiVeSec.Controllers
 
             var VehiculoRegiVeSec = GetVehiculoRegiVeSecId(id);
             VehiculoRegiVeSec = db.Vehiculos.Include(i => i.Tipo).FirstOrDefault(x => x.Id == id);
+            VehiculoRegiVeSec = db.Vehiculos.Include(i => i.Estado).FirstOrDefault(x => x.Id == id);
             if (VehiculoRegiVeSec == null)
             {
                 ViewData["ErrorMessage"] = ($"El VehiculoRegiVeSec con id: {id} no existe en la base de datos");
@@ -343,14 +321,36 @@ namespace RegiVeSec.Controllers
             }
             return View();
         }
+        public IEnumerable<VehiculoRegiVeSec> Listaa()
+        {
+            var Vehiculos = db.Vehiculos.Include("Estado").ToList();
+
+            return Vehiculos;
+        }
+        [HttpGet]
+        [Route("/Vehiculo/GetEstados")]
+        public List<Estado> GetEstados()
+        {
+            var result = db.Estados;
+            return result.ToList();
+            //return db.Contactos;
+        }
+        public List<Estado> ObtenerTodoss()
+        {
+            using (var db = new Conexionbd())
+            {
+                return db.Estados.ToList();
+            }
+        }
         public IEnumerable<VehiculoRegiVeSec> Lista()
         {
             var Vehiculos = db.Vehiculos.Include("Tipo").ToList();
+            
 
             return Vehiculos;
         }
         //}
-
+        
         [HttpGet]
         [Route("/Vehiculo/GetTipos")]
         public List<Tipo> GetTipos()
