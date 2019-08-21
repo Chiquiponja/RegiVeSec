@@ -17,7 +17,7 @@
                     <div class="input-group-prepend">
                         <span class="input-group-text" id="basic-addon1">Fecha De Ingreso</span>
                     </div>
-                    <input v-model="vehiculo.fechaDeIngreso" @@keyup.enter="crearvehiculo" type="text" name="FechaDeIngreso" class="form-control " id="fechaDeIngreso" />
+                    <input v-model="vehiculo.fechaDeIngreso" @@keyup.enter="crearvehiculo" type="datetime-local" name="FechaDeIngreso" class="form-control " id="fechaDeIngreso" />
                 </div>
 
             </div>
@@ -180,7 +180,7 @@
                     <div class="input-group-prepend">
                         <span class="input-group-text" id="basic-addon1">fecha De Entrega</span>
                     </div>
-                    <input v-model="vehiculo.fechaDeEntrega" @@keyup.enter="crearvehiculo" name="FechaDeEntrega" type="text" class="form-control" id="fechaDeEntrega" />
+                    <input v-model="vehiculo.fechaDeEntrega" @@keyup.enter="crearvehiculo" name="FechaDeEntrega" type="datetime-local" class="form-control" id="fechaDeEntrega" />
                 </div>
 
             </div>
