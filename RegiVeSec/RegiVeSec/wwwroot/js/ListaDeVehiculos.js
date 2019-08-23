@@ -7,33 +7,57 @@ function initVue() {
         el: '#app',
         data: {
             vehiculo: [],
+            p_PaginaActual: 1,
+            p_TotalRegistros: 0,
             p_Desde: "",
             p_Hasta: "",
-            p_Texto: ""
+            p_Texto: "",
+            p_Lista: ""
         },
+
+        computed: {
+
+            NumeroPaginaParaPrimerBoton: function() {
+                if (this.p_PaginaActual < 3)
+                    return 1;
+                else
+                    return this.p_PaginaActual - 1;
+            },
+
+            NumeroPaginaParaSegundoBoton: function () {
+                if (this.p_PaginaActual < 3)
+                    return 2;
+                else
+                    return this.p_PaginaActual;
+            },
+
+            NumeroPaginaParaTercerBoton: function () {
+                if (this.p_PaginaActual < 3)
+                    return 3;
+                else
+                    return this.p_PaginaActual + 1;
+            }
+        },
+
         methods: {
-            obtenerVehiculo: function () {
+            obtenerVehiculo: function (numeroPagina) {
                 vm.$data.p_Desde = "";
                 vm.$data.p_Hasta = "";
                 vm.$data.p_Texto = "";
 
-                $.ajax({
-                    //Cambiar a type: POST si necesario
-                    type: "GET",
-                   
+                var nroPagina = numeroPagina;
 
-                    // Formato de datos que se espera en la respuesta
-                    dataType: "json",
-                    // URL a la que se enviará la solicitud Ajax
-                    url: "/Vehiculo/Listar",
-                })
+                $.getJSON("/Vehiculo/Listar?paginaActual=" + numeroPagina)
                     .done(function (data) {
 
-                        vm.$data.vehiculo = data;
+                        vm.$data.vehiculo = data.vehiculos;
+                        vm.$data.p_TotalRegistros = data.totalRegistros;
+                        vm.$data.p_PaginaActual = nroPagina;
+                        
                         if (dataTable != null) {
                             dataTable.destroy();
                         }
-                        var jsonData = data;
+                        //var jsonData = data;
                         Vue.nextTick(function () {
                             initDataTable();
                         })
@@ -43,6 +67,19 @@ function initVue() {
                             console.log("La solicitud ha fallado: " + textStatus);
                         }
                     });
+                    
+
+                //$.ajax({
+                //    //Cambiar a type: POST si necesario
+                //    type: "GET",
+                   
+
+                //    // Formato de datos que se espera en la respuesta
+                //    dataType: "json",
+                //    // URL a la que se enviará la solicitud Ajax
+                //    url: ,
+                //})
+                    
             },
             BuscarVehiculo: function () {
 
@@ -119,14 +156,14 @@ function initDataTable(){
        
         dom: 'Bfrtip',
         searching: false,
-        paging: true,
+        paging: false,
         info: true,
         sorting: true,
         //order: [0, "asc"],
         //data: jsonData,
-        //"serverSide": true,
+        ////"serverSide": true,
         //"ajax": {
-        //    "url": "/Vehiculo/Tabla",
+        //    "url": "/Vehiculo/Products",
         //    "type": "POST",
         //    "datatype": "json"
         //},

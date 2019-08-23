@@ -11,6 +11,7 @@ using Newtonsoft.Json;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.EntityFrameworkCore;
 using System.Linq.Expressions;
+using RegiVeSec.Models.Dto;
 
 namespace RegiVeSec.Controllers
 {
@@ -80,6 +81,10 @@ namespace RegiVeSec.Controllers
             nuevoVehiculo.Estado = db.Estados.FirstOrDefault(x => x.Id == vehiculoRegiVeSecDto.Estado.Id);
             nuevoVehiculo.Tipo = db.Tipos.FirstOrDefault(x => x.Id == vehiculoRegiVeSecDto.Tipo.Id);
 
+
+
+
+           
             try
             {
 
@@ -99,6 +104,7 @@ namespace RegiVeSec.Controllers
             }
 
         }
+        
         [Route("/Vehiculo/Inicializador")]
 
         public void Inicializador()
@@ -120,45 +126,55 @@ namespace RegiVeSec.Controllers
 
         }
 
-        public List<VehiculoRegiVeSecDto> Listar()
+        public SearchResultVehiculos Listar(int paginaActual)
         {
+            //Pagina de a 10 elementos
 
             List<VehiculoRegiVeSecDto> VehiculoRegiVeSecsPrueba = new List<VehiculoRegiVeSecDto>();
 
-            foreach (var item in db.Vehiculos.ToList())
+            var vehiculosPage = db.Vehiculos
+                .Skip((paginaActual - 1) * 5)
+                .Take(5)
+                .ToList();
+
+            var totalRegistros = db.Vehiculos.Count();
+
+            foreach (var vehiculo in vehiculosPage)
             {
                 VehiculoRegiVeSecDto dto = new VehiculoRegiVeSecDto();
+                dto.Id = vehiculo.Id;
+                dto.FechaDeIngreso = vehiculo.FechaDeIngreso.ToShortDateString();
+                dto.Propietario = vehiculo.Propietario;
+                dto.Dominio = vehiculo.Dominio;
+                dto.DetallesVehiculo = "Dominio: (" + vehiculo.Dominio + ") Tipo: (" + vehiculo.Tipo + ") Marca: (" + vehiculo.Marca + ") Color: (" + vehiculo.Color + ") Modelo: (" + vehiculo.Modelo + ") Estado: (" + vehiculo.Estado + ") ";
+                dto.Tipo = vehiculo.Tipo;
+                dto.Marca = vehiculo.Marca;
+                dto.Color = vehiculo.Color;
+                dto.Modelo = vehiculo.Modelo;
+                dto.Causa = vehiculo.Causa;
+                dto.Estado = vehiculo.Estado;
+                dto.NumeroSumario = vehiculo.NumeroSumario;
+                dto.Dependencia = vehiculo.Dependencia;
+                dto.Orden = vehiculo.Orden;
+                dto.DependenciaProcedente = vehiculo.DependenciaProcedente;
+                dto.Observaciones = vehiculo.Observaciones;
+                dto.Recibe = vehiculo.Recibe;
+                dto.Entrega = vehiculo.Entrega;
+                dto.FechaDeEntrega = vehiculo.FechaDeEntrega.ToShortDateString();
 
-                dto.Id = item.Id;
-                dto.FechaDeIngreso = item.FechaDeIngreso.ToShortDateString();
-                dto.Propietario = item.Propietario;
-                dto.Dominio = item.Dominio;
-                dto.DetallesVehiculo = "Dominio: (" + item.Dominio + ") Tipo: (" + item.Tipo + ") Marca: (" + item.Marca + ") Color: (" + item.Color + ") Modelo: (" + item.Modelo + ") Estado: (" + item.Estado + ") ";
-                dto.Tipo = item.Tipo;
-                dto.Marca = item.Marca;
-                dto.Color = item.Color;
-                dto.Modelo = item.Modelo;
-                dto.Causa = item.Causa;
-                dto.Estado = item.Estado;
-                dto.NumeroSumario = item.NumeroSumario;
-                dto.Dependencia = item.Dependencia;
-                dto.Orden = item.Orden;
-                dto.DependenciaProcedente = item.DependenciaProcedente;
-                dto.Observaciones = item.Observaciones;
-                dto.Recibe = item.Recibe;
-                dto.Entrega = item.Entrega;
-                dto.FechaDeEntrega = item.FechaDeEntrega.ToShortDateString();
-
-
+               
                 VehiculoRegiVeSecsPrueba.Add(dto);
             }
 
+            return new SearchResultVehiculos {
+                Vehiculos = VehiculoRegiVeSecsPrueba,
+                TotalRegistros = totalRegistros
+            };
 
 
-            
-        HttpContext.Session.SetString("Datos", JsonConvert.SerializeObject(VehiculoRegiVeSecsPrueba));
+            //HttpContext.Session.SetString("Datos", JsonConvert.SerializeObject(VehiculoRegiVeSecsPrueba));
 
-            return VehiculoRegiVeSecsPrueba;
+
         }
         [HttpGet]
         [Route("/Vehiculo/Buscar/{filtro}")]
@@ -179,7 +195,9 @@ namespace RegiVeSec.Controllers
 
             foreach (var item in db.Vehiculos.Where(x =>
             ( !filtraTexto || (x.Dominio.ToLower().Contains(textoABuscar) ||
-            x.Propietario.ToLower().Contains(textoABuscar))) &&
+            x.Propietario.ToLower().Contains(textoABuscar) ||
+            x.Causa.ToLower().Contains(textoABuscar) ||
+            x.Orden.ToLower().Contains(textoABuscar))) &&
             (!filtraFecha || (x.FechaDeIngreso >= fechaDesde
             && x.FechaDeIngreso <= fechaHasta))))
             {
@@ -210,16 +228,102 @@ namespace RegiVeSec.Controllers
             }
             return VehiculoRegiVeSecsPrueba;
         }
+        //public JsonResult getEmployeeList(string sortColumnName = "FirstName", string sortOrder = "asc", int pageSize = 3, int currentPage = 1)
+        //{
+        //    List<VehiculoRegiVeSec> List = new List<VehiculoRegiVeSec>();
+        //    int totalPage = 0;
+        //    int totalRecord = 0;
+
+        //    using (MyDatabaseEntities dc = new MyDatabaseEntities())
+        //    {
+        //        var emp = dc.Employees;
+        //        totalRecord = emp.Count();
+        //        if (pageSize > 0)
+        //        {
+        //            totalPage = totalRecord / pageSize + ((totalRecord % pageSize) > 0 ? 1 : 0);
+        //            List = emp.OrderBy(sortColumnName + " " + sortOrder).Skip(pageSize * (currentPage - 1)).Take(pageSize).ToList();
+        //        }
+        //        else
+        //        {
+        //            List = emp.ToList();
+        //        }
+        //    }
+
+        //    return new JsonResult
+        //    {
+        //        //Data = new { List = List, totalPage = totalPage, sortColumnName = sortColumnName, sortOrder = sortOrder, currentPage = currentPage},
+        //        Data = new { List = List, totalPage = totalPage, sortColumnName = sortColumnName, sortOrder = sortOrder, currentPage = currentPage, pageSize = pageSize },
+        //        JsonRequestBehavior = JsonRequestBehavior.AllowGet
+        //    };
+        //}
+        [HttpGet]
+        [Route("/Vehiculo/Products")]
+        
+        public ActionResult Products(int page = 1, int sortBy = 1, bool isAsc = true, string search = null)
+        {
+            IEnumerable<VehiculoRegiVeSec> products = db.Vehiculos.Where(
+                    p => search == null
+                    || p.Propietario.Contains(search)
+                    || p.Dominio.Contains(search)
+                    || p.Causa.Contains(search));
+
+            #region Sorting
+            switch (sortBy)
+            {
+                case 1:
+                    products = isAsc ? products.OrderBy(p => p.Id) : products.OrderByDescending(p => p.Id);
+                    break;
+
+                case 2:
+                    products = isAsc ? products.OrderBy(p => p.Propietario) : products.OrderByDescending(p => p.Propietario);
+                    break;
+
+                case 3:
+                    products = isAsc ? products.OrderBy(p => p.Dominio) : products.OrderByDescending(p => p.Dominio);
+                    break;
+
+                case 4:
+                    products = isAsc ? products.OrderBy(p => p.Orden) : products.OrderByDescending(p => p.Orden);
+                    break;
+
+                case 5:
+                    products = isAsc ? products.OrderBy(p => p.Causa) : products.OrderByDescending(p => p.Causa);
+                    break;
+            }
+            #endregion
+            int pageSize = 10;
+            ViewBag.TotalPages = (int)Math.Ceiling((double)products.Count() / pageSize);
+
+            products = products
+                .Skip((page - 1) * pageSize)
+                .Take(pageSize)
+                .ToList();
+
+            ViewBag.CurrentPage = page;
+            ViewBag.PageSize = pageSize;
+            ViewBag.Search = search;
+
+            ViewBag.SortBy = sortBy;
+            ViewBag.IsAsc = isAsc;
+
+            return View(products);
+        }
         [HttpPost]
         [Route("/Vehiculo/Tabla")]
         public ActionResult<List<VehiculoRegiVeSec>> Tabla()
         {
             int start = Convert.ToInt32(Request.Form["start"]);
+            int pageSize = 10;
             int length = Convert.ToInt32(Request.Form["length"]);
             string searchValue = Request.Form["search[value]"];
             string sortColumnName = Request.Form["columns[" + Request.Form["order[0][column]"] + "][name]"];
             string sortDirection = Request.Form["order[0][dir]"];
+            var query = this.db.Vehiculos.AsQueryable();
+            query = query.Skip(start).Take(pageSize);
 
+
+            //public JsonResult Table([ModelBinder(typeof(DataTablesBinder))] IDataTablesRequest requestmodel)
+            //var result = query.Skip(requestmodel.Start).Take(requestmodel.Length).Select(x => new { x.CompanyTypeName, x.CompanyTypeDescription });
             List<VehiculoRegiVeSec> empList = new List<VehiculoRegiVeSec>();
 
             empList = db.Vehiculos.ToList();

@@ -22,7 +22,7 @@
     </form>
 
     <div class="row">
-        <div class=" col-md-12  pt-1 " >            
+        <div class=" col-md-12  pt-1 ">
             <div class="table-responsive">
                 <table class="  table-hover display fl-table table-bordered" id="TablaVehiculos" style="width:100%">
                     <thead>
@@ -57,6 +57,29 @@
                 </table>
             </div>
         </div>
+        <nav aria-label="Page navigation example" >
+            <ul class="pagination">
+                <li class="pagination-item">
+                    @*<li class="page-item" ><a class="page-link"  v-model="p_Lista">Previous</a></li>*@
+               
+                    <a class="page-link" @@click="obtenerVehiculo(NumeroPaginaParaPrimerBoton)">
+                        {{NumeroPaginaParaPrimerBoton}}
+                    </a>
+               
+                </li>
+                <li class="pagination-item">
+                    <a class="page-link" @@click="obtenerVehiculo(NumeroPaginaParaSegundoBoton)">
+                        {{NumeroPaginaParaSegundoBoton}}
+                    </a>
+                </li>
+                <li class="pagination-item">
+                    <a class="page-link" @@click="obtenerVehiculo(NumeroPaginaParaTercerBoton)">
+                        {{NumeroPaginaParaTercerBoton}}
+                    </a>
+                </li>
+                @*<li class="page-item"><a class="page-link" v-model="p_Lista" >Next</a></li>*@
+            </ul>
+        </nav>
     </div>
 </div>
 <hr />
@@ -86,11 +109,21 @@
         $(document).ready(function () {
             initVue();
             initDataTable();
-            vm.obtenerVehiculo();
-            
-           
+            vm.obtenerVehiculo(1);
         });
     </script>
-    
+    <style>
+        .pagination {
+            list-style-type: none;
+        }
 
+        .pagination-item {
+            display: inline-block;
+        }
+
+        .active {
+            background-color: #4AAE9B;
+            color: #ffffff;
+        }
+    </style>
 }
