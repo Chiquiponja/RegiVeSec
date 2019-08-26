@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace RegiVeSec.Migrations
 {
-    public partial class A : Migration
+    public partial class prueba2 : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {

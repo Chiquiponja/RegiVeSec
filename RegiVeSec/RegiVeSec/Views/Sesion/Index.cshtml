@@ -1,0 +1,67 @@
+
+@{
+  ViewData["Title"] = "Index";
+}
+
+@model Login
+
+<div id="app">
+
+  <h1 class="list-group-item active">
+    <span>Registro de Usuarios</span>
+  </h1>
+  <hr />
+
+
+
+  <div class="row">
+    <div class=" col-md-12  pt-1 ">
+      <div class="table-responsive">
+        <table class="  table-hover display fl-table table-bordered" id="TablaVehiculos" style="width:100%">
+          <thead>
+            <tr>
+              <th>Id</th>
+              <th>Nombre</th>
+              <th>Contrasenia </th>
+              <th>Estado  </th>
+              <th> </th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr v-for="item in vehiculo " v-cloak>
+              <td v-cloak> {{ item.id }}</td>
+              <th v-cloak>{{ item.nombre }}</th>
+              <th v-cloak>{{ item.contrasenia}} </th>
+              <th v-cloak>{{ item.estado }} </th>
+     
+              <td>
+                <a :href="'/Vehiculo/Detalles/' + item.id" class="btn btn-info">Estado</a>
+            
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+<hr />
+<div style="text-align: center;">
+  <a href="/Vehiculo/Agregar" class="btn btn-success">Agregar cuentas</a>
+</div>
+
+
+
+@section ScriptsSection {
+  <link href="~/css/tabla.css" rel="stylesheet" />
+  <script>
+    $(document).ready(function () {
+      initVue();
+
+      vm.obtenerSesion();
+
+
+    });</script>
+
+
+}

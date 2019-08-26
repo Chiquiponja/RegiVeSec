@@ -62,20 +62,20 @@
                 <li class="pagination-item">
                     @*<li class="page-item" ><a class="page-link"  v-model="p_Lista">Previous</a></li>*@
                
-                    <a class="page-link" @@click="obtenerVehiculo(NumeroPaginaParaPrimerBoton)">
+                    <button type="button" class="page-link" @@click="obtenerVehiculo(NumeroPaginaParaPrimerBoton)">
                         {{NumeroPaginaParaPrimerBoton}}
-                    </a>
+                    </button>
                
                 </li>
                 <li class="pagination-item">
-                    <a class="page-link" @@click="obtenerVehiculo(NumeroPaginaParaSegundoBoton)">
+                    <button type="button" class="page-link" @@click="obtenerVehiculo(NumeroPaginaParaSegundoBoton)" :disabled="limitarPaginacion(NumeroPaginaParaSegundoBoton)">
                         {{NumeroPaginaParaSegundoBoton}}
-                    </a>
+                    </button>
                 </li>
-                <li class="pagination-item">
-                    <a class="page-link" @@click="obtenerVehiculo(NumeroPaginaParaTercerBoton)">
+                <li class="pagination-item" >
+                    <button type="button" class="page-link" @@click="obtenerVehiculo(NumeroPaginaParaTercerBoton)" :disabled="limitarPaginacion(NumeroPaginaParaTercerBoton)">
                         {{NumeroPaginaParaTercerBoton}}
-                    </a>
+                    </button>
                 </li>
                 @*<li class="page-item"><a class="page-link" v-model="p_Lista" >Next</a></li>*@
             </ul>

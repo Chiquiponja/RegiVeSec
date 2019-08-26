@@ -39,7 +39,18 @@ function initVue() {
             }
         },
 
-        methods: {
+      methods: {
+
+
+        limitarPaginacion:function (boton){
+
+          var cant = parseInt(this.p_TotalRegistros / 5);
+          if (this.p_TotalRegistros % 5 > 0) cant++;
+
+          return cant < boton;
+
+        },
+
             obtenerVehiculo: function (numeroPagina) {
                 vm.$data.p_Desde = "";
                 vm.$data.p_Hasta = "";

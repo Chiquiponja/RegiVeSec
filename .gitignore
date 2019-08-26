@@ -1,4 +1,4 @@
-﻿################################################################################
+################################################################################
 # Este archivo .gitignore ha sido creado automáticamente por Microsoft(R) Visual Studio.
 ################################################################################
 
@@ -8,3 +8,4 @@
 /RegiVeSec/.vs/*
 /RegiVeSec/RegiVeSec/wwwroot/css
 appsettings.json
+
