@@ -57,31 +57,57 @@
                 </table>
             </div>
         </div>
-        <nav aria-label="Page navigation example" >
-            <ul class="pagination">
-                <li class="pagination-item">
-                    @*<li class="page-item" ><a class="page-link"  v-model="p_Lista">Previous</a></li>*@
-               
-                    <button type="button" class="page-link" @@click="obtenerVehiculo(NumeroPaginaParaPrimerBoton)">
-                        {{NumeroPaginaParaPrimerBoton}}
-                    </button>
-               
-                </li>
-                <li class="pagination-item">
-                    <button type="button" class="page-link" @@click="obtenerVehiculo(NumeroPaginaParaSegundoBoton)" :disabled="limitarPaginacion(NumeroPaginaParaSegundoBoton)">
-                        {{NumeroPaginaParaSegundoBoton}}
-                    </button>
-                </li>
-                <li class="pagination-item" >
-                    <button type="button" class="page-link" @@click="obtenerVehiculo(NumeroPaginaParaTercerBoton)" :disabled="limitarPaginacion(NumeroPaginaParaTercerBoton)">
-                        {{NumeroPaginaParaTercerBoton}}
-                    </button>
-                </li>
-                @*<li class="page-item"><a class="page-link" v-model="p_Lista" >Next</a></li>*@
-            </ul>
-        </nav>
+        @*<b-pagination v-model="currentPage"
+                      :total-rows="rows"
+                      :per-page="perPage"
+                      aria-controls="my-table"></b-pagination>*@
+
+        @*<p class="mt-3">Current Page: {{ PaginaContar}}</p>*@
+        <div id="page">
+            <nav aria-label="Page navigation example ">
+                <ul class="pagination">
+                    <li class="pagination-item ">
+                    <li class="page-item  ">
+                        <a class="page-link" @@click="obtenerVehiculo(previousinicio)">
+                            <span aria-hidden="true" style="color:dodgerblue">&laquo;</span>
+                        </a>
+                    </li>
+                    <li class="page-item  ">
+                        <a class="page-link" @@click="obtenerVehiculo(previous)">
+                            <span aria-hidden="true" style="color:dodgerblue"><</span>
+                        </a>
+                    </li>
+                    <li class="page-item ">
+                        <button type="button" class="page-link" @@click="obtenerVehiculo(NumeroPaginaParaPrimerBoton)" v-cloak>
+                            {{NumeroPaginaParaPrimerBoton}}
+                        </button>
+
+                    </li>
+                    <li class="page-item  ">
+                        <button type="button" class="page-link " @@click="obtenerVehiculo(NumeroPaginaParaSegundoBoton)" :disabled="limitarPaginacion(NumeroPaginaParaSegundoBoton)" v-cloak>
+                            {{NumeroPaginaParaSegundoBoton}}
+                        </button>
+                    </li>
+                    <li class="page-item ">
+                        <button type="button" class="page-link" @@click="obtenerVehiculo(NumeroPaginaParaTercerBoton)" :disabled="limitarPaginacion(NumeroPaginaParaTercerBoton)" v-cloak>
+                            {{NumeroPaginaParaTercerBoton}}
+                        </button>
+                    </li>
+                    <li class="page-item ">
+                        <a class="page-link" @@click="obtenerVehiculo(next)">
+                            <span aria-hidden="true" style="color:dodgerblue">></span>
+                        </a>
+                    </li>
+                    <li class="page-item">
+                        <a class="page-link" @@click="obtenerVehiculo(final)">
+                            <span aria-hidden="true" style="color:dodgerblue">&raquo;</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
     </div>
-</div>
+    </div>
 <hr />
 <div style="text-align: center;">
     <a href="/Vehiculo/Agregar" class="btn btn-success">Agregar</a>
@@ -112,18 +138,4 @@
             vm.obtenerVehiculo(1);
         });
     </script>
-    <style>
-        .pagination {
-            list-style-type: none;
-        }
-
-        .pagination-item {
-            display: inline-block;
-        }
-
-        .active {
-            background-color: #4AAE9B;
-            color: #ffffff;
-        }
-    </style>
 }

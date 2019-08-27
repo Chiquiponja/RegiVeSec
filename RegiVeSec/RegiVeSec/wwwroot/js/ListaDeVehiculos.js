@@ -9,6 +9,7 @@ function initVue() {
             vehiculo: [],
             p_PaginaActual: 1,
             p_TotalRegistros: 0,
+            p_PaginaContar: 0,
             p_Desde: "",
             p_Hasta: "",
             p_Texto: "",
@@ -16,7 +17,18 @@ function initVue() {
         },
 
         computed: {
-
+            previousinicio: function () {
+                if (this.p_PaginaActual < 3)
+                    return 1;
+                else
+                    return this.p_PaginaActual = 1;
+            },
+            previous: function () {
+                if (this.p_PaginaActual < 3)
+                    return 1;
+                else
+                    return this.p_PaginaActual - 1;
+            },
             NumeroPaginaParaPrimerBoton: function() {
                 if (this.p_PaginaActual < 3)
                     return 1;
@@ -36,6 +48,18 @@ function initVue() {
                     return 3;
                 else
                     return this.p_PaginaActual + 1;
+            },
+            next: function () {
+                if (this.p_PaginaActual > 3)
+                    return 3;
+                else
+                    return this.p_PaginaActual + 1;
+            },
+            final: function () {
+                if (this.p_PaginaActual < 3)
+                    return 3;
+                else
+                    return this.p_PaginaActual = -1;
             }
         },
 
@@ -49,8 +73,7 @@ function initVue() {
 
           return cant < boton;
 
-        },
-
+          },
             obtenerVehiculo: function (numeroPagina) {
                 vm.$data.p_Desde = "";
                 vm.$data.p_Hasta = "";
