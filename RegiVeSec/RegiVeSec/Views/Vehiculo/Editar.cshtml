@@ -144,16 +144,7 @@
                 </div>
 
             </div>
-            <div class="col-md-4 mb-6">
 
-                <div class="input-group  mb-3">
-                    <div class="input-group-prepend">
-                        <span class="input-group-text" id="basic-addon1">Observaciones</span>
-                    </div>
-                    <input v-model="vehiculo.observaciones" @@keyup.enter="crearvehiculo" name="Observaciones" class="form-control" id="observaciones" />
-                </div>
-
-            </div>
             <div class="col-md-4 mb-6">
 
                 <div class="input-group  mb-3">
@@ -181,6 +172,16 @@
                         <span class="input-group-text" id="basic-addon1">Fecha De Entrega</span>
                     </div>
                     <input v-model="vehiculo.fechaDeEntrega" @@keyup.enter="crearvehiculo" name="FechaDeEntrega" type="datetime-local" class="form-control" id="fechaDeEntrega" />
+                </div>
+
+            </div>
+            <div class="col-md-4 mb-6">
+
+                <div class="input-group  mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text" id="basic-addon1">Observaciones</span>
+                    </div>
+                    <textarea v-model="vehiculo.observaciones" @@keyup.enter="crearvehiculo" name="Observaciones" class="form-control" id="observaciones"></textarea>
                 </div>
 
             </div>

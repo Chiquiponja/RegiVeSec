@@ -12,6 +12,9 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.EntityFrameworkCore;
 using System.Linq.Expressions;
 using RegiVeSec.Models.Dto;
+using System.Data;
+using OfficeOpenXml;
+using OfficeOpenXml.Style;
 
 namespace RegiVeSec.Controllers
 {
@@ -19,6 +22,8 @@ namespace RegiVeSec.Controllers
     {
         private Conexionbd db = new Conexionbd();
         public SqlConnection conectarbd = new SqlConnection();
+        private DataTable something;
+
         public VehiculoController(Conexionbd _db)
         {
             db = _db;
@@ -80,10 +85,6 @@ namespace RegiVeSec.Controllers
             nuevoVehiculo.Recibe = vehiculoRegiVeSecDto.Recibe;
             nuevoVehiculo.Estado = db.Estados.FirstOrDefault(x => x.Id == vehiculoRegiVeSecDto.Estado.Id);
             nuevoVehiculo.Tipo = db.Tipos.FirstOrDefault(x => x.Id == vehiculoRegiVeSecDto.Tipo.Id);
-
-
-
-
            
             try
             {
@@ -125,7 +126,46 @@ namespace RegiVeSec.Controllers
             iniEstados.IniEstados();
 
         }
+        //[HttpPost]
+        //public IActionResult Excel()
+        //{
+        //    byte[] fileContents;
 
+        //    using (var package = new ExcelPackage())
+        //    {
+        //        var worksheet = package.Workbook.Worksheets.Add("Sheet1");
+
+        //        // Put whatever you want here in the sheet
+        //        // For example, for cell on row1 col1
+        //        worksheet.Cells[1, 1].Value = "Long text"; 
+        //        worksheet.Cells[1, 1].Style.Font.Size = 12;
+        //        worksheet.Cells[1, 1].Style.Font.Bold = true;
+        //        worksheet.Cells[1, 1].Style.Border.Top.Style = ExcelBorderStyle.Hair;
+
+        //        fileContents = package.GetAsByteArray();
+        //    }
+
+        //    if (fileContents == null || fileContents.Length == 0)
+        //    {
+        //        return NotFound();
+        //    }
+        //    ExcelPackage entities = new ExcelPackage();
+        //    foreach (DataRow row in db.Rows)
+        //    {
+        //        entities.Customers.Add(new Customer
+        //        {
+        //            Name = row["Name"].ToString(),
+        //            Country = row["Country"].ToString()
+        //        });
+        //    }
+        //    entities.SaveChanges();
+        //    return File(
+        //        fileContents: fileContents,
+        //        contentType: "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+        //        fileDownloadName: "test.xlsx"
+        //    );
+
+        //}
         public SearchResultVehiculos Listar(int paginaActual)
         {
             //Pagina de a 10 elementos
@@ -162,11 +202,12 @@ namespace RegiVeSec.Controllers
                 dto.Entrega = vehiculo.Entrega;
                 dto.FechaDeEntrega = vehiculo.FechaDeEntrega.ToShortDateString();
 
-               
+
                 VehiculoRegiVeSecsPrueba.Add(dto);
             }
 
-            return new SearchResultVehiculos {
+            return new SearchResultVehiculos
+            {
                 Vehiculos = VehiculoRegiVeSecsPrueba,
                 TotalRegistros = totalRegistros
             };
@@ -176,6 +217,46 @@ namespace RegiVeSec.Controllers
 
 
         }
+        //public List<VehiculoRegiVeSecDto> Listar()
+        //{
+
+        //    List<VehiculoRegiVeSecDto> VehiculoRegiVeSecsPrueba = new List<VehiculoRegiVeSecDto>();
+
+        //    foreach (var item in db.Vehiculos.ToList())
+        //    {
+        //        VehiculoRegiVeSecDto dto = new VehiculoRegiVeSecDto();
+
+        //        dto.Id = item.Id;
+        //        dto.FechaDeIngreso = item.FechaDeIngreso.ToShortDateString();
+        //        dto.Propietario = item.Propietario;
+        //        dto.Dominio = item.Dominio;
+        //        dto.DetallesVehiculo = "Dominio: (" + item.Dominio + ") Tipo: (" + item.Tipo + ") Marca: (" + item.Marca + ") Color: (" + item.Color + ") Modelo: (" + item.Modelo + ") Estado: (" + item.Estado + ") ";
+        //        dto.Tipo = item.Tipo;
+        //        dto.Marca = item.Marca;
+        //        dto.Color = item.Color;
+        //        dto.Modelo = item.Modelo;
+        //        dto.Causa = item.Causa;
+        //        dto.Estado = item.Estado;
+        //        dto.NumeroSumario = item.NumeroSumario;
+        //        dto.Dependencia = item.Dependencia;
+        //        dto.Orden = item.Orden;
+        //        dto.DependenciaProcedente = item.DependenciaProcedente;
+        //        dto.Observaciones = item.Observaciones;
+        //        dto.Recibe = item.Recibe;
+        //        dto.Entrega = item.Entrega;
+        //        dto.FechaDeEntrega = item.FechaDeEntrega.ToShortDateString();
+
+
+        //        VehiculoRegiVeSecsPrueba.Add(dto);
+        //    }
+
+
+
+
+        //    HttpContext.Session.SetString("Datos", JsonConvert.SerializeObject(VehiculoRegiVeSecsPrueba));
+
+        //    return VehiculoRegiVeSecsPrueba;
+        //}
         [HttpGet]
         [Route("/Vehiculo/Buscar/{filtro}")]
         public List<VehiculoRegiVeSecDto> Buscar(string filtro)
