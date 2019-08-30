@@ -2,63 +2,63 @@
     ViewData["Title"] = "Home Page";
 }
 @model VehiculoRegiVeSec
-<div id="app">
+    <div id="app">
 
-    <h1 class="list-group-item active">
-        <span>Registro de Vehiculos</span>
-    </h1>
-    <hr />
-    <form class="form-inline waves-light" onsubmit="this.reset()"  action="javascript: vm.BuscarVehiculo();" >
-        <div class="md-form mt-0">
+        <h1 class="list-group-item active">
+            <span>Registro de Vehiculos</span>
+        </h1>
+        <hr />
+        <form class="form-inline waves-light" onsubmit="this.reset()" action="javascript: vm.BuscarVehiculo();">
+            <div class="md-form mt-0">
 
-            <input type="text" class="form-control mr-sm-2" name="texto" v-model="p_Texto" aria-controls="TablaVehiculos">
+                <input type="text" class="form-control mr-sm-2" name="texto" v-model="p_Texto" aria-controls="TablaVehiculos">
 
-            <input class="form-control mr-sm-2" type="date" v-model="p_Desde" name="fecha" placeholder="Hasta" />
-            <input class="form-control mr-sm-2" type="date" v-model="p_Hasta" name="fecha1" placeholder="Ahora" />
-            <button type="submit" value="Submit" class="btn btn-primary">Buscar</button>
-            <button type="button" @@click="obtenerVehiculo()" class="btn btn-primary">Restaurar</button>
-            @*<button type="button" @@click="BuscarExcel()" class="btn btn-primary">Excel</button>*@
-        </div>
-    </form>
-
-    <div class="row">
-        <div class=" col-md-12  pt-1 ">
-            <div class="table-responsive">
-                <table class="  table-hover display fl-table table-bordered" id="TablaVehiculos" style="width:100%">
-                    <thead>
-                        <tr>
-                            <th>Id</th>
-                            <th>Fecha De Ingreso </th>
-                            <th>Propietario </th>
-                            <th>Dominio  </th>
-                            <th>Orden </th>
-                            <th> Causa </th>
-                            <th>Fecha De Entrega</th>
-                            <th> </th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr v-for="item in vehiculo " v-cloak>
-                            <td v-cloak> {{ item.id }}</td>
-                            <th v-cloak>{{ item.fechaDeIngreso }}</th>
-                            <th v-cloak>{{ item.propietario}} </th>
-                            <th v-cloak>{{ item.dominio }} </th>
-                            <th v-cloak>{{ item.orden }} </th>
-                            <th v-cloak>{{ item.causa }} </th>
-                            <th v-cloak>{{ item.fechaDeEntrega }} </th>
-                            <td>
-                                <a :href="'/Vehiculo/Detalles/' + item.id" class="btn btn-info">Detalles</a>
-                                <a :href="'/Vehiculo/Eliminar/' + item.id" class="btn btn-danger">Eliminar</a>
-                                <a :href="'/Vehiculo/Editar/' + item.id" class="btn btn-primary">Editar</a>
-
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
-                <hr />
+                <input class="form-control mr-sm-2" type="date" v-model="p_Desde" name="fecha" placeholder="Hasta" />
+                <input class="form-control mr-sm-2" type="date" v-model="p_Hasta" name="fecha1" placeholder="Ahora" />
+                <button type="submit" value="Submit" class="btn btn-primary">Buscar</button>
+                <button type="button" @@click="obtenerVehiculo()" class="btn btn-primary">Restaurar</button>
+                @*<button type="button" @@click="BuscarExcel()" class="btn btn-primary">Excel</button>*@
             </div>
-        </div>
-        <p class="mt-3" v-cloak>Pagina: {{p_PaginaActual}}</p>
+        </form>
+       
+        <div class="row">
+                <div class=" col-md-12  pt-1 ">
+                    <div class="table-responsive">
+                            <table class="  table-hover display fl-table table-bordered" id="TablaVehiculos" style="width:100%">
+                                <thead>
+                                    <tr>
+                                        <th>Id</th>
+                                        <th>Fecha De Ingreso </th>
+                                        <th>Propietario </th>
+                                        <th>Dominio  </th>
+                                        <th>Orden </th>
+                                        <th> Causa </th>
+                                        <th>Fecha De Entrega</th>
+                                        <th> </th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr v-for="item in vehiculo " v-cloak>
+                                        <td v-cloak> {{ item.id }}</td>
+                                        <th v-cloak>{{ item.fechaDeIngreso }}</th>
+                                        <th v-cloak>{{ item.propietario}} </th>
+                                        <th v-cloak>{{ item.dominio }} </th>
+                                        <th v-cloak>{{ item.orden }} </th>
+                                        <th v-cloak>{{ item.causa }} </th>
+                                        <th v-cloak>{{ item.fechaDeEntrega }} </th>
+                                        <td>
+                                            <a :href="'/Vehiculo/Detalles/' + item.id" class="btn btn-info">Detalles</a>
+                                            <a :href="'/Vehiculo/Eliminar/' + item.id" class="btn btn-danger">Eliminar</a>
+                                            <a :href="'/Vehiculo/Editar/' + item.id" class="btn btn-primary">Editar</a>
+
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <hr />
+                    </div>
+               </div>
+        @*<p class="mt-3" v-cloak>Pagina: {{p_PaginaActual}}</p>
         <hr />
         <div id="page">
             <nav aria-label="Page navigation example ">
@@ -102,10 +102,10 @@
                     </li>
                 </ul>
             </nav>
+        </div>*@
         </div>
     </div>
-    </div>
-<hr />
+@*<hr />*@
 <div style="text-align: center;">
     <a href="/Vehiculo/Agregar" class="btn btn-success">Agregar</a>
 </div>
