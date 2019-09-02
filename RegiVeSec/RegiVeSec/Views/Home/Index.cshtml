@@ -27,9 +27,10 @@
                             <table class="  table-hover display fl-table table-bordered" id="TablaVehiculos" style="width:100%">
                                 <thead>
                                     <tr>
-                                        <th>Id</th>
                                         <th>Fecha De Ingreso </th>
-                                        <th>Propietario </th>
+                                        <th>Numero De Sumario </th>
+                                        <th>Tipo  </th>
+                                        <th>Marca  </th>
                                         <th>Dominio  </th>
                                         <th>Orden </th>
                                         <th> Causa </th>
@@ -39,11 +40,12 @@
                                 </thead>
                                 <tbody>
                                     <tr v-for="item in vehiculo " v-cloak>
-                                        <td v-cloak> {{ item.id }}</td>
                                         <th v-cloak>{{ item.fechaDeIngreso }}</th>
-                                        <th v-cloak>{{ item.propietario}} </th>
+                                        <th v-cloak>{{ item.numeroSumario}}</th>
+                                        <th v-cloak>{{ item.tipoId}} </th>
+                                        <th v-cloak>{{ item.modelo}} </th>
+                                        <th v-cloak>{{ item.marca}} </th>
                                         <th v-cloak>{{ item.dominio }} </th>
-                                        <th v-cloak>{{ item.orden }} </th>
                                         <th v-cloak>{{ item.causa }} </th>
                                         <th v-cloak>{{ item.fechaDeEntrega }} </th>
                                         <td>

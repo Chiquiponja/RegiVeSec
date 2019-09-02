@@ -23,10 +23,12 @@ namespace RegiVeSec.Data
         {
             var existentes = db.Tipos.ToList();
             var nuevos = new List<Tipo>(){
+        new Tipo{Detalles="Bicibleta"},
         new Tipo{Detalles ="Moto"},
         new Tipo{Detalles="Auto"},
         new Tipo{Detalles = "Camion"},
-        new Tipo{Detalles="Camioneta"}
+        new Tipo{Detalles="Colectivo"},
+        new Tipo{Detalles="Unitario"}
       };
 
             foreach (var item in nuevos.Where(x => existentes.All(f => f.Detalles != x.Detalles)))

@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace RegiVeSec.Migrations
 {
-    public partial class prueba2 : Migration
+    public partial class A : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -105,11 +105,14 @@ namespace RegiVeSec.Migrations
                     Causa = table.Column<string>(maxLength: 30, nullable: false),
                     EstadoId = table.Column<int>(nullable: false),
                     NumeroSumario = table.Column<string>(maxLength: 30, nullable: false),
-                    Dependencia = table.Column<string>(maxLength: 30, nullable: false),
+                    Deposito = table.Column<string>(maxLength: 30, nullable: false),
                     Orden = table.Column<string>(maxLength: 30, nullable: false),
                     DependenciaProcedente = table.Column<string>(maxLength: 30, nullable: false),
                     Observaciones = table.Column<string>(maxLength: 30, nullable: false),
                     Recibe = table.Column<string>(maxLength: 30, nullable: false),
+                    MagistradoInterviniente = table.Column<string>(maxLength: 30, nullable: false),
+                    SumarioRegistrar = table.Column<string>(maxLength: 30, nullable: false),
+                    UbicacionActual = table.Column<string>(maxLength: 30, nullable: false),
                     Entrega = table.Column<string>(maxLength: 30, nullable: true),
                     FechaDeEntrega = table.Column<DateTime>(nullable: false),
                     LoginId = table.Column<int>(nullable: true)

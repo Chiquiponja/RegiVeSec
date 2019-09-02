@@ -50,7 +50,7 @@ namespace RegiVeSec.Models
 
         [MaxLength(30)]
         [Required]
-        public string Dependencia { get; set; }
+        public string Deposito { get; set; }
 
         [MaxLength(30)]
         [Required]
@@ -69,11 +69,21 @@ namespace RegiVeSec.Models
         public string Recibe { get; set; }
 
         [MaxLength(30)]
+        [Required]
+        public string MagistradoInterviniente { get; set; }
+        [MaxLength(30)]
+        [Required]
+        public string SumarioRegistrar { get; set; }
+        [MaxLength(30)]
+        [Required]
+        public string UbicacionActual { get; set; }
+        [MaxLength(30)]
         //  //  [Required]
         public string Entrega { get; set; }
 
 
         public DateTime FechaDeEntrega { get; set; }
+        
 
 
     }

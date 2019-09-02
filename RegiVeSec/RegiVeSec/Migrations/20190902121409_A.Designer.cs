@@ -10,14 +10,14 @@ using RegiVeSec.Data;
 namespace RegiVeSec.Migrations
 {
     [DbContext(typeof(Conexionbd))]
-    [Migration("20190826124245_prueba2")]
-    partial class prueba2
+    [Migration("20190902121409_A")]
+    partial class A
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "2.2.6-servicing-10079")
+                .HasAnnotation("ProductVersion", "2.2.3-servicing-35854")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
@@ -133,11 +133,11 @@ namespace RegiVeSec.Migrations
                         .IsRequired()
                         .HasMaxLength(30);
 
-                    b.Property<string>("Dependencia")
+                    b.Property<string>("DependenciaProcedente")
                         .IsRequired()
                         .HasMaxLength(30);
 
-                    b.Property<string>("DependenciaProcedente")
+                    b.Property<string>("Deposito")
                         .IsRequired()
                         .HasMaxLength(30);
 
@@ -155,6 +155,10 @@ namespace RegiVeSec.Migrations
                     b.Property<DateTime>("FechaDeIngreso");
 
                     b.Property<int?>("LoginId");
+
+                    b.Property<string>("MagistradoInterviniente")
+                        .IsRequired()
+                        .HasMaxLength(30);
 
                     b.Property<string>("Marca")
                         .IsRequired()
@@ -184,7 +188,15 @@ namespace RegiVeSec.Migrations
                         .IsRequired()
                         .HasMaxLength(30);
 
+                    b.Property<string>("SumarioRegistrar")
+                        .IsRequired()
+                        .HasMaxLength(30);
+
                     b.Property<int>("TipoId");
+
+                    b.Property<string>("UbicacionActual")
+                        .IsRequired()
+                        .HasMaxLength(30);
 
                     b.HasKey("Id");
 

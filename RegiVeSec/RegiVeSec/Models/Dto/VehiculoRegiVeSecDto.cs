@@ -18,7 +18,7 @@ namespace RegiVeSec.Models
         public string Causa { get; set; }
         public Estado Estado { get; set; }
         public string NumeroSumario { get; set; }
-        public string Dependencia  { get; set; }
+        public string Deposito { get; set; }
         public string Orden  { get; set; }
         public string DependenciaProcedente { get; set; }
         public string Observaciones { get; set; }
@@ -26,7 +26,9 @@ namespace RegiVeSec.Models
         public string Entrega { get; set; }
         public string FechaDeEntrega { get; set; }
         public string DetallesVehiculo { get; set; }
-
+        public string MagistradoInterviniente { get; set; }
+        public string SumarioRegistrar { get; set; }
+        public string UbicacionActual { get; set; }
         public int TipoId { get; set; }
         public int EstadoId { get; set; }
     }

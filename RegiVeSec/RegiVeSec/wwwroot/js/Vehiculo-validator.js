@@ -60,7 +60,7 @@ $().ready((function () {
             minlength: 3
 
         },
-            DependenciaProcedente:  {
+            DepositoProcedente:  {
             required: true,
             minlength: 3
 
@@ -75,7 +75,7 @@ $().ready((function () {
             minlength: 3
 
             },
-            Dependencia: {
+            Deposito: {
                 required: true,
                 minlength: 3
 
@@ -128,8 +128,8 @@ $().ready((function () {
                 minlength: "Minimo 3 caracter"
 
             },
-            Dependencia: {
-                required: "Escribi tu Dependencia... ",
+            Deposito: {
+                required: "Escribi tu Deposito... ",
                 minlength: "Minimo 3 caracter"
 
             },
@@ -177,8 +177,8 @@ $().ready((function () {
                 minlength: "Minimo 3 caracter"
 
             },
-            Dependencia: {
-                required: "Escribi la Dependencia... ",
+            Deposito: {
+                required: "Escribi la Deposito... ",
                 minlength: "Minimo 3 caracter"
 
             },

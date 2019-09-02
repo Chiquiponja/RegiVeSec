@@ -69,7 +69,7 @@ namespace RegiVeSec.Controllers
             nuevoVehiculo.Color = vehiculoRegiVeSecDto.Color;
 
             nuevoVehiculo.Causa = vehiculoRegiVeSecDto.Causa;
-            nuevoVehiculo.Dependencia = vehiculoRegiVeSecDto.Dependencia;
+            nuevoVehiculo.Deposito = vehiculoRegiVeSecDto.Deposito;
             nuevoVehiculo.DependenciaProcedente = vehiculoRegiVeSecDto.DependenciaProcedente;
             nuevoVehiculo.Dominio = vehiculoRegiVeSecDto.Dominio;
             nuevoVehiculo.Entrega = vehiculoRegiVeSecDto.Entrega;
@@ -83,6 +83,9 @@ namespace RegiVeSec.Controllers
             nuevoVehiculo.Orden = vehiculoRegiVeSecDto.Orden;
             nuevoVehiculo.Propietario = vehiculoRegiVeSecDto.Propietario;
             nuevoVehiculo.Recibe = vehiculoRegiVeSecDto.Recibe;
+            nuevoVehiculo.MagistradoInterviniente = vehiculoRegiVeSecDto.MagistradoInterviniente;
+            nuevoVehiculo.SumarioRegistrar = vehiculoRegiVeSecDto.SumarioRegistrar;
+            nuevoVehiculo.UbicacionActual = vehiculoRegiVeSecDto.UbicacionActual;
             nuevoVehiculo.Estado = db.Estados.FirstOrDefault(x => x.Id == vehiculoRegiVeSecDto.Estado.Id);
             nuevoVehiculo.Tipo = db.Tipos.FirstOrDefault(x => x.Id == vehiculoRegiVeSecDto.Tipo.Id);
            
@@ -165,12 +168,15 @@ namespace RegiVeSec.Controllers
         //            dto.Causa = vehiculo.Causa;
         //            dto.Estado = vehiculo.Estado;
         //            dto.NumeroSumario = vehiculo.NumeroSumario;
-        //            dto.Dependencia = vehiculo.Dependencia;
+        //            dto.Deposito = vehiculo.Deposito;
         //            dto.Orden = vehiculo.Orden;
         //            dto.DependenciaProcedente = vehiculo.DependenciaProcedente;
         //            dto.Observaciones = vehiculo.Observaciones;
         //            dto.Recibe = vehiculo.Recibe;
         //            dto.Entrega = vehiculo.Entrega;
+        //dto.MagistradoInterviniente = item.MagistradoInterviniente;
+        //        dto.SumarioRegistrar = item.SumarioRegistrar;
+        //        dto.UbicacionActual = item.UbicacionActual;
         //            dto.FechaDeEntrega = vehiculo.FechaDeEntrega.ToShortDateString();
 
 
@@ -209,12 +215,15 @@ namespace RegiVeSec.Controllers
                 dto.Causa = item.Causa;
                 dto.Estado = item.Estado;
                 dto.NumeroSumario = item.NumeroSumario;
-                dto.Dependencia = item.Dependencia;
+                dto.Deposito = item.Deposito;
                 dto.Orden = item.Orden;
                 dto.DependenciaProcedente = item.DependenciaProcedente;
                 dto.Observaciones = item.Observaciones;
                 dto.Recibe = item.Recibe;
                 dto.Entrega = item.Entrega;
+                dto.MagistradoInterviniente = item.MagistradoInterviniente;
+                dto.SumarioRegistrar = item.SumarioRegistrar;
+                dto.UbicacionActual = item.UbicacionActual;
                 dto.FechaDeEntrega = item.FechaDeEntrega.ToShortDateString();
 
 
@@ -267,12 +276,15 @@ namespace RegiVeSec.Controllers
                 dto.Causa = item.Causa;
                 dto.Estado = item.Estado;
                 dto.NumeroSumario = item.NumeroSumario;
-                dto.Dependencia = item.Dependencia;
+                dto.Deposito = item.Deposito;
                 dto.Orden = item.Orden;
                 dto.DependenciaProcedente = item.DependenciaProcedente;
                 dto.Observaciones = item.Observaciones;
                 dto.Recibe = item.Recibe;
                 dto.Entrega = item.Entrega;
+                dto.MagistradoInterviniente = item.MagistradoInterviniente;
+                dto.SumarioRegistrar = item.SumarioRegistrar;
+                dto.UbicacionActual = item.UbicacionActual;
                 dto.FechaDeEntrega = item.FechaDeEntrega.ToShortDateString();
 
 
@@ -383,7 +395,7 @@ namespace RegiVeSec.Controllers
             if (!string.IsNullOrEmpty(searchValue))//filter
             {
                 empList = empList.
-                    Where(x => x.Marca.ToLower().Contains(searchValue.ToLower()) || x.Dependencia.ToLower().Contains(searchValue.ToLower()) || x.Propietario.ToLower().Contains(searchValue.ToLower()) || x.Causa.ToString().Contains(searchValue.ToLower()) || x.Color.ToString().Contains(searchValue.ToLower())).ToList<VehiculoRegiVeSec>();
+                    Where(x => x.Marca.ToLower().Contains(searchValue.ToLower()) || x.Deposito.ToLower().Contains(searchValue.ToLower()) || x.Propietario.ToLower().Contains(searchValue.ToLower()) || x.Causa.ToString().Contains(searchValue.ToLower()) || x.Color.ToString().Contains(searchValue.ToLower())).ToList<VehiculoRegiVeSec>();
             }
             int totalrowsafterfiltering = empList.Count;
 
@@ -432,7 +444,7 @@ namespace RegiVeSec.Controllers
             var nuevoVehiculo = new VehiculoRegiVeSec();
             nuevoVehiculo.Color = vehiculoRegiVeSecDto.Color;
             nuevoVehiculo.Causa = vehiculoRegiVeSecDto.Causa;
-            nuevoVehiculo.Dependencia = vehiculoRegiVeSecDto.Dependencia;
+            nuevoVehiculo.Deposito = vehiculoRegiVeSecDto.Deposito;
             nuevoVehiculo.DependenciaProcedente = vehiculoRegiVeSecDto.DependenciaProcedente;
             nuevoVehiculo.Dominio = vehiculoRegiVeSecDto.Dominio;
             nuevoVehiculo.Entrega = vehiculoRegiVeSecDto.Entrega;
@@ -446,6 +458,9 @@ namespace RegiVeSec.Controllers
             nuevoVehiculo.Orden = vehiculoRegiVeSecDto.Orden;
             nuevoVehiculo.Propietario = vehiculoRegiVeSecDto.Propietario;
             nuevoVehiculo.Recibe = vehiculoRegiVeSecDto.Recibe;
+            nuevoVehiculo.MagistradoInterviniente = vehiculoRegiVeSecDto.MagistradoInterviniente;
+            nuevoVehiculo.SumarioRegistrar = vehiculoRegiVeSecDto.SumarioRegistrar;
+            nuevoVehiculo.UbicacionActual = vehiculoRegiVeSecDto.UbicacionActual;
             nuevoVehiculo.Estado = db.Estados.FirstOrDefault(x => x.Id == vehiculoRegiVeSecDto.Estado.Id);
             nuevoVehiculo.Tipo = db.Tipos.FirstOrDefault(x => x.Id == vehiculoRegiVeSecDto.Tipo.Id);
             try

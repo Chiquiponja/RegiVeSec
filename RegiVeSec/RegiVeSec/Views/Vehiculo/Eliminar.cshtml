@@ -21,11 +21,29 @@
             <dd class="col-md-4" v-cloak>
                 {{ vehiculo.fechaDeIngreso }}
             </dd>
-            <dt class="col-sm-2" >
+            <dt class="col-sm-2">
                 <partial>Propietario</partial>
             </dt>
             <dd class="col-md-4" v-cloak>
                 {{ vehiculo.propietario}}
+            </dd>
+            <dt class="col-sm-2">
+                <partial>Magistrado Interviniente</partial>
+            </dt>
+            <dd class="col-md-4" v-cloak>
+                {{ vehiculo.magistradoInterviniente}}
+            </dd>
+            <dt class="col-sm-2">
+                <partial>Sumario Registar</partial>
+            </dt>
+            <dd class="col-md-4" v-cloak>
+                {{ vehiculo.sumarioRegistar}}
+            </dd>
+            <dt class="col-sm-2">
+                <partial>Ubicacion Actual</partial>
+            </dt>
+            <dd class="col-md-4" v-cloak>
+                {{ vehiculo.ubicacionActual}}
             </dd>
             <dt class="col-sm-2">
                 <partial>Dominio</partial>
@@ -76,10 +94,10 @@
                 {{ vehiculo.numeroSumario}}
             </dd>
             <dt class="col-sm-2">
-                <partial>Dependencia</partial>
+                <partial>Deposito</partial>
             </dt>
             <dd class="col-md-4" v-cloak>
-                {{ vehiculo.dependencia }}
+                {{ vehiculo.deposito }}
             </dd>
             <dt class="col-sm-2">
                 <partial>Orden</partial>
@@ -111,8 +129,8 @@
             <dd class="col-md-4" v-cloak>
                 {{ vehiculo.entrega }}
             </dd>
-          
-          
+
+
             <dt class="col-sm-2">
                 <partial>Fecha De Entrega</partial>
             </dt>
