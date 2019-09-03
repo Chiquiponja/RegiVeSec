@@ -72,7 +72,7 @@ $().ready((function () {
         },
             Orden:  {
             required: true,
-            minlength: 3
+            minlength: 2
 
         },
             DepositoProcedente:  {

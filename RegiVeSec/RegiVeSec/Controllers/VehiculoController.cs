@@ -199,10 +199,10 @@ namespace RegiVeSec.Controllers
 
             List<VehiculoRegiVeSecDto> VehiculoRegiVeSecsPrueba = new List<VehiculoRegiVeSecDto>();
 
-            foreach (var item in db.Vehiculos.ToList())
+            foreach (var item in db.Vehiculos.Include(i => i.Tipo).ToList())
             {
                 VehiculoRegiVeSecDto dto = new VehiculoRegiVeSecDto();
-
+               
                 dto.Id = item.Id;
                 dto.FechaDeIngreso = item.FechaDeIngreso.ToShortDateString();
                 dto.Propietario = item.Propietario;
@@ -230,7 +230,7 @@ namespace RegiVeSec.Controllers
                 VehiculoRegiVeSecsPrueba.Add(dto);
             }
 
-
+            VehiculoRegiVeSecsPrueba = VehiculoRegiVeSecsPrueba.OrderByDescending(x => x.Id).ToList();
 
 
             HttpContext.Session.SetString("Datos", JsonConvert.SerializeObject(VehiculoRegiVeSecsPrueba));

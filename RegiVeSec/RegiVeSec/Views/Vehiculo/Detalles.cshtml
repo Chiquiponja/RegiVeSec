@@ -1,113 +1,130 @@
 @model VehiculoRegiVeSec
 @{
-  ViewData["Title"] = "Index";
+    ViewData["Title"] = "Index";
 }
 
 <h1>Detalles</h1>
 
 <div id="appAutos">
-  <table class="table table-bordered">
-    <thead>
-      <tr>
-        <th scope="col">Campo</th>
-        <th scope="col">Detalle</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <th scope="row">Fecha De Ingreso :  </th>
-        <td v-cloak>{{ vehiculo.fechaDeIngreso }}</td>
-      </tr>
-      <tr>
-        <th scope="row">Numero De Sumario :  </th>
-        <td v-cloak>{{vehiculo.numeroSumario}}</td>
-      </tr>
-      <tr>
-        <th scope="row">Sumario Registrar : </th>
-        <td v-cloak>{{vehiculo.sumarioRegistrar}}</td>
-      </tr>
-      <tr>
-        <th scope="row">Tipo :  </th>
-        <td v-cloak>{{vehiculo.tipo.detalles}}</td>
-      </tr>
-      <tr>
-        <th scope="row">Marca : </th>
-        <td v-cloak>{{vehiculo.marca}}</td>
-      </tr>
-      <tr>
-        <th scope="row">Color : </th>
-        <td v-cloak>{{vehiculo.color}}</td>
-      </tr>
-      <tr>
-        <th scope="row">Modelo :  </th>
-        <td v-cloak>{{vehiculo.numeroSumario}}</td>
-      </tr>
-      <tr>
-        <th scope="row">Dominio : </th>
-        <td v-cloak>{{vehiculo.dominio}}</td>
-      </tr>
-      <tr>
-        <th scope="row">Causa :  </th>
-        <td v-cloak>{{vehiculo.causa}}</td>
-      </tr>
-      <tr>
-        <th scope="row">Magistrado Interviniente :  </th>
-        <td v-cloak>{{vehiculo.magistradoInterviniente}}</td>
-      </tr>
-      <tr>
-        <th scope="row">Dependencia Procedente :  </th>
-        <td v-cloak>{{vehiculo.dependenciaProcedente}}</td>
-      </tr>
-      <tr>
-        <th scope="row">Estado : </th>
-        <td v-cloak>{{vehiculo.estado.detalles}}</td>
-      </tr>
-      <tr>
-        <th scope="row">Recibe : </th>
-        <td v-cloak>{{vehiculo.recibe}}</td>
-      </tr>
-      <tr>
-        <th scope="row">Entrega : </th>
-        <td v-cloak>{{vehiculo.entrega}}</td>
-      </tr>
-      <tr>
-        <th scope="row">Ubicacion Actual : </th>
-        <td v-cloak>{{vehiculo.ubicacionActual}}</td>
-      </tr>
-      <tr>
-        <th scope="row">Propietario :  </th>
-        <td v-cloak>{{vehiculo.propietario}}</td>
-      </tr>
-      <tr>
-        <th scope="row">Deposito :  </th>
-        <td v-cloak>{{vehiculo.deposito}}</td>
-      </tr>
-      <tr>
-        <th scope="row">Orden : </th>
-        <td v-cloak>{{vehiculo.orden}}</td>
-      </tr>
-      <tr>
-        <th scope="row">Fecha De Entrega :  </th>
-        <td v-cloak>{{vehiculo.fechaDeEntrega }}</td>
-      </tr>
-      <tr>
-         <th scope="row">Observaciones : </th>
-        <td v-cloak>{{vehiculo.observaciones}}</td>
-      </tr>
-    </tbody>
-  </table>
-    <hr />
-    <div style="text-align: center;">
-      <a :href="'/Home/Index/' " class="btn btn-outline-dark">Volver Al Inicio</a>
+    <div id="imp1">
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th scope="col">Campo</th>
+                    <th scope="col">Detalle</th>
+                </tr>
+
+            </thead>
+            <tbody>
+                <tr>
+                    <th scope="row">Fecha De Ingreso :  </th>
+                    <td v-cloak>{{ vehiculo.fechaDeIngreso }}</td>
+                </tr>
+                <tr>
+                    <th scope="row">Numero De Sumario :  </th>
+                    <td v-cloak>{{vehiculo.numeroSumario}}</td>
+                </tr>
+                <tr>
+                    <th scope="row">Sumario Registrar : </th>
+                    <td v-cloak>{{vehiculo.sumarioRegistrar}}</td>
+                </tr>
+                <tr>
+                    <th scope="row">Tipo :  </th>
+                    <td v-cloak>{{vehiculo.tipo.detalles}}</td>
+                </tr>
+                <tr>
+                    <th scope="row">Marca : </th>
+                    <td v-cloak>{{vehiculo.marca}}</td>
+                </tr>
+                <tr>
+                    <th scope="row">Color : </th>
+                    <td v-cloak>{{vehiculo.color}}</td>
+                </tr>
+                <tr>
+                    <th scope="row">Modelo :  </th>
+                    <td v-cloak>{{vehiculo.numeroSumario}}</td>
+                </tr>
+                <tr>
+                    <th scope="row">Dominio : </th>
+                    <td v-cloak>{{vehiculo.dominio}}</td>
+                </tr>
+                <tr>
+                    <th scope="row">Causa :  </th>
+                    <td v-cloak>{{vehiculo.causa}}</td>
+                </tr>
+                <tr>
+                    <th scope="row">Magistrado Interviniente :  </th>
+                    <td v-cloak>{{vehiculo.magistradoInterviniente}}</td>
+                </tr>
+                <tr>
+                    <th scope="row">Dependencia Procedente :  </th>
+                    <td v-cloak>{{vehiculo.dependenciaProcedente}}</td>
+                </tr>
+                <tr>
+                    <th scope="row">Estado : </th>
+                    <td v-cloak>{{vehiculo.estado.detalles}}</td>
+                </tr>
+                <tr>
+                    <th scope="row">Recibe : </th>
+                    <td v-cloak>{{vehiculo.recibe}}</td>
+                </tr>
+                <tr>
+                    <th scope="row">Entrega : </th>
+                    <td v-cloak>{{vehiculo.entrega}}</td>
+                </tr>
+                <tr>
+                    <th scope="row">Ubicacion Actual : </th>
+                    <td v-cloak>{{vehiculo.ubicacionActual}}</td>
+                </tr>
+                <tr>
+                    <th scope="row">Propietario :  </th>
+                    <td v-cloak>{{vehiculo.propietario}}</td>
+                </tr>
+                <tr>
+                    <th scope="row">Deposito :  </th>
+                    <td v-cloak>{{vehiculo.deposito}}</td>
+                </tr>
+                <tr>
+                    <th scope="row">Orden : </th>
+                    <td v-cloak>{{vehiculo.orden}}</td>
+                </tr>
+                <tr>
+                    <th scope="row">Fecha De Entrega :  </th>
+                    <td v-cloak>{{vehiculo.fechaDeEntrega }}</td>
+                </tr>
+                <tr>
+                    <th scope="row">Observaciones : </th>
+                    <td v-cloak>{{vehiculo.observaciones}}</td>
+                </tr>
+            </tbody>
+
+        </table>
+        <hr />
     </div>
-  </div>
+    
+</div>
+<div style="text-align: center;">
+    <button type="button"  class="btn btn-outline-dark" onclick="javascript:imprim1(imp1);">Imprimir</button>
+    <a :href="'/Home/Index/' " class="btn btn-outline-dark">Volver Al Inicio</a>
+</div>
 
-
-@section ScriptsSection {
-  <script src="~/js/Formulario.js"></script>
-  <script>
+    @section ScriptsSection {
+        <script src="~/js/Formulario.js"></script>
+        <script>
             $(document).ready(function () {
                 vm.obtenerAutoById(@ViewData["Id"]);
             });
-  </script>
-}
+        </script>
+        <script>
+            function imprim1(imp1) {
+                var printContents = document.getElementById('imp1').innerHTML;
+                w = window.open();
+                w.document.write(printContents);
+                w.document.close(); // necessary for IE >= 10
+                w.focus(); // necessary for IE >= 10
+                w.print();
+                w.close();
+                return true;
+            }
+        </script>
+    }
