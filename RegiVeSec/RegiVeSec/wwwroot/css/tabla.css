@@ -52,15 +52,20 @@ button {
 
     .fl-table thead th {
         color: white;
-        background: #4FC3A1;
+        background: #0060ba;
     }
 
 
         .fl-table thead th:nth-child(odd) {
             color: white;
-            background: #324960;
+            background: #0060ba;
         }
 
-.fl-table tr:nth-child(even) {
-    background: #F8F8F8;
+    .fl-table tr:nth-child(even) {
+        background: #F8F8F8;
+    }
+
+.list-group-item {
+    background-color: #0060ba;
+    color: white;
 }

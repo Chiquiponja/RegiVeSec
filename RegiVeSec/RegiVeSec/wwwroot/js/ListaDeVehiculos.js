@@ -171,12 +171,12 @@
 //        //"processing": true,
 //        buttons: [
 //            {
-//                extend: 'excel', className: 'btn btn-primary', exportOptions: {
+//                extend: 'excel', className: 'btn btn-dark', exportOptions: {
 //                    columns: [0, 1, 2, 3, 4]
 //                }
 //            },
 //            {
-//                extend: 'pdf', className: 'btn btn-primary',
+//                extend: 'pdf', className: 'btn btn-dark',
 //                exportOptions: {
 //                    columns: [0, 1, 2, 3, 4]
 //                }
@@ -330,12 +330,12 @@ function initDataTable() {
         //"processing": true,
         buttons: [
             {
-                extend: 'excel', className: 'btn btn-primary', exportOptions: {
+                extend: 'excel', className: 'btn btn-dark', exportOptions: {
                     columns: [0, 1, 2, 3, 4, 5, 6]
                 }
             },
             {
-                extend: 'pdf', className: 'btn btn-primary',
+                extend: 'pdf', className: 'btn btn-dark',
                 exportOptions: {
                     columns: [0, 1, 2, 3, 4,5,6]
                 }

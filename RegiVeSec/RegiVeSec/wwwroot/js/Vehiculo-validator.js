@@ -40,7 +40,22 @@ $().ready((function () {
             required: true,
             minlength: 3
 
-        },
+            },
+            MagistradoInterviniente: {
+                required: true,
+                minlength: 3
+
+            },
+            SumarioRegistrar: {
+                required: true,
+                minlength: 3
+
+            },
+            UbicacionActual: {
+                required: true,
+                minlength: 3
+
+            },
             Causa: {
             required: true,
             minlength: 3

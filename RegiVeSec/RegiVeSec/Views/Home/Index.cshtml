@@ -4,7 +4,7 @@
 @model VehiculoRegiVeSec
     <div id="app">
 
-        <h1 class="list-group-item active">
+        <h1 class="list-group-item">
             <span>Registro de Vehiculos</span>
         </h1>
         <hr />
@@ -15,8 +15,8 @@
 
                 <input class="form-control mr-sm-2" type="date" v-model="p_Desde" name="fecha" placeholder="Hasta" />
                 <input class="form-control mr-sm-2" type="date" v-model="p_Hasta" name="fecha1" placeholder="Ahora" />
-                <button type="submit" value="Submit" class="btn btn-primary">Buscar</button>
-                <button type="button" @@click="obtenerVehiculo()" class="btn btn-primary">Restaurar</button>
+                <button type="submit" value="Submit" class="btn btn-dark">Buscar</button>
+                <button type="button" @@click="obtenerVehiculo()" class="btn btn-dark">Restaurar</button>
                 @*<button type="button" @@click="BuscarExcel()" class="btn btn-primary">Excel</button>*@
             </div>
         </form>
@@ -49,9 +49,9 @@
                                         <th v-cloak>{{ item.causa }} </th>
                                         <th v-cloak>{{ item.fechaDeEntrega }} </th>
                                         <td>
-                                            <a :href="'/Vehiculo/Detalles/' + item.id" class="btn btn-info">Detalles</a>
-                                            <a :href="'/Vehiculo/Eliminar/' + item.id" class="btn btn-danger">Eliminar</a>
-                                            <a :href="'/Vehiculo/Editar/' + item.id" class="btn btn-primary">Editar</a>
+                                            <a :href="'/Vehiculo/Detalles/' + item.id" class="btn btn-dark">Detalles</a>
+                                            <a :href="'/Vehiculo/Eliminar/' + item.id" class="btn btn-dark">Eliminar</a>
+                                            <a :href="'/Vehiculo/Editar/' + item.id" class="btn btn-dark">Editar</a>
 
                                         </td>
                                     </tr>
@@ -109,7 +109,7 @@
     </div>
 @*<hr />*@
 <div style="text-align: center;">
-    <a href="/Vehiculo/Agregar" class="btn btn-success">Agregar</a>
+    <a href="/Vehiculo/Agregar" class="btn btn-dark">Agregar</a>
 </div>
 @section ScriptsSection {
     <meta name="viewport" content="width=device-width, initial-scale=1">
