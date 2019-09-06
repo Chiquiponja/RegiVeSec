@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -31,5 +31,6 @@ namespace RegiVeSec.Models
         public string UbicacionActual { get; set; }
         public int TipoId { get; set; }
         public int EstadoId { get; set; }
-    }
+     
+  }
 }

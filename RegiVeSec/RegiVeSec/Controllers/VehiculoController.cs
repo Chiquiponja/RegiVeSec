@@ -15,6 +15,8 @@ using RegiVeSec.Models.Dto;
 using System.Data;
 using OfficeOpenXml;
 using OfficeOpenXml.Style;
+using System.Net.Http.Headers;
+using System.IO;
 
 namespace RegiVeSec.Controllers
 {
@@ -55,7 +57,12 @@ namespace RegiVeSec.Controllers
             }
             return View();
         }
-        [Authorize]
+
+   
+
+
+
+    [Authorize]
         public IActionResult Agregar(int id)
         {
             ViewData["Id"] = id;
