@@ -31,7 +31,7 @@ namespace RegiVeSec.Models
         public string UbicacionActual { get; set; }
         public int TipoId { get; set; }
         public int EstadoId { get; set; }
-        public string foto1 { get; set; }
+        public string foto { get; set; }
 
   }
 }

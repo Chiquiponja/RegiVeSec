@@ -86,7 +86,7 @@ function UploadFile(inputFileId, uploadButtonId, photoImgId, entityName, width, 
       // Si es es una imagen, agregamos el query string para redimiensionar la imagen
       if (isImageFile) {
         filePath = filePath + "?width=" + width + "&rmode=lanczos3";
-        vm.$data.vehiculo.foto1 = filePath;
+        vm.$data.vehiculo.foto = filePath;
       }
 
       //Habilito el boton UpLoadFile

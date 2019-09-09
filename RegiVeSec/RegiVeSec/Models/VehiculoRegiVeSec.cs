@@ -81,7 +81,7 @@ namespace RegiVeSec.Models
         //  //  [Required]
         public string Entrega { get; set; }
 
-
+        public string foto { get; set; }
         public DateTime FechaDeEntrega { get; set; }
         
 

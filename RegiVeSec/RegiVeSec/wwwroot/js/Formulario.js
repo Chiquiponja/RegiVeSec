@@ -27,7 +27,7 @@ document.addEventListener('DOMContentLoaded', function () {
         UbicacionActual: '',
         FechaDeEntrega: '',
         TipoId: 0,
-        foto1: "",
+        foto: "",
         EstadoId: 0,
 
 

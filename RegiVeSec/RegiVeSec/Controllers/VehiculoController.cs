@@ -74,7 +74,7 @@ namespace RegiVeSec.Controllers
         {
             var nuevoVehiculo = new VehiculoRegiVeSec();
             nuevoVehiculo.Color = vehiculoRegiVeSecDto.Color;
-
+            nuevoVehiculo.foto = vehiculoRegiVeSecDto.foto;
             nuevoVehiculo.Causa = vehiculoRegiVeSecDto.Causa;
             nuevoVehiculo.Deposito = vehiculoRegiVeSecDto.Deposito;
             nuevoVehiculo.DependenciaProcedente = vehiculoRegiVeSecDto.DependenciaProcedente;
@@ -211,6 +211,7 @@ namespace RegiVeSec.Controllers
                 VehiculoRegiVeSecDto dto = new VehiculoRegiVeSecDto();
                
                 dto.Id = item.Id;
+                dto.foto = item.foto;
                 dto.FechaDeIngreso = item.FechaDeIngreso.ToShortDateString();
                 dto.Propietario = item.Propietario;
                 dto.Dominio = item.Dominio;
@@ -272,6 +273,7 @@ namespace RegiVeSec.Controllers
                 VehiculoRegiVeSecDto dto = new VehiculoRegiVeSecDto();
 
                 dto.Id = item.Id;
+                dto.foto = item.foto;
                 dto.FechaDeIngreso = item.FechaDeIngreso.ToShortDateString();
                 dto.Propietario = item.Propietario;
                 dto.Dominio = item.Dominio;
@@ -449,6 +451,7 @@ namespace RegiVeSec.Controllers
         public async Task<IActionResult> Edit([FromBody]VehiculoRegiVeSecDto vehiculoRegiVeSecDto)
         {
             var nuevoVehiculo = new VehiculoRegiVeSec();
+            nuevoVehiculo.foto = vehiculoRegiVeSecDto.foto;
             nuevoVehiculo.Color = vehiculoRegiVeSecDto.Color;
             nuevoVehiculo.Causa = vehiculoRegiVeSecDto.Causa;
             nuevoVehiculo.Deposito = vehiculoRegiVeSecDto.Deposito;
