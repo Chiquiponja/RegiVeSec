@@ -18,7 +18,7 @@
             <tbody v-if="vehiculo">
                 <tr>
                     <th scope="row">Fecha De Ingreso :  </th>
-                    <td >{{ vehiculo.fechaDeIngreso }}</td>
+                    <td>{{ vehiculo.fechaDeIngreso }}</td>
                 </tr>
                 <tr>
                     <th scope="row">Numero De Sumario :  </th>
@@ -105,14 +105,24 @@
                             <img :src="item" width="200" height="200" />
                         </div>
                     </td>
-
-
                 </tr>
-
             </tbody>
             <tbody v-else></tbody>
-
         </table>
+       
+        @*<div v-for="item in vehiculo.imagenesPorVehiculo">
+           
+                <img :src="item" class="img-fluid img-thumbnail" alt="Responsive image" />
+            </div>
+        </div>*@
+        <div class="col-md-6 col-lg-4 col-sm-6">
+            <div class="thumbnail">
+                <div v-for="item in vehiculo.imagenesPorVehiculo">
+
+                    <img :src="item" class="img-fluid img-thumbnail" alt="Responsive image" />
+                </div>
+            </div>
+        </div>
         <hr />
         <div style="text-align: center;">
 
@@ -120,7 +130,7 @@
         </div>
     </div>
 
-</div>
+    </div>
 <button type="button" class="btn btn-outline-dark" onclick="javascript:imprim1(imp1);">Imprimir</button>
 
 @section ScriptsSection {
@@ -142,4 +152,12 @@
             return true;
         }
     </script>
+    <script>
+        $(document).on("click", '[data-toggle="lightbox"]', function(event) {
+  event.preventDefault();
+  $(this).ekkoLightbox();
+});
+
+    </script>
+    
 }

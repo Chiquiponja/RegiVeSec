@@ -127,7 +127,7 @@ namespace RegiVeSec.Controllers
                Modelo= entity.Modelo,
                NumeroSumario= entity.NumeroSumario,
                Observaciones= entity.Observaciones,
-              Orden=entity.Orden,
+                Orden =entity.Orden,
               Propietario= entity.Propietario,
               Recibe= entity.Recibe,
               SumarioRegistrar= entity.SumarioRegistrar,
@@ -548,7 +548,11 @@ namespace RegiVeSec.Controllers
             var VehiculoRegiVeSec = db.Vehiculos.Include(i => i.Tipo).FirstOrDefault(x => x.Id == id);
              VehiculoRegiVeSec = db.Vehiculos.Include(i => i.Estado).FirstOrDefault(x => x.Id == id);
             //VehiculoRegiVeSec.Tipo = ;
-            VehiculoRegiVeSec.ImagenesPorVehiculo = GetImagenesPorVehiculo(id);
+            if (id>0)
+            {
+                VehiculoRegiVeSec.ImagenesPorVehiculo = GetImagenesPorVehiculo(id);
+            }
+          
             return VehiculoRegiVeSec;
         }
         
