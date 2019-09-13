@@ -1,3 +1,4 @@
+using RegiVeSec.Models.Dto;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -32,6 +33,7 @@ namespace RegiVeSec.Models
         public int TipoId { get; set; }
         public int EstadoId { get; set; }
         public string foto { get; set; }
+        public List<string> ImagenesPorVehiculo { get; set; }
 
-  }
+    }
 }

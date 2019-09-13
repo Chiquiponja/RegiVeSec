@@ -1,4 +1,4 @@
-@model VehiculoRegiVeSec
+@model VehiculoRegiVeSecDto
 @{
     ViewData["Title"] = "Index";
 }
@@ -15,10 +15,10 @@
                 </tr>
 
             </thead>
-            <tbody>
+            <tbody v-if="vehiculo">
                 <tr>
                     <th scope="row">Fecha De Ingreso :  </th>
-                    <td v-cloak>{{ vehiculo.fechaDeIngreso }}</td>
+                    <td >{{ vehiculo.fechaDeIngreso }}</td>
                 </tr>
                 <tr>
                     <th scope="row">Numero De Sumario :  </th>
@@ -98,39 +98,46 @@
                 </tr>
                 <tr>
                     <th scope="row">foto : </th>
-                    <td v-cloak><img :src="vehiculo.foto" width="200" height="200" /></td>
+                    <td v-cloak>
+                        <div v-for="item in vehiculo.imagenesPorVehiculo">
+                            <img :src="item" width="200" height="200" />
+                        </div>
+                    </td>
+
+
                 </tr>
 
             </tbody>
+            <tbody v-else></tbody>
 
         </table>
         <hr />
         <div style="text-align: center;">
-        
-        <a :href="'/Home/Index/' " class="btn btn-outline-dark">Volver Al Inicio</a>
+
+            <a :href="'/Home/Index/' " class="btn btn-outline-dark">Volver Al Inicio</a>
+        </div>
     </div>
-    </div>
-    
+
 </div>
 <button type="button" class="btn btn-outline-dark" onclick="javascript:imprim1(imp1);">Imprimir</button>
 
-    @section ScriptsSection {
-        <script src="~/js/Formulario.js"></script>
-        <script>
+@section ScriptsSection {
+    <script src="~/js/Formulario.js"></script>
+    <script>
             $(document).ready(function () {
                 vm.obtenerAutoById(@ViewData["Id"]);
             });
-        </script>
-        <script>
-            function imprim1(imp1) {
-                var printContents = document.getElementById('imp1').innerHTML;
-                w = window.open();
-                w.document.write(printContents);
-                w.document.close(); // necessary for IE >= 10
-                w.focus(); // necessary for IE >= 10
-                w.print();
-                w.close();
-                return true;
-            }
-        </script>
-    }
+    </script>
+    <script>
+        function imprim1(imp1) {
+            var printContents = document.getElementById('imp1').innerHTML;
+            w = window.open();
+            w.document.write(printContents);
+            w.document.close(); // necessary for IE >= 10
+            w.focus(); // necessary for IE >= 10
+            w.print();
+            w.close();
+            return true;
+        }
+    </script>
+}

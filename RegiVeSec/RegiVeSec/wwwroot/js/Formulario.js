@@ -29,13 +29,14 @@ document.addEventListener('DOMContentLoaded', function () {
         TipoId: 0,
         foto: "",
         EstadoId: 0,
-
+        ImagenesPorVehiculo:[],
 
       },
 
       Autos: [],
       Tipos: [],
-      Estados: []
+      Estados: [],
+
     },
 
     methods: {
@@ -108,7 +109,26 @@ document.addEventListener('DOMContentLoaded', function () {
             console.log("SUCCESS!");
           }
         });
-      },
+        },
+
+
+        //obtenerAutoById: function () {
+
+        //    var data = vm.$data.vehiculo;
+        //    $.ajax({
+        //        url: "/Vehiculo/Details",
+        //        contentType: "application/json",
+        //        async: true,
+        //        type: "GET",
+        //        data: JSON.stringify(data),
+        //        error: function (jqXHR, textStatus, errorThrown) {
+        //            console.log("FAIL: " + errorThrown);
+        //        },
+        //        success: function (data, textStatus, jqXHR) {
+        //            console.log("SUCCESS!");
+        //        }
+        //    });
+        //},
       obtenerAutoById: function (id) {
         $.ajax({
           //Cambiar a type: POST si necesario
@@ -116,10 +136,11 @@ document.addEventListener('DOMContentLoaded', function () {
           // Formato de datos que se espera en la respuesta
           dataType: "json",
           // URL a la que se enviará la solicitud Ajax
-          url: "/Vehiculo/GetVehiculoRegiVeSecId/" + id,
+            url: "/Vehiculo/GetDtoById/" + id,
         })
           .done(function (data) {
-            vm.$data.vehiculo = data;
+              vm.$data.vehiculo = data;
+              vm.$forceUpdate();
           })
           .fail(function (jqXHR, textStatus, errorThrown) {
             if (console && console.log) {

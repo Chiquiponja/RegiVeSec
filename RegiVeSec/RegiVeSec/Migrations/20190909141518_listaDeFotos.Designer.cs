@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using RegiVeSec.Data;
 
 namespace RegiVeSec.Migrations
 {
     [DbContext(typeof(Conexionbd))]
-    partial class ConexionbdModelSnapshot : ModelSnapshot
+    [Migration("20190909141518_listaDeFotos")]
+    partial class listaDeFotos
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -74,21 +76,19 @@ namespace RegiVeSec.Migrations
                     b.ToTable("IdentityUserClaim");
                 });
 
-            modelBuilder.Entity("RegiVeSec.Models.Dto.ImagenPorVehiculo", b =>
+            modelBuilder.Entity("RegiVeSec.Models.Dto.ImagenPorVehuculo", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<int>("id")
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("DirecccionDeFoto");
+                    b.Property<string>("DirecccionDeFotos");
 
-                    b.Property<int?>("VehiculoId");
+                    b.Property<int>("IdVehiculos");
 
-                    b.HasKey("Id");
+                    b.HasKey("id");
 
-                    b.HasIndex("VehiculoId");
-
-                    b.ToTable("ImagenPorVehiculo");
+                    b.ToTable("ImagenPorVehuculo");
                 });
 
             modelBuilder.Entity("RegiVeSec.Models.Estado", b =>
@@ -169,6 +169,8 @@ namespace RegiVeSec.Migrations
 
                     b.Property<DateTime>("FechaDeIngreso");
 
+                    b.Property<int?>("ImagenPorVehuculoid");
+
                     b.Property<int?>("LoginId");
 
                     b.Property<string>("MagistradoInterviniente")
@@ -219,18 +221,13 @@ namespace RegiVeSec.Migrations
 
                     b.HasIndex("EstadoId");
 
+                    b.HasIndex("ImagenPorVehuculoid");
+
                     b.HasIndex("LoginId");
 
                     b.HasIndex("TipoId");
 
                     b.ToTable("Vehiculos");
-                });
-
-            modelBuilder.Entity("RegiVeSec.Models.Dto.ImagenPorVehiculo", b =>
-                {
-                    b.HasOne("RegiVeSec.Models.VehiculoRegiVeSec", "Vehiculo")
-                        .WithMany("ImagenesPorVehiculo")
-                        .HasForeignKey("VehiculoId");
                 });
 
             modelBuilder.Entity("RegiVeSec.Models.VehiculoRegiVeSec", b =>
@@ -239,6 +236,10 @@ namespace RegiVeSec.Migrations
                         .WithMany()
                         .HasForeignKey("EstadoId")
                         .OnDelete(DeleteBehavior.Cascade);
+
+                    b.HasOne("RegiVeSec.Models.Dto.ImagenPorVehuculo", "ImagenPorVehuculo")
+                        .WithMany()
+                        .HasForeignKey("ImagenPorVehuculoid");
 
                     b.HasOne("RegiVeSec.Models.Login")
                         .WithMany("vehiculoRegiVeSecs")

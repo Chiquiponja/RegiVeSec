@@ -45,20 +45,119 @@ namespace RegiVeSec.Controllers
             return View();
         }
         [Authorize]
+
         public IActionResult Detalles(int id)
         {
             ViewData["Id"] = id;
-            var VehiculoRegiVeSec = GetVehiculoRegiVeSecId(id);
 
-            if (VehiculoRegiVeSec == null)
-            {
-                ViewData["ErrorMessage"] = ($"El Vehiculo con id: {id} no existe en la base de datos");
-                return View("Error");
-            }
+            //var VehiculoRegiVeSec = GetVehiculoRegiVeSecId(id);
+
+            //if (VehiculoRegiVeSec == null)
+            //{
+            //    ViewData["ErrorMessage"] = ($"El Vehiculo con id: {id} no existe en la base de datos");
+            //    return View("Error");
+            //}
             return View();
         }
+        [HttpPost]
+        public async Task<IActionResult> Details([FromBody]VehiculoRegiVeSecDto vehiculoRegiVeSecDto)
+        {
+            var DetalleVehiculo = new VehiculoRegiVeSec();
+            DetalleVehiculo.Color = vehiculoRegiVeSecDto.Color;
+            DetalleVehiculo.foto = vehiculoRegiVeSecDto.foto;
+            //DetalleVehiculo.ImagenesPorVehiculo = vehiculoRegiVeSecDto.ImagenesPorVehiculo;
+            DetalleVehiculo.Causa = vehiculoRegiVeSecDto.Causa;
+            DetalleVehiculo.Deposito = vehiculoRegiVeSecDto.Deposito;
+            DetalleVehiculo.DependenciaProcedente = vehiculoRegiVeSecDto.DependenciaProcedente;
+            DetalleVehiculo.Dominio = vehiculoRegiVeSecDto.Dominio;
+            DetalleVehiculo.Entrega = vehiculoRegiVeSecDto.Entrega;
+            DetalleVehiculo.FechaDeEntrega = Convert.ToDateTime(vehiculoRegiVeSecDto.FechaDeEntrega);
+            DetalleVehiculo.FechaDeIngreso = Convert.ToDateTime(vehiculoRegiVeSecDto.FechaDeIngreso);
+            DetalleVehiculo.Id = vehiculoRegiVeSecDto.Id;
+            DetalleVehiculo.Marca = vehiculoRegiVeSecDto.Marca;
+            DetalleVehiculo.Modelo = vehiculoRegiVeSecDto.Modelo;
+            DetalleVehiculo.NumeroSumario = vehiculoRegiVeSecDto.NumeroSumario;
+            DetalleVehiculo.Observaciones = vehiculoRegiVeSecDto.Observaciones;
+            DetalleVehiculo.Orden = vehiculoRegiVeSecDto.Orden;
+            DetalleVehiculo.Propietario = vehiculoRegiVeSecDto.Propietario;
+            DetalleVehiculo.Recibe = vehiculoRegiVeSecDto.Recibe;
+            DetalleVehiculo.MagistradoInterviniente = vehiculoRegiVeSecDto.MagistradoInterviniente;
+            DetalleVehiculo.SumarioRegistrar = vehiculoRegiVeSecDto.SumarioRegistrar;
+            DetalleVehiculo.UbicacionActual = vehiculoRegiVeSecDto.UbicacionActual;
+            DetalleVehiculo.Estado = db.Estados.FirstOrDefault(x => x.Id == vehiculoRegiVeSecDto.Estado.Id);
+            DetalleVehiculo.Tipo = db.Tipos.FirstOrDefault(x => x.Id == vehiculoRegiVeSecDto.Tipo.Id);
+            try
+            {
+                //throw new Exception("No se pudo guardar el vehiculo.");
+                return Redirect("/Home/Detalles");
+            }
+            catch (Exception ex)
+            {
+                ViewData["ErrorMessage"] = ex.Message;
+                return View("Error");
+            }
 
-   
+        }
+
+        public List<ImagenPorVehiculo> GetImagenesPorVehiculo(int idVehiculo)
+        {
+            var imagenes = db.ImagenPorVehiculo.Where(x => x.Vehiculo.Id == idVehiculo).ToList();
+
+            return imagenes;
+        }
+
+        [HttpGet("/Vehiculo/GetDtoById/{id}")]
+        public VehiculoRegiVeSecDto GetDtoById(int id)
+        {
+            var entity = GetVehiculoRegiVeSecId(id);
+            var result = new VehiculoRegiVeSecDto {
+                ImagenesPorVehiculo=entity.ImagenesPorVehiculo.Select(x=>x.DirecccionDeFoto).ToList(),
+                Id=entity.Id,
+                Causa= entity.Causa,
+                Color=entity.Color,
+                DependenciaProcedente= entity.DependenciaProcedente,
+                Deposito= entity.Deposito,
+                Dominio = entity.Dominio,
+                Entrega= entity.Entrega,
+               Estado= entity.Estado,
+               FechaDeEntrega= Convert.ToString(entity.FechaDeEntrega),
+               FechaDeIngreso= Convert.ToString(entity.FechaDeIngreso),
+               MagistradoInterviniente= entity.MagistradoInterviniente,
+               Marca= entity.Marca,
+               Modelo= entity.Modelo,
+               NumeroSumario= entity.NumeroSumario,
+               Observaciones= entity.Observaciones,
+              Orden=entity.Orden,
+              Propietario= entity.Propietario,
+              Recibe= entity.Recibe,
+              SumarioRegistrar= entity.SumarioRegistrar,
+              Tipo= entity.Tipo,
+              
+              UbicacionActual= entity.UbicacionActual
+              
+
+
+
+
+            };
+            return result;
+        }
+
+        private void InsertImagenesPorVehiculo(List<string> imagenes,VehiculoRegiVeSec vehiculo)
+        {
+            foreach (var url in imagenes)
+            {
+                var imagen = new ImagenPorVehiculo
+                {
+                   DirecccionDeFoto=url,
+                   Vehiculo=vehiculo
+                };
+                db.ImagenPorVehiculo.Add(imagen);
+             
+            }
+
+
+        }
 
 
 
@@ -75,6 +174,8 @@ namespace RegiVeSec.Controllers
             var nuevoVehiculo = new VehiculoRegiVeSec();
             nuevoVehiculo.Color = vehiculoRegiVeSecDto.Color;
             nuevoVehiculo.foto = vehiculoRegiVeSecDto.foto;
+            //nuevoVehiculo.ImagenesPorVehiculo = vehiculoRegiVeSecDto.ImagenesPorVehiculo;
+            
             nuevoVehiculo.Causa = vehiculoRegiVeSecDto.Causa;
             nuevoVehiculo.Deposito = vehiculoRegiVeSecDto.Deposito;
             nuevoVehiculo.DependenciaProcedente = vehiculoRegiVeSecDto.DependenciaProcedente;
@@ -95,6 +196,7 @@ namespace RegiVeSec.Controllers
             nuevoVehiculo.UbicacionActual = vehiculoRegiVeSecDto.UbicacionActual;
             nuevoVehiculo.Estado = db.Estados.FirstOrDefault(x => x.Id == vehiculoRegiVeSecDto.Estado.Id);
             nuevoVehiculo.Tipo = db.Tipos.FirstOrDefault(x => x.Id == vehiculoRegiVeSecDto.Tipo.Id);
+
            
             try
             {
@@ -103,6 +205,7 @@ namespace RegiVeSec.Controllers
 
 
                 db.Vehiculos.Add(nuevoVehiculo);
+                InsertImagenesPorVehiculo(vehiculoRegiVeSecDto.ImagenesPorVehiculo, nuevoVehiculo);
                 await db.SaveChangesAsync();
 
                 return Redirect("/Home/Index");
@@ -212,6 +315,7 @@ namespace RegiVeSec.Controllers
                
                 dto.Id = item.Id;
                 dto.foto = item.foto;
+           
                 dto.FechaDeIngreso = item.FechaDeIngreso.ToShortDateString();
                 dto.Propietario = item.Propietario;
                 dto.Dominio = item.Dominio;
@@ -274,6 +378,7 @@ namespace RegiVeSec.Controllers
 
                 dto.Id = item.Id;
                 dto.foto = item.foto;
+           
                 dto.FechaDeIngreso = item.FechaDeIngreso.ToShortDateString();
                 dto.Propietario = item.Propietario;
                 dto.Dominio = item.Dominio;
@@ -443,7 +548,7 @@ namespace RegiVeSec.Controllers
             var VehiculoRegiVeSec = db.Vehiculos.Include(i => i.Tipo).FirstOrDefault(x => x.Id == id);
              VehiculoRegiVeSec = db.Vehiculos.Include(i => i.Estado).FirstOrDefault(x => x.Id == id);
             //VehiculoRegiVeSec.Tipo = ;
-
+            VehiculoRegiVeSec.ImagenesPorVehiculo = GetImagenesPorVehiculo(id);
             return VehiculoRegiVeSec;
         }
         
@@ -452,6 +557,7 @@ namespace RegiVeSec.Controllers
         {
             var nuevoVehiculo = new VehiculoRegiVeSec();
             nuevoVehiculo.foto = vehiculoRegiVeSecDto.foto;
+            //nuevoVehiculo.ImagenesPorVehiculo = vehiculoRegiVeSecDto.ImagenesPorVehiculo;
             nuevoVehiculo.Color = vehiculoRegiVeSecDto.Color;
             nuevoVehiculo.Causa = vehiculoRegiVeSecDto.Causa;
             nuevoVehiculo.Deposito = vehiculoRegiVeSecDto.Deposito;

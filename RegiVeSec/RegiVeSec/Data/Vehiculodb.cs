@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using RegiVeSec.Models;
+using RegiVeSec.Models.Dto;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,7 +22,9 @@ namespace RegiVeSec.Data
 
             public DbSet<VehiculoRegiVeSec> Vehiculos { get; set; }
             public DbSet<Estado> Estados { get; set; }
-            public DbSet<Tipo> Tipos { get; set; }
+            public DbSet<ImagenPorVehiculo> ImagenPorVehiculo { get; set; }
+
+             public DbSet<Tipo> Tipos { get; set; }
             public DbSet<Login> Logins { get; set; }
             //public DbSet<Img> Img { get; set; }
             public DbSet<IdentityUser> IdentityUser { get; set; }
