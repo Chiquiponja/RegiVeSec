@@ -1,0 +1,7 @@
+
+.galeria img:hover{
+    transform: scale(1.1);
+}
+.galeria{
+    margin:10px 50px;
+}

@@ -212,9 +212,24 @@
                     <textarea v-model="vehiculo.observaciones" rows="10" cols="50" @@keyup.enter="crearvehiculo" name="Observaciones" class="form-control" id="observaciones"></textarea>
                 </div>
 
+            </div>
 
+        </div>
+        <br />
+        <div style="text-align: center;">
+            <h3> galeriade del vehiculo</h3>
+        </div>
+        <br />
+        <div class="galeria">
+            <div class="container">
+                <div class="row">
 
+                    <div class=" col-lg-4 col-md-4 col-sm-12" v-for="item in vehiculo.imagenesPorVehiculo">
 
+                        <img :src="item" class=" img-thumbnail img-fluid img-rounded" />
+
+                    </div>
+                </div>
             </div>
         </div>
         <hr />
@@ -244,7 +259,7 @@
         });
 
     </script>
-
+    <link href="~/imagenesVehiculos/img.css" rel="stylesheet" />
 }
 
 
