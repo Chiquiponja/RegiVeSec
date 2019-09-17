@@ -10,9 +10,8 @@
         <hr />
         <form class="form-inline waves-light" onsubmit="this.reset()" action="javascript: vm.BuscarVehiculo();">
             <div class="md-form mt-0">
-
-                <input type="text" class="form-control mr-sm-2" name="texto" v-model="p_Texto" aria-controls="TablaVehiculos">
-
+                
+                <input type="text" class="form-control mr-sm-2" name="texto" v-model="p_Texto" aria-controls="TablaVehiculos" />
                 <input class="form-control mr-sm-2" type="date" v-model="p_Desde" name="fecha" placeholder="Hasta" />
                 <input class="form-control mr-sm-2" type="date" v-model="p_Hasta" name="fecha1" placeholder="Ahora" />
                 <button type="submit" value="Submit" class="btn btn-dark">Buscar</button>
@@ -110,7 +109,9 @@
 @*<hr />*@
 <div style="text-align: center;">
     <a href="/Vehiculo/Agregar" class="btn btn-dark">Agregar</a>
+    @*<a href="/Vehiculo/PDFvista" class="btn btn-success">PDF</a>*@
     <a href="/Vehiculo/ExportToPdf" class="btn btn-success">PDF</a>
+
 </div>
 @section ScriptsSection {
     <meta name="viewport" content="width=device-width, initial-scale=1">

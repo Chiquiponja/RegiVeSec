@@ -1,14 +1,15 @@
-﻿$().ready(function () {
-
+﻿
+$().ready(function () {
+    
     $("#vehiculoform").validate({
 
 
         rules: {
 
 
-            Propietario: {
-                required: true,
-                minlength: 3
+            Propietario  : {
+            required: true,
+            minlength: 3
 
             },
             FechaDeIngreso: {
@@ -16,28 +17,28 @@
                 minlength: 3
 
             },
-            Dominio: {
-                required: true,
-                minlength: 3
+            Dominio:   {
+            required: true,
+            minlength: 3
 
-            },
+        },
             Tipo: {
-                required: true,
+            required: true,
 
-            },
+        },
             Marca: {
-                required: true,
-                minlength: 3
+            required: true,
+            minlength: 3
 
-            },
-            Color: {
-                required: true,
-                minlength: 3
+        },
+            Color:  {
+            required: true,
+            minlength: 3
 
-            },
+        },
             Modelo: {
-                required: true,
-                minlength: 3
+            required: true,
+            minlength: 3
 
             },
             MagistradoInterviniente: {
@@ -56,37 +57,37 @@
 
             },
             Causa: {
-                required: true,
-                minlength: 3
+            required: true,
+            minlength: 3
 
-            },
+        },
             Estado: {
-                required: true,
+            required: true,
 
-            },
-            NumeroSumario: {
-                required: true,
-                minlength: 3
+        },
+            NumeroSumario:  {
+            required: true,
+            minlength: 3
 
-            },
-            Orden: {
-                required: true,
-                minlength: 2
+        },
+            Orden :  {
+            required: true,
+            minlength: 2
 
-            },
-            DependenciaProcedente: {
-                required: true,
-                minlength: 3
+        },
+            DependenciaProcedente:  {
+            required: true,
+            minlength: 3
 
-            },
-            Observaciones: {
-                required: true,
-                minlength: 3
+        },
+            Observaciones:  {
+            required: true,
+            minlength: 3
 
-            },
+        },
             Recibe: {
-                required: true,
-                minlength: 3
+            required: true,
+            minlength: 3
 
             },
             Deposito: {
@@ -103,12 +104,12 @@
                 required: true,
                 minlength: 3
             },
-            Entrega: {
-                required: true,
-                minlength: 3
+            Entrega:  {
+            required: true,
+            minlength: 3
 
             }
-
+        
 
         },
         messages: {
@@ -159,7 +160,7 @@
                 minlength: "Minimo 3 caracter"
 
             },
-            NumeroSumario: {
+            NumeroSumario: {  
                 required: "Escribi tu Numero Sumario... ",
                 minlength: "Minimo 3 caracter"
 
@@ -180,7 +181,7 @@
 
             },
             Observaciones: {
-                required: "Escribi tu Observaciones... ",
+                required: "Escribi tu  Observaciones... ",
                 minlength: "Minimo 3 caracter"
             },
             Recibe: {
@@ -199,12 +200,12 @@
 
             },
             UbicacionActual: {
-                required: "Escribi tu Ubicacion Actual... ",
+                required: "Escribi  tu Ubicacion Actual... ",
                 minlength: "Minimo 3 caracter"
 
             },
             FechaDeEntrega: {
-                required: "Escribi la Fecha De Entrega... ",
+                required: "Escribi  la Fecha De Entrega... ",
                 minlength: "Minimo 3 caracter"
 
             },
@@ -217,11 +218,11 @@
 
         },
 
-
+        
         submitHandler: function (form) {
             form.submit();
         }
     });
 
-
+   
 });

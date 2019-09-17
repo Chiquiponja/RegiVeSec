@@ -242,20 +242,20 @@ function initVue() {
                     });
             },
             obtenerPDF: function () {
-                $.ajax({
-                    //Cambiar a type: POST si necesario
-                    type: "POST",
-                    // Formato de datos que se espera en la respuesta
-                    dataType: "json",
-                    // URL a la que se enviará la solicitud Ajax
-                    url: "/Vehiculo/ExportToPdf",
-                })
-                    .fail(function (jqXHR, textStatus, errorThrown) {
-                        if (console && console.log) {
-                            console.log("La solicitud ha fallado: " + textStatus);
-                        }
-                    });
-            },
+              $.ajax({
+                  //Cambiar a type: POST si necesario
+                  type: "POST",
+                  // Formato de datos que se espera en la respuesta
+                  dataType: "json",
+                  // URL a la que se enviará la solicitud Ajax
+                  url: "/Vehiculo/ExportToPdf",
+              })
+                  .fail(function (jqXHR, textStatus, errorThrown) {
+                      if (console && console.log) {
+                          console.log("La solicitud ha fallado: " + textStatus);
+                      }
+                  });
+          },
             BuscarVehiculo: function () {
 
 
@@ -338,7 +338,7 @@ function initDataTable() {
         //data: jsonData,
         //"serverSide": true,
         //"ajax": {
-        //    "url": "/Vehiculo/Tabla",
+        //    "url": "/PdfViewerController/ExportToPdf",
         //    "type": "POST",
         //    "datatype": "json"
         //},

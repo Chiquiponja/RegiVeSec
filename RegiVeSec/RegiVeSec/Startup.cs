@@ -14,6 +14,7 @@ using RegiVeSec.Data;
 using Microsoft.AspNetCore.Session;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.UI;
+using Rotativa.AspNetCore;
 
 namespace RegiVeSec
 {
@@ -22,6 +23,7 @@ namespace RegiVeSec
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
+
         }
 
         public IConfiguration Configuration { get; }
@@ -29,13 +31,15 @@ namespace RegiVeSec
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+
             services.Configure<CookiePolicyOptions>(options =>
             {
                 // This lambda determines whether user consent for non-essential cookies is needed for a given request.
                 options.CheckConsentNeeded = context => true;
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
-            
+
+            services.AddNodeServices();
             services.AddDbContext<Conexionbd>(options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
             services.AddDefaultIdentity<IdentityUser>()
                .AddDefaultUI(UIFramework.Bootstrap4)
@@ -44,12 +48,13 @@ namespace RegiVeSec
             services.AddDistributedMemoryCache();
             services.AddSession();
         }
-
+       
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
             if (env.IsDevelopment())
             {
+
                 app.UseDeveloperExceptionPage();
             }
             else
@@ -70,6 +75,10 @@ namespace RegiVeSec
                     name: "default",
                     template: "{controller=Home}/{action=Index}/{id?}");
             });
+            //RotativaConfiguration.Setup(env);
+
+
+
         }
     }
 }

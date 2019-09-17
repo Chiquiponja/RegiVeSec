@@ -10,13 +10,13 @@ using Microsoft.AspNetCore.Http;
 using Newtonsoft.Json;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.EntityFrameworkCore;
-using System.Linq.Expressions;
-using RegiVeSec.Models.Dto;
-using System.Data;
-using OfficeOpenXml;
-using OfficeOpenXml.Style;
-using System.Net.Http.Headers;
+using iTextSharp.text.pdf;
+using iTextSharp.text;
 using System.IO;
+using System.Data;
+using Microsoft.AspNetCore.Html;
+using System.Net.Http;
+using RegiVeSec.Models.Dto;
 
 namespace RegiVeSec.Controllers
 {
@@ -24,8 +24,7 @@ namespace RegiVeSec.Controllers
     {
         private Conexionbd db = new Conexionbd();
         public SqlConnection conectarbd = new SqlConnection();
-        private DataTable something;
-
+     
         public VehiculoController(Conexionbd _db)
         {
             db = _db;
@@ -98,13 +97,201 @@ namespace RegiVeSec.Controllers
             }
 
         }
+        //public IActionResult PDFvista()
+        //{
+        //    var vehiculos = GetVehiculos();
+        //    return new ViewAsPdf("PDFvista", vehiculos);
+        //}
+
+        public List<VehiculoRegiVeSecDto> GetVehiculos()
+        {
+            {
+                List<VehiculoRegiVeSecDto> VehiculoRegiVeSecsPrueba = new List<VehiculoRegiVeSecDto>();
+
+                foreach (var item in db.Vehiculos.Include(i => i.Tipo).ToList())
+                {
+                    VehiculoRegiVeSecDto dto = new VehiculoRegiVeSecDto();
+
+                    dto.Id = item.Id;
+                    dto.foto = item.foto;
+                    dto.FechaDeIngreso = item.FechaDeIngreso.ToShortDateString();
+                    dto.Propietario = item.Propietario;
+                    dto.Dominio = item.Dominio;
+                    dto.DetallesVehiculo = "Dominio: (" + item.Dominio + ") Tipo: (" + item.Tipo + ") Marca: (" + item.Marca + ") Color: (" + item.Color + ") Modelo: (" + item.Modelo + ") Estado: (" + item.Estado + ") ";
+                    dto.Tipo = item.Tipo;
+                    dto.Marca = item.Marca;
+                    dto.Color = item.Color;
+                    dto.Modelo = item.Modelo;
+                    dto.Causa = item.Causa;
+                    dto.Estado = item.Estado;
+                    dto.NumeroSumario = item.NumeroSumario;
+                    dto.Deposito = item.Deposito;
+                    dto.Orden = item.Orden;
+                    dto.DependenciaProcedente = item.DependenciaProcedente;
+                    dto.Observaciones = item.Observaciones;
+                    dto.Recibe = item.Recibe;
+                    dto.Entrega = item.Entrega;
+                    dto.MagistradoInterviniente = item.MagistradoInterviniente;
+                    dto.SumarioRegistrar = item.SumarioRegistrar;
+                    dto.UbicacionActual = item.UbicacionActual;
+                    dto.FechaDeEntrega = item.FechaDeEntrega.ToShortDateString();
+
+
+                    VehiculoRegiVeSecsPrueba.Add(dto);
+                }
+                return VehiculoRegiVeSecsPrueba;
+            }
+        }
+        public ActionResult ExportToPdf(DataTable dt)
+        {
+            Document document = new Document(iTextSharp.text.PageSize.LETTER, 0, 0, 0, 0);
+            MemoryStream ms = new MemoryStream();
+
+            PdfWriter pw = PdfWriter.GetInstance(document, ms);
+            iTextSharp.text.Font _standardFont = new iTextSharp.text.Font(iTextSharp.text.Font.FontFamily.HELVETICA, 8, iTextSharp.text.Font.NORMAL, BaseColor.WHITE);
+             
+
+            PdfPTable tblPrueba = new PdfPTable(8);
+            tblPrueba.WidthPercentage = 100;
+            PdfPCell clFechadeIngreso = new PdfPCell(new Phrase("FECHA DE INGRESO", _standardFont));
+            clFechadeIngreso.BorderWidthTop = 1;
+            clFechadeIngreso.BorderWidthBottom = 1f;
+            clFechadeIngreso.BackgroundColor = BaseColor.BLACK;
+            PdfPCell clNumerodeSumario = new PdfPCell(new Phrase("NUMERO DE SUMARIO", _standardFont));
+            clNumerodeSumario.BorderWidthLeft= 1;
+            clNumerodeSumario.BorderWidthBottom = 1f;
+            clNumerodeSumario.BackgroundColor = BaseColor.BLACK;
+            PdfPCell clTipo = new PdfPCell(new Phrase("TIPO", _standardFont));
+            clTipo.BorderWidthRight = 1;
+            clTipo.BorderWidthBottom = 1f;
+            clTipo.BackgroundColor = BaseColor.BLACK;
+            PdfPCell clMarca = new PdfPCell(new Phrase("MARCA", _standardFont));
+            clMarca.BorderWidthTop = 1;
+            clMarca.BorderWidthBottom = 1f;
+            clMarca.BackgroundColor = BaseColor.BLACK;
+            PdfPCell clDominio = new PdfPCell(new Phrase("DOMINIO", _standardFont));
+            clDominio.BorderWidthLeft = 1;
+            clDominio.BorderWidthBottom = 1f;
+            clDominio.BackgroundColor = BaseColor.BLACK;
+            PdfPCell clOrden = new PdfPCell(new Phrase("ORDEN", _standardFont));
+            clOrden.BorderWidthRight = 1;
+            clOrden.BorderWidthBottom = 1f;
+            clOrden.BackgroundColor = BaseColor.BLACK;
+            PdfPCell clCausa = new PdfPCell(new Phrase("CAUSA", _standardFont));
+            clCausa.BorderWidthTop = 1;
+            clCausa.BorderWidthBottom = 1f;
+            clCausa.BackgroundColor = BaseColor.BLACK;
+            PdfPCell clFechaDeEntrega = new PdfPCell(new Phrase("FECHA DE ENTREGA", _standardFont));
+            clFechaDeEntrega.BorderWidthLeft = 1;
+            clFechaDeEntrega.BorderWidthBottom = 1f;
+            clFechaDeEntrega.BackgroundColor = BaseColor.BLACK;
+
+
+
+            tblPrueba.AddCell(clFechadeIngreso);
+            tblPrueba.AddCell(clNumerodeSumario);
+            tblPrueba.AddCell(clTipo);
+            tblPrueba.AddCell(clMarca);
+            tblPrueba.AddCell(clDominio);
+            tblPrueba.AddCell(clOrden);
+            tblPrueba.AddCell(clCausa);
+            tblPrueba.AddCell(clFechaDeEntrega);
+
+            List<VehiculoRegiVeSec> vehiculos = db.Vehiculos.Include(i => i.Tipo).ToList();
+            foreach (var item in vehiculos)
+            {
+                tblPrueba.AddCell(item.FechaDeIngreso.ToShortDateString());
+                tblPrueba.AddCell(item.NumeroSumario);
+                tblPrueba.AddCell(item.Tipo.Detalles);
+                tblPrueba.AddCell(item.Marca);
+                tblPrueba.AddCell(item.Dominio);
+                tblPrueba.AddCell(item.Causa);
+                tblPrueba.AddCell(item.Orden);
+                tblPrueba.AddCell(item.FechaDeEntrega.ToShortDateString());
+            }
+            tblPrueba.DefaultCell.Padding = 30;
+            tblPrueba.WidthPercentage = 100;
+            tblPrueba.HorizontalAlignment = Element.ALIGN_LEFT;
+            tblPrueba.DefaultCell.BorderWidth = 1;
+            document.Add(tblPrueba);
+            document.Close();
+            byte[] bytesStrem = ms.ToArray();
+            ms = new MemoryStream();
+            ms.Write(bytesStrem, 0, bytesStrem.Length);
+            ms.Position = 0;
+            return new FileStreamResult(ms, "aplication/pdf")
+            {
+                FileDownloadName = string.Format("Archivo{0}.pdf", DateTime.Now.ToShortDateString())
+            };
+        }
 
         public List<ImagenPorVehiculo> GetImagenesPorVehiculo(int idVehiculo)
-        {
-            var imagenes = db.ImagenPorVehiculo.Where(x => x.Vehiculo.Id == idVehiculo).ToList();
+            {
+                var imagenes = db.ImagenPorVehiculo.Where(x => x.Vehiculo.Id == idVehiculo).ToList();
 
-            return imagenes;
-        }
+                return imagenes;
+            }
+
+        //[HttpGet("/Vehiculo/GetDtoById/{id}")]
+        //public VehiculoRegiVeSecDto GetDtoById(int id)
+        //{
+        //    var entity = GetVehiculoRegiVeSecId(id);
+        //    var result = new VehiculoRegiVeSecDto
+        //    {
+        //        ImagenesPorVehiculo = entity.ImagenesPorVehiculo.Select(x => x.DirecccionDeFoto).ToList(),
+        //        Id = entity.Id,
+        //        Causa = entity.Causa,
+        //        Color = entity.Color,
+        //        DependenciaProcedente = entity.DependenciaProcedente,
+        //        Deposito = entity.Deposito,
+        //        Dominio = entity.Dominio,
+        //        Entrega = entity.Entrega,
+        //        Estado = entity.Estado,
+        //        FechaDeEntrega = Convert.ToString(entity.FechaDeEntrega),
+        //        FechaDeIngreso = Convert.ToString(entity.FechaDeIngreso),
+        //        MagistradoInterviniente = entity.MagistradoInterviniente,
+        //        Marca = entity.Marca,
+        //        Modelo = entity.Modelo,
+        //        NumeroSumario = entity.NumeroSumario,
+        //        Observaciones = entity.Observaciones,
+        //        Orden = entity.Orden,
+        //        Propietario = entity.Propietario,
+        //        Recibe = entity.Recibe,
+        //        SumarioRegistrar = entity.SumarioRegistrar,
+        //        Tipo = entity.Tipo,
+
+        //        UbicacionActual = entity.UbicacionActual
+
+
+
+
+
+        //    };
+        //    return result;
+        //}
+
+        //private void InsertImagenesPorVehiculo(List<string> imagenes, VehiculoRegiVeSec vehiculo)
+        //{
+        //    foreach (var url in imagenes)
+        //    {
+        //        var imagen = new ImagenPorVehiculo
+        //        {
+        //            DirecccionDeFoto = url,
+        //            Vehiculo = vehiculo
+        //        };
+        //        db.ImagenPorVehiculo.Add(imagen);
+
+        //    }
+
+
+        //}
+
+        //public List<ImagenPorVehiculo> GetImagenesPorVehiculo(int idVehiculo)
+        //{
+        //    var imagenes = db.ImagenPorVehiculo.Where(x => x.Vehiculo.Id == idVehiculo).ToList();
+
+        //    return imagenes;
+        //}
 
         [HttpGet("/Vehiculo/GetDtoById/{id}")]
         public VehiculoRegiVeSecDto GetDtoById(int id)
@@ -159,9 +346,9 @@ namespace RegiVeSec.Controllers
 
         }
 
+        
 
-
-    [Authorize]
+        [Authorize]
         public IActionResult Agregar(int id)
         {
             ViewData["Id"] = id;
@@ -304,6 +491,8 @@ namespace RegiVeSec.Controllers
 
 
         //    }
+       
+
         public List<VehiculoRegiVeSecDto> Listar()
         {
 
