@@ -16,6 +16,7 @@ using System.IO;
 using System.Data;
 using Microsoft.AspNetCore.Html;
 using System.Net.Http;
+using RegiVeSec.Models.Dto;
 
 namespace RegiVeSec.Controllers
 {
@@ -102,7 +103,6 @@ namespace RegiVeSec.Controllers
         //    return new ViewAsPdf("PDFvista", vehiculos);
         //}
 
-<<<<<<< HEAD
         public List<VehiculoRegiVeSecDto> GetVehiculos()
         {
             {
@@ -196,14 +196,102 @@ namespace RegiVeSec.Controllers
             tblPrueba.AddCell(clOrden);
             tblPrueba.AddCell(clCausa);
             tblPrueba.AddCell(clFechaDeEntrega);
-           
-=======
-        public List<ImagenPorVehiculo> GetImagenesPorVehiculo(int idVehiculo)
-        {
-            var imagenes = db.ImagenPorVehiculo.Where(x => x.Vehiculo.Id == idVehiculo).ToList();
 
-            return imagenes;
+            List<VehiculoRegiVeSec> vehiculos = db.Vehiculos.Include(i => i.Tipo).ToList();
+            foreach (var item in vehiculos)
+            {
+                tblPrueba.AddCell(item.FechaDeIngreso.ToShortDateString());
+                tblPrueba.AddCell(item.NumeroSumario);
+                tblPrueba.AddCell(item.Tipo.Detalles);
+                tblPrueba.AddCell(item.Marca);
+                tblPrueba.AddCell(item.Dominio);
+                tblPrueba.AddCell(item.Causa);
+                tblPrueba.AddCell(item.Orden);
+                tblPrueba.AddCell(item.FechaDeEntrega.ToShortDateString());
+            }
+            tblPrueba.DefaultCell.Padding = 30;
+            tblPrueba.WidthPercentage = 100;
+            tblPrueba.HorizontalAlignment = Element.ALIGN_LEFT;
+            tblPrueba.DefaultCell.BorderWidth = 1;
+            document.Add(tblPrueba);
+            document.Close();
+            byte[] bytesStrem = ms.ToArray();
+            ms = new MemoryStream();
+            ms.Write(bytesStrem, 0, bytesStrem.Length);
+            ms.Position = 0;
+            return new FileStreamResult(ms, "aplication/pdf")
+            {
+                FileDownloadName = string.Format("Archivo{0}.pdf", DateTime.Now.ToShortDateString())
+            };
         }
+
+        public List<ImagenPorVehiculo> GetImagenesPorVehiculo(int idVehiculo)
+            {
+                var imagenes = db.ImagenPorVehiculo.Where(x => x.Vehiculo.Id == idVehiculo).ToList();
+
+                return imagenes;
+            }
+
+        //[HttpGet("/Vehiculo/GetDtoById/{id}")]
+        //public VehiculoRegiVeSecDto GetDtoById(int id)
+        //{
+        //    var entity = GetVehiculoRegiVeSecId(id);
+        //    var result = new VehiculoRegiVeSecDto
+        //    {
+        //        ImagenesPorVehiculo = entity.ImagenesPorVehiculo.Select(x => x.DirecccionDeFoto).ToList(),
+        //        Id = entity.Id,
+        //        Causa = entity.Causa,
+        //        Color = entity.Color,
+        //        DependenciaProcedente = entity.DependenciaProcedente,
+        //        Deposito = entity.Deposito,
+        //        Dominio = entity.Dominio,
+        //        Entrega = entity.Entrega,
+        //        Estado = entity.Estado,
+        //        FechaDeEntrega = Convert.ToString(entity.FechaDeEntrega),
+        //        FechaDeIngreso = Convert.ToString(entity.FechaDeIngreso),
+        //        MagistradoInterviniente = entity.MagistradoInterviniente,
+        //        Marca = entity.Marca,
+        //        Modelo = entity.Modelo,
+        //        NumeroSumario = entity.NumeroSumario,
+        //        Observaciones = entity.Observaciones,
+        //        Orden = entity.Orden,
+        //        Propietario = entity.Propietario,
+        //        Recibe = entity.Recibe,
+        //        SumarioRegistrar = entity.SumarioRegistrar,
+        //        Tipo = entity.Tipo,
+
+        //        UbicacionActual = entity.UbicacionActual
+
+
+
+
+
+        //    };
+        //    return result;
+        //}
+
+        //private void InsertImagenesPorVehiculo(List<string> imagenes, VehiculoRegiVeSec vehiculo)
+        //{
+        //    foreach (var url in imagenes)
+        //    {
+        //        var imagen = new ImagenPorVehiculo
+        //        {
+        //            DirecccionDeFoto = url,
+        //            Vehiculo = vehiculo
+        //        };
+        //        db.ImagenPorVehiculo.Add(imagen);
+
+        //    }
+
+
+        //}
+
+        //public List<ImagenPorVehiculo> GetImagenesPorVehiculo(int idVehiculo)
+        //{
+        //    var imagenes = db.ImagenPorVehiculo.Where(x => x.Vehiculo.Id == idVehiculo).ToList();
+
+        //    return imagenes;
+        //}
 
         [HttpGet("/Vehiculo/GetDtoById/{id}")]
         public VehiculoRegiVeSecDto GetDtoById(int id)
@@ -257,36 +345,8 @@ namespace RegiVeSec.Controllers
 
 
         }
->>>>>>> 79651e5d40f697b5e7423f5a4c34d0d208ef6364
 
-
-            List<VehiculoRegiVeSec> vehiculos = db.Vehiculos.Include(i => i.Tipo).ToList();
-            foreach(var item in vehiculos)
-            {
-                tblPrueba.AddCell(item.FechaDeIngreso.ToShortDateString());
-                tblPrueba.AddCell(item.NumeroSumario);
-                tblPrueba.AddCell(item.Tipo.Detalles);
-                tblPrueba.AddCell(item.Marca);
-                tblPrueba.AddCell(item.Dominio);
-                tblPrueba.AddCell(item.Causa);
-                tblPrueba.AddCell(item.Orden);
-                tblPrueba.AddCell(item.FechaDeEntrega.ToShortDateString());
-            }
-            tblPrueba.DefaultCell.Padding = 30;
-            tblPrueba.WidthPercentage = 100;
-            tblPrueba.HorizontalAlignment = Element.ALIGN_LEFT;
-            tblPrueba.DefaultCell.BorderWidth = 1;
-            document.Add(tblPrueba);
-            document.Close();
-            byte[] bytesStrem = ms.ToArray();
-            ms = new MemoryStream();
-            ms.Write(bytesStrem, 0, bytesStrem.Length);
-            ms.Position = 0;
-            return new FileStreamResult(ms, "aplication/pdf")
-            {
-                FileDownloadName = string.Format("Archivo{0}.pdf", DateTime.Now.ToShortDateString())
-            }; 
-        }
+        
 
         [Authorize]
         public IActionResult Agregar(int id)
