@@ -96,63 +96,45 @@ namespace RegiVeSec.Controllers
             }
 
         }
+        //public IActionResult PDFvista()
+        //{
+        //    var vehiculos = GetVehiculos();
+        //    return new ViewAsPdf("PDFvista", vehiculos);
+        //}
 
-        public List<ImagenPorVehiculo> GetImagenesPorVehiculo(int idVehiculo)
+<<<<<<< HEAD
+        public List<VehiculoRegiVeSecDto> GetVehiculos()
         {
-            var imagenes = db.ImagenPorVehiculo.Where(x => x.Vehiculo.Id == idVehiculo).ToList();
-
-            return imagenes;
-        }
-
-        [HttpGet("/Vehiculo/GetDtoById/{id}")]
-        public VehiculoRegiVeSecDto GetDtoById(int id)
-        {
-            var entity = GetVehiculoRegiVeSecId(id);
-            var result = new VehiculoRegiVeSecDto {
-                ImagenesPorVehiculo=entity.ImagenesPorVehiculo.Select(x=>x.DirecccionDeFoto).ToList(),
-                Id=entity.Id,
-                Causa= entity.Causa,
-                Color=entity.Color,
-                DependenciaProcedente= entity.DependenciaProcedente,
-                Deposito= entity.Deposito,
-                Dominio = entity.Dominio,
-                Entrega= entity.Entrega,
-               Estado= entity.Estado,
-               FechaDeEntrega= Convert.ToString(entity.FechaDeEntrega),
-               FechaDeIngreso= Convert.ToString(entity.FechaDeIngreso),
-               MagistradoInterviniente= entity.MagistradoInterviniente,
-               Marca= entity.Marca,
-               Modelo= entity.Modelo,
-               NumeroSumario= entity.NumeroSumario,
-               Observaciones= entity.Observaciones,
-                Orden =entity.Orden,
-              Propietario= entity.Propietario,
-              Recibe= entity.Recibe,
-              SumarioRegistrar= entity.SumarioRegistrar,
-              Tipo= entity.Tipo,
-              
-              UbicacionActual= entity.UbicacionActual
-              
-
-
-
-
-            };
-            return result;
-        }
-
-        private void InsertImagenesPorVehiculo(List<string> imagenes,VehiculoRegiVeSec vehiculo)
-        {
-            foreach (var url in imagenes)
             {
-                var imagen = new ImagenPorVehiculo
+                List<VehiculoRegiVeSecDto> VehiculoRegiVeSecsPrueba = new List<VehiculoRegiVeSecDto>();
+
+                foreach (var item in db.Vehiculos.Include(i => i.Tipo).ToList())
                 {
-                   DirecccionDeFoto=url,
-                   Vehiculo=vehiculo
-                };
-                db.ImagenPorVehiculo.Add(imagen);
-             
-            }
+                    VehiculoRegiVeSecDto dto = new VehiculoRegiVeSecDto();
+
+                    dto.Id = item.Id;
+                    dto.foto = item.foto;
+                    dto.FechaDeIngreso = item.FechaDeIngreso.ToShortDateString();
+                    dto.Propietario = item.Propietario;
+                    dto.Dominio = item.Dominio;
+                    dto.DetallesVehiculo = "Dominio: (" + item.Dominio + ") Tipo: (" + item.Tipo + ") Marca: (" + item.Marca + ") Color: (" + item.Color + ") Modelo: (" + item.Modelo + ") Estado: (" + item.Estado + ") ";
+                    dto.Tipo = item.Tipo;
+                    dto.Marca = item.Marca;
+                    dto.Color = item.Color;
+                    dto.Modelo = item.Modelo;
+                    dto.Causa = item.Causa;
+                    dto.Estado = item.Estado;
+                    dto.NumeroSumario = item.NumeroSumario;
+                    dto.Deposito = item.Deposito;
+                    dto.Orden = item.Orden;
+                    dto.DependenciaProcedente = item.DependenciaProcedente;
+                    dto.Observaciones = item.Observaciones;
+                    dto.Recibe = item.Recibe;
+                    dto.Entrega = item.Entrega;
+                    dto.MagistradoInterviniente = item.MagistradoInterviniente;
+                    dto.SumarioRegistrar = item.SumarioRegistrar;
+                    dto.UbicacionActual = item.UbicacionActual;
+                    dto.FechaDeEntrega = item.FechaDeEntrega.ToShortDateString();
 
 
                     VehiculoRegiVeSecsPrueba.Add(dto);
@@ -215,6 +197,67 @@ namespace RegiVeSec.Controllers
             tblPrueba.AddCell(clCausa);
             tblPrueba.AddCell(clFechaDeEntrega);
            
+=======
+        public List<ImagenPorVehiculo> GetImagenesPorVehiculo(int idVehiculo)
+        {
+            var imagenes = db.ImagenPorVehiculo.Where(x => x.Vehiculo.Id == idVehiculo).ToList();
+
+            return imagenes;
+        }
+
+        [HttpGet("/Vehiculo/GetDtoById/{id}")]
+        public VehiculoRegiVeSecDto GetDtoById(int id)
+        {
+            var entity = GetVehiculoRegiVeSecId(id);
+            var result = new VehiculoRegiVeSecDto {
+                ImagenesPorVehiculo=entity.ImagenesPorVehiculo.Select(x=>x.DirecccionDeFoto).ToList(),
+                Id=entity.Id,
+                Causa= entity.Causa,
+                Color=entity.Color,
+                DependenciaProcedente= entity.DependenciaProcedente,
+                Deposito= entity.Deposito,
+                Dominio = entity.Dominio,
+                Entrega= entity.Entrega,
+               Estado= entity.Estado,
+               FechaDeEntrega= Convert.ToString(entity.FechaDeEntrega),
+               FechaDeIngreso= Convert.ToString(entity.FechaDeIngreso),
+               MagistradoInterviniente= entity.MagistradoInterviniente,
+               Marca= entity.Marca,
+               Modelo= entity.Modelo,
+               NumeroSumario= entity.NumeroSumario,
+               Observaciones= entity.Observaciones,
+                Orden =entity.Orden,
+              Propietario= entity.Propietario,
+              Recibe= entity.Recibe,
+              SumarioRegistrar= entity.SumarioRegistrar,
+              Tipo= entity.Tipo,
+              
+              UbicacionActual= entity.UbicacionActual
+              
+
+
+
+
+            };
+            return result;
+        }
+
+        private void InsertImagenesPorVehiculo(List<string> imagenes,VehiculoRegiVeSec vehiculo)
+        {
+            foreach (var url in imagenes)
+            {
+                var imagen = new ImagenPorVehiculo
+                {
+                   DirecccionDeFoto=url,
+                   Vehiculo=vehiculo
+                };
+                db.ImagenPorVehiculo.Add(imagen);
+             
+            }
+
+
+        }
+>>>>>>> 79651e5d40f697b5e7423f5a4c34d0d208ef6364
 
 
             List<VehiculoRegiVeSec> vehiculos = db.Vehiculos.Include(i => i.Tipo).ToList();
