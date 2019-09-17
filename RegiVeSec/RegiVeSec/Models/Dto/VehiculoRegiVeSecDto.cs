@@ -32,6 +32,6 @@ namespace RegiVeSec.Models
         public int TipoId { get; set; }
         public int EstadoId { get; set; }
         public string foto { get; set; }
-
-  }
+        
+}
 }

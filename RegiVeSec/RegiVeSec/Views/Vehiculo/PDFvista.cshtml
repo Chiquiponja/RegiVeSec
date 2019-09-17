@@ -1,0 +1,96 @@
+﻿
+@model IEnumerable<VehiculoRegiVeSecDto>
+@{
+    ViewData["Title"] = "PDF";
+}
+<div class="row">
+    <div class=" col-md-12  pt-1 ">
+        <div class="table-responsive">
+            <table class="  table-hover display fl-table table-bordered" id="TablaVehiculos" style="width:100%">
+                <thead>
+                    <tr>
+                        <th>Fecha De Ingreso </th>
+                        <th>Numero De Sumario </th>
+                        <th>Tipo  </th>
+                        <th>Marca  </th>
+                        <th>Dominio  </th>
+                        <th>Orden </th>
+                        <th> Causa </th>
+                        <th> SumarioRegistrar</th>
+                        <th> Color</th>
+                        <th> MagistradoInterviniente </th>
+                        <th> DependenciaProcedente </th>
+                        <th> Estado </th>
+                        <th> Recibe</th>
+                        <th> Entrega </th>
+                        <th> UbicacionActual </th>
+                        <th> Propietario </th>
+                        <th> Deposito </th>
+                        <th> Orden</th>
+                        <th> Observaciones </th>
+                        <th>Fecha De Entrega</th>
+                    </tr>
+                </thead>
+                <tbody>
+
+                    @foreach (var item in Model)
+                    {
+                    <tr>
+                        <td>@item.FechaDeIngreso</td>
+                        <td>@item.NumeroSumario</td>
+                        <td>@item.Tipo.Detalles</td>
+                        <td>@item.Modelo</td>
+                        <td>@item.Marca</td>
+                        <td>@item.Dominio</td>
+                        <td>@item.Causa</td>
+                        <td>@item.SumarioRegistrar<d>
+                        <td>@item.Color</td>
+                        <td>@item.MagistradoInterviniente</td>
+                        <td>@item.DependenciaProcedente</td>
+                        <td>@item.Estado</td>
+                        <td>@item.Recibe</td>
+                        <td>@item.Entrega</td>
+                        <td>@item.UbicacionActual</td>
+                        <td>@item.Propietario</td>
+                        <td>@item.Deposito</td>
+                        <td>@item.Orden</td>
+                        <td>@item.Observaciones</td>
+                        <td>@item.FechaDeEntrega</td>
+                    </tr>
+                    }
+                    @*<tr v-for="item in vehiculo " v-cloak>
+            <th v-cloak>{{ item.fechaDeIngreso }}</th>
+            <th v-cloak>{{ item.numeroSumario}}</th>
+            <th v-cloak>{{ item.tipo.detalles}} </th>
+            <th v-cloak>{{ item.modelo}} </th>
+            <th v-cloak>{{ item.marca}} </th>
+            <th v-cloak>{{ item.dominio }} </th>
+            <th v-cloak>{{ item.causa }} </th>
+            <th v-cloak>{{ item.fechaDeEntrega }} </th>
+        </tr>*@
+                </tbody>
+            </table>
+            
+        </div>
+    </div>
+</div>
+@section ScriptsSection {
+    <link href="~/css/body.css" rel="stylesheet" />
+    <script src="~/cdnhome/jQueryJavaScriptLibraryv3.3.1.js"></script>
+    <script src="~/cdnhome/DataTables1.10.19.js"></script>
+    <script src="~/cdnhome/jQueryv3.4.0.js"></script>
+    <script src="~/js/ListaDeVehiculos.js"></script>
+    <link href="~/css/DataTables/datatables.css" rel="stylesheet" />
+    <link href="~/css/DataTables/datatables.min.css" rel="stylesheet" />
+    <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+    <script>
+
+        $(document).ready(function () {
+            initVue();
+            initDataTable();
+            vm.obtenerVehiculo(1);
+            vm.obtenerPDF();
+        });
+    </script>
+}
+

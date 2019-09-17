@@ -23,7 +23,7 @@ namespace RegiVeSec.Data
         {
             var existentes = db.Tipos.ToList();
             var nuevos = new List<Tipo>(){
-        new Tipo{Detalles="Bicibleta"},
+        new Tipo{Detalles="Bicicleta"},
         new Tipo{Detalles ="Moto"},
         new Tipo{Detalles="Auto"},
         new Tipo{Detalles = "Camion"},

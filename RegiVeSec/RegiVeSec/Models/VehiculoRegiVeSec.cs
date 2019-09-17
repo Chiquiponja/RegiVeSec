@@ -83,9 +83,11 @@ namespace RegiVeSec.Models
 
         public string foto { get; set; }
         public DateTime FechaDeEntrega { get; set; }
-        
 
-
+        internal static object GetOne()
+        {
+            throw new NotImplementedException();
+        }
     }
 }
 

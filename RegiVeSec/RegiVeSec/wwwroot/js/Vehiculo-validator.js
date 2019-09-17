@@ -1,5 +1,5 @@
 ﻿
-$().ready((function () {
+$().ready(function () {
     
     $("#vehiculoform").validate({
 
@@ -70,12 +70,12 @@ $().ready((function () {
             minlength: 3
 
         },
-            Orden:  {
+            Orden :  {
             required: true,
             minlength: 2
 
         },
-            DepositoProcedente:  {
+            DependenciaProcedente:  {
             required: true,
             minlength: 3
 
@@ -108,14 +108,6 @@ $().ready((function () {
             required: true,
             minlength: 3
 
-            },
-            Nombre: {
-                required: true,
-                minlength: 3
-            },
-            Contrasenia: {
-                required: true,
-                minlength: 8
             }
         
 
@@ -183,6 +175,11 @@ $().ready((function () {
                 minlength: "Minimo 3 caracter"
 
             },
+            SumarioRegistrar: {
+                required: "Escribi el Sumario Registrar... ",
+                minlength: "Minimo 3 caracter"
+
+            },
             Observaciones: {
                 required: "Escribi tu  Observaciones... ",
                 minlength: "Minimo 3 caracter"
@@ -197,6 +194,16 @@ $().ready((function () {
                 minlength: "Minimo 3 caracter"
 
             },
+            MagistradoInterviniente: {
+                required: "Escribi el Magistrado Interviniente... ",
+                minlength: "Minimo 3 caracter"
+
+            },
+            UbicacionActual: {
+                required: "Escribi  tu Ubicacion Actual... ",
+                minlength: "Minimo 3 caracter"
+
+            },
             FechaDeEntrega: {
                 required: "Escribi  la Fecha De Entrega... ",
                 minlength: "Minimo 3 caracter"
@@ -205,14 +212,6 @@ $().ready((function () {
             Entrega: {
                 required: "Escribi la Entrega... ",
                 minlength: "Minimo 3 caracter"
-            },
-            Nombre: {
-                required: "Escribi el Nombre... ",
-                minlength: "Minimo 3 caracter"
-            },
-             Contrasenia: {
-                required: "Escribi la Contraseña... ",
-                minlength: "Minimo 8 caracter"
             }
 
 
@@ -226,4 +225,4 @@ $().ready((function () {
     });
 
    
-}));
+});
