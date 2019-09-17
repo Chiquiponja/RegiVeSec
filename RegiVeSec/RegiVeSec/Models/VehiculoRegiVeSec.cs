@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.ComponentModel.DataAnnotations;
+using RegiVeSec.Models.Dto;
 
 namespace RegiVeSec.Models
 {
@@ -82,6 +83,7 @@ namespace RegiVeSec.Models
         public string Entrega { get; set; }
 
         public string foto { get; set; }
+        public ICollection<ImagenPorVehiculo> ImagenesPorVehiculo { get; set; }
         public DateTime FechaDeEntrega { get; set; }
 
         internal static object GetOne()

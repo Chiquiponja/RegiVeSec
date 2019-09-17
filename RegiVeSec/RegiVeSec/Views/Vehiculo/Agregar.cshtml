@@ -3,248 +3,239 @@
     ViewData["Title"] = "Agregar";
 }
 <div id="appAutos">
-    <div class="text-center">
-        <h1 class="display-4">REGISTRO DE VEHICULOS</h1>
-        <form method="post" action="/Home/Index" id="vehiculoform">
-            <div class="row">
-                <div class="col-md-6 mb-6">
-
-                    <div class="input-group mb-3 ">
-                        <div class="input-group-prepend">
-                            <span class="input-group-text" id="basic-addon1">Fecha De Ingreso</span>
-                        </div>
-                        <input v-model="vehiculo.fechaDeIngreso" @@keyup.enter="crearvehiculo" type="datetime-local" name="FechaDeIngreso" class="form-control " id="fechaDeIngreso" />
+  <div class="text-center">
+    <h1 class="display-4">REGISTRO DE VEHICULOS</h1>
+    <form method="post" action="/Home/Index" id="vehiculoform">
+        <div class="row">
+            <div class="col-md-6 mb-6">
+                <div class="input-group mb-3 ">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text" id="basic-addon1">Fecha De Ingreso</span>
                     </div>
-
-                </div>
-                <div class="col-md-6 mb-6">
-
-                    <div class="input-group  mb-3">
-                        <div class="input-group-prepend">
-                            <span class="input-group-text" id="basic-addon1">Dependencia Procedente</span>
-                        </div>
-                        <input v-model="vehiculo.dependenciaProcedente" @@keyup.enter="crearvehiculo" name="DependenciaProcedente" class="form-control" id="dependenciaProcedente" />
-                    </div>
-
-                </div>
-                <div class="col-md-6 mb-6">
-
-                    <div class="input-group  mb-3">
-                        <div class="input-group-prepend">
-                            <span class="input-group-text" id="basic-addon1">Numero De Sumario</span>
-                        </div>
-                        <input v-model="vehiculo.numeroSumario" @@keyup.enter="crearvehiculo" name="NumeroSumario" class="form-control" id="numeroSumario" />
-                    </div>
-
-                </div>
-                <div class="col-md-6 mb-6">
-                    <div class="input-group  mb-3">
-                        <div class="input-group-prepend">
-                            <span class="input-group-text" id="basic-addon1">Estado</span>
-                        </div>
-                        <select class="form-control" @@keyup.enter="crearvehiculo" name="Estado" v-model="vehiculo.estado" id="estado" placeholder="Estados" v-cloak>
-                            <option v-for="item in Estados" v-bind:value="item" v-cloak>{{item.detalles }}</option>
-                        </select>
-                    </div>
-
-                </div>
-                <div class="col-md-6 mb-6">
-
-                    <div class="input-group  mb-3">
-                        <div class="input-group-prepend">
-                            <span class="input-group-text" id="basic-addon1">Sumario Registrar</span>
-                        </div>
-                        <input v-model="vehiculo.sumarioRegistrar" @@keyup.enter="crearvehiculo" name="SumarioRegistrar" class="form-control " id="SumarioRegistrar" />
-                    </div>
-
-                </div>
-                <div class="col-md-6 mb-6">
-
-                    <div class="input-group  mb-3">
-                        <div class="input-group-prepend">
-                            <span class="input-group-text" id="basic-addon1">Recibe</span>
-                        </div>
-                        <input v-model="vehiculo.recibe" @@keyup.enter="crearvehiculo" name="Recibe" class="form-control" id="recibe" />
-                    </div>
-
-                </div>
-                <div class="col-md-6 mb-6">
-                    <div class="input-group  mb-3">
-                        <div class="input-group-prepend">
-                            <span class="input-group-text" id="basic-addon1">Tipo</span>
-                        </div>
-                        <select class="form-control" @@keyup.enter="crearvehiculo" name="Tipo" v-model="vehiculo.tipo" id="tipo" placeholder="Tipos" v-cloak>
-                            <option v-for="item in Tipos" v-bind:value="item" v-cloak>{{item.detalles }}</option>
-                        </select>
-                    </div>
-                </div>
-                <div class="col-md-6 mb-6">
-
-                    <div class="input-group  mb-3">
-                        <div class="input-group-prepend">
-                            <span class="input-group-text" id="basic-addon1">Entrega</span>
-                        </div>
-                        <input v-model="vehiculo.entrega" @@keyup.enter="crearvehiculo" name="Entrega" class="form-control" id="entrega" />
-                    </div>
-
-                </div>
-                <div class="col-md-6 mb-6">
-
-                    <div class="input-group  mb-3">
-                        <div class="input-group-prepend">
-                            <span class="input-group-text" id="basic-addon1">Marca</span>
-                        </div>
-                        <input v-model="vehiculo.marca" @@keyup.enter="crearvehiculo" name="Marca" class="form-control" id="marca" />
-                    </div>
-
-                </div>
-                <div class="col-md-6 mb-6">
-
-                    <div class="input-group  mb-3">
-                        <div class="input-group-prepend">
-                            <span class="input-group-text" id="basic-addon1">Ubicacion Actual</span>
-                        </div>
-                        <input v-model="vehiculo.ubicacionActual" @@keyup.enter="crearvehiculo" name="UbicacionActual" class="form-control " id="UbicacionActual" />
-                    </div>
-
-                </div>
-                <div class="col-md-6 mb-6">
-
-                    <div class="input-group  mb-3">
-                        <div class="input-group-prepend">
-                            <span class="input-group-text" id="basic-addon1">Color</span>
-                        </div>
-                        <input v-model="vehiculo.color" @@keyup.enter="crearvehiculo" name="Color" class="form-control" id="color" />
-                    </div>
-
-                </div>
-                <div class="col-md-6 mb-6">
-
-                    <div class="input-group  mb-3">
-                        <div class="input-group-prepend">
-                            <span class="input-group-text" id="basic-addon1">Propietario</span>
-                        </div>
-                        <input v-model="vehiculo.propietario" @@keyup.enter="crearvehiculo" name="Propietario" class="form-control " id="propietario" />
-                    </div>
-
-                </div>
-                <div class="col-md-6 mb-6">
-
-                    <div class="input-group  mb-3">
-                        <div class="input-group-prepend">
-                            <span class="input-group-text" id="basic-addon1">Modelo</span>
-                        </div>
-                        <input v-model="vehiculo.modelo" @@keyup.enter="crearvehiculo" name="Modelo" class="form-control" id="modelo" />
-                    </div>
-
-                </div>
-                <div class="col-md-6 mb-6">
-
-                    <div class="input-group  mb-3">
-                        <div class="input-group-prepend">
-                            <span class="input-group-text" id="basic-addon1">Deposito</span>
-                        </div>
-                        <input v-model="vehiculo.deposito" @@keyup.enter="crearvehiculo" name="Deposito" class="form-control" id="Deposito" />
-                    </div>
-
-                </div>
-                <div class="col-md-6 mb-6">
-
-                    <div class="input-group  mb-3">
-                        <div class="input-group-prepend">
-                            <span class="input-group-text" id="basic-addon1">Dominio</span>
-                        </div>
-                        <input v-model="vehiculo.dominio" @@keyup.enter="crearvehiculo" name="Dominio" class="form-control" id="dominio" />
-                    </div>
-
-                </div>
-                <div class="col-md-6 mb-6">
-
-                    <div class="input-group  mb-3">
-                        <div class="input-group-prepend">
-                            <span class="input-group-text" id="basic-addon1">Orden</span>
-                        </div>
-                        <input v-model="vehiculo.orden" @@keyup.enter="crearvehiculo" name="Orden" class="form-control" type="number" id="orden" />
-                    </div>
-
-                </div>
-                <div class="col-md-6 mb-6">
-
-                    <div class="input-group  mb-3">
-                        <div class="input-group-prepend">
-                            <span class="input-group-text" id="basic-addon1">Causa</span>
-                        </div>
-                        <input v-model="vehiculo.causa" @@keyup.enter="crearvehiculo" name="Causa" class="form-control" id="causa" />
-                    </div>
-
-                </div>
-                <div class="col-md-6 mb-6">
-
-                    <div class="input-group  mb-3">
-                        <div class="input-group-prepend">
-                            <span class="input-group-text" id="basic-addon1">Fecha De Entrega</span>
-                        </div>
-                        <input v-model="vehiculo.fechaDeEntrega" @@keyup.enter="crearvehiculo" name="FechaDeEntrega" type="datetime-local" class="form-control" id="fechaDeEntrega" />
-                    </div>
-
-                </div>
-                <div class="col-md-6 mb-6">
-
-                    <div class="input-group  mb-3">
-                        <div class="input-group-prepend">
-                            <span class="input-group-text" id="basic-addon1">Magistrado Interviniente</span>
-                        </div>
-                        <input v-model="vehiculo.magistradoInterviniente" @@keyup.enter="crearvehiculo" name="MagistradoInterviniente" class="form-control " id="MagistradoInterviniente" />
-                    </div>
-
-                </div>
-
-                <div class="col-md-12 mb-12">
-
-                    <div class="input-group  mb-">
-                        <div class="input-group-prepend">
-                            <span class="input-group-text" id="basic-addon1">Observaciones           </span>
-                        </div>
-                        <textarea v-model="vehiculo.observaciones" rows="10" cols="50" @@keyup.enter="crearvehiculo" name="Observaciones" class="form-control" id="observaciones"></textarea>
-                    </div>
+                    <input v-model="vehiculo.fechaDeIngreso" @@keyup.enter="crearvehiculo" type="date" name="FechaDeIngreso" class="form-control " id="fechaDeIngreso" />
                 </div>
             </div>
-            <div class="col-md-8">
-                <div class="col-md-6"> <img :src="vehiculo.foto" class="img-fluid" id="foto" /></div>
-                <div class="col-md-6">
-                    <div class="form-group">
-                        <input class="form-control-file border" type="file" id="photoImgId" name="archivosubido">
-                        <input class="btn btn-dark" type="button" @@click="this.UploadFile('photoImgId','','#foto','foto1','',300,true)" value="Subir foto">
+            <div class="col-md-6 mb-6">
+                <div class="input-group  mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text" id="basic-addon1">Dependencia Procedente</span>
                     </div>
+                    <input v-model="vehiculo.dependenciaProcedente" @@keyup.enter="crearvehiculo" name="DependenciaProcedente" class="form-control" id="dependenciaProcedente" />
                 </div>
             </div>
-
-
+            <div class="col-md-6 mb-6">
+                <div class="input-group  mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text" id="basic-addon1">Numero De Sumario</span>
+                    </div>
+                    <input v-model="vehiculo.numeroSumario" @@keyup.enter="crearvehiculo" name="NumeroSumario" class="form-control" id="numeroSumario" />
+                </div>
+            </div>
+            <div class="col-md-6 mb-6">
+                <div class="input-group  mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text" id="basic-addon1">Estado</span>
+                    </div>
+                    <select class="form-control" @@keyup.enter="crearvehiculo" name="Estado" v-model="vehiculo.estado" id="estado" placeholder="Estados" v-cloak>
+                        <option v-for="item in Estados" v-bind:value="item" v-cloak>{{item.detalles }}</option>
+                    </select>
+                </div>
+            </div>
+            <div class="col-md-6 mb-6">
+                <div class="input-group  mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text" id="basic-addon1">Sumario Registrar</span>
+                    </div>
+                    <input v-model="vehiculo.sumarioRegistrar" @@keyup.enter="crearvehiculo" name="SumarioRegistrar" class="form-control " id="SumarioRegistrar" />
+                </div>
+            </div>
+            <div class="col-md-6 mb-6">
+                <div class="input-group  mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text" id="basic-addon1">Recibe</span>
+                    </div>
+                    <input v-model="vehiculo.recibe" @@keyup.enter="crearvehiculo" name="Recibe" class="form-control" id="recibe" />
+                </div>
+            </div>
+            <div class="col-md-6 mb-6">
+                <div class="input-group  mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text" id="basic-addon1">Tipo</span>
+                    </div>
+                    <select class="form-control" @@keyup.enter="crearvehiculo" name="Tipo" v-model="vehiculo.tipo" id="tipo" placeholder="Tipos" v-cloak>
+                        <option v-for="item in Tipos" v-bind:value="item" v-cloak>{{item.detalles }}</option>
+                    </select>
+                </div>
+            </div>
+            <div class="col-md-6 mb-6">
+                <div class="input-group  mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text" id="basic-addon1">Entrega</span>
+                    </div>
+                    <input v-model="vehiculo.entrega" @@keyup.enter="crearvehiculo" name="Entrega" class="form-control" id="entrega" />
+                </div>
+            </div>
+            <div class="col-md-6 mb-6">
+                <div class="input-group  mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text" id="basic-addon1">Marca</span>
+                    </div>
+                    <input v-model="vehiculo.marca" @@keyup.enter="crearvehiculo" name="Marca" class="form-control" id="marca" />
+                </div>
+            </div>
+            <div class="col-md-6 mb-6">
+                <div class="input-group  mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text" id="basic-addon1">Ubicacion Actual</span>
+                    </div>
+                    <input v-model="vehiculo.UbicacionActual" @@keyup.enter="crearvehiculo" name="UbicacionActual" class="form-control " id="UbicacionActual" />
+                </div>
+            </div>
+            <div class="col-md-6 mb-6">
+                <div class="input-group  mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text" id="basic-addon1">Color</span>
+                    </div>
+                    <input v-model="vehiculo.color" @@keyup.enter="crearvehiculo" name="Color" class="form-control" id="color" />
+                </div>
+            </div>
+            <div class="col-md-6 mb-6">
+                <div class="input-group  mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text" id="basic-addon1">Propietario</span>
+                    </div>
+                    <input v-model="vehiculo.propietario" @@keyup.enter="crearvehiculo" name="Propietario" class="form-control " id="propietario" />
+                </div>
+            </div>
+            <div class="col-md-6 mb-6">
+                <div class="input-group  mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text" id="basic-addon1">Modelo</span>
+                    </div>
+                    <input v-model="vehiculo.modelo" @@keyup.enter="crearvehiculo" name="Modelo" class="form-control" id="modelo" />
+                </div>
+            </div>
+            <div class="col-md-6 mb-6">
+                <div class="input-group  mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text" id="basic-addon1">Deposito</span>
+                    </div>
+                    <input v-model="vehiculo.deposito" @@keyup.enter="crearvehiculo" name="Deposito" class="form-control" id="Deposito" />
+                </div>
+            </div>
+            <div class="col-md-6 mb-6">
+                <div class="input-group  mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text" id="basic-addon1">Dominio</span>
+                    </div>
+                    <input v-model="vehiculo.dominio" @@keyup.enter="crearvehiculo" name="Dominio" class="form-control" id="dominio" />
+                </div>
+            </div>
+            <div class="col-md-6 mb-6">
+                <div class="input-group  mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text" id="basic-addon1">Orden</span>
+                    </div>
+                    <input v-model="vehiculo.orden" @@keyup.enter="crearvehiculo" type="number" name="Orden" class="form-control" id="orden" />
+                </div>
+            </div>
+            <div class="col-md-6 mb-6">
+                <div class="input-group  mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text" id="basic-addon1">Causa</span>
+                    </div>
+                    <input v-model="vehiculo.causa" @@keyup.enter="crearvehiculo" name="Causa" class="form-control" id="causa" />
+                </div>
+            </div>
+            <div class="col-md-6 mb-6">
+                <div class="input-group  mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text" id="basic-addon1">Fecha De Entrega</span>
+                    </div>
+                    <input v-model="vehiculo.fechaDeEntrega" @@keyup.enter="crearvehiculo" name="FechaDeEntrega" type="date" class="form-control" id="fechaDeEntrega" />
+                </div>
+            </div>
+            <div class="col-md-6 mb-6">
+                <div class="input-group  mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text" id="basic-addon1">Magistrado Interviniente</span>
+                    </div>
+                    <input v-model="vehiculo.magistradoInterviniente" @@keyup.enter="crearvehiculo" name="MagistradoInterviniente" class="form-control " id="MagistradoInterviniente" />
+                </div>
+            </div>
+            <div class="col-md-12 mb-12">
+                <div class="input-group  mb-">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text" id="basic-addon1">Observaciones           </span>
+                    </div>
+                    <textarea v-model="vehiculo.observaciones" rows="10" cols="50" @@keyup.enter="crearvehiculo" name="Observaciones" class="form-control" id="observaciones"></textarea>
+                </div>
+            </div>
             <hr />
-            <div style="text-align: center;">
-                <a :href="'/Home/Index/' " class="btn btn-outline-dark">Volver Al Inicio</a>
-                <button id="submit" class="btn btn-primary" v-on:click="crearvehiculo">Enviar</button>
 
+            <div class="col-md-12">
+                <div class="col-md-4">
+                    <div v-for="item in vehiculo.ImagenesPorVehiculo">
+                        <img :src="item" class="img-thumbnail"/>
+                    </div>
+                </div>
+                
+                <div class="col-md-8">
+                    <h3> inserte fotos del vehiculo</h3>
+                        <div class="form-group">
+                            <input class="form-control-file border" type="file" id="photoImgId" name="archivosubido">
+                            <input class="btn btn-dark" type="button" @@click="this.UploadFile('photoImgId','','#foto','foto1','',300,true)" value="Subir foto">
+                        </div>
+                  
+                </div>
 
             </div>
+            
+        <hr />
+        <div style="text-align: center;">
+            <a :href="'/Home/Index/' " class="btn btn-outline-dark">Volver Al Inicio</a>
+            <button id="submit" class="btn btn-primary" v-on:click="crearvehiculo">Enviar</button>
+        </div>
+            </div>
+        <hr />
+    </form>
+     
+    @*<div class="col-md-5 mb-6">
+        <div class="container">
+          <h4>foto posterior del vehiculo</h4>
+          <form enctype="multipart/form-data">
+            <div class="form-group">
+              <input id="file-1" type="file" class="file" multiple=true data-preview-file-type="any">
+            </div>
+          </form>
+        </div>
+      </div>*@
 
-            <hr />
-        </form>
-
-    </div>
+    @*<div class="col-md-5 mb-6">
+        <div class="container">
+          <h4>foto frontal del vehiculo</h4>
+          <form enctype="multipart/form-data">
+            <div class="form-group">
+              <input id="file-1" type="file" class="file" multiple=true data-preview-file-type="any">
+            </div>
+          </form>
+        </div>
+      </div>*@
+    
+  </div>
 </div>
 
 @section ScriptsSection {
     <link href="~/css/registro.css" rel="stylesheet" />
-    <script src="~/js/Formulario.js"></script>
-    <script src="~/imagenesVehiculos/jquery.js"></script>
-    <script src="~/imagenesVehiculos/img.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.1/dist/jquery.validate.js"></script>
-    <script src="~/js/Vehiculo-validator.js"></script>
-    <script>
-        $("#vehiculoform").validate();
-    </script>
-    <script>
+  <script src="~/js/Formulario.js"></script>
+  <script src="~/imagenesVehiculos/jquery.js"></script>
+  <script src="~/imagenesVehiculos/img.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="~/js/Vehiculo-validator.js"></script>
+  <script>
+    $("#vehiculoform").validate();
+  </script>
+  <script>
 
         $(document).ready(function () {
             vm.ObtenerTipos();

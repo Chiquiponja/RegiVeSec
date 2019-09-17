@@ -2,7 +2,6 @@
 function UploadFile(inputFileId, uploadButtonId, photoImgId, entityName, width, requireImageFile) {
 
   vm.$data.p_ErrorMessage = "";
-
   //if (document.getElementById(uploadButtonId)) {
   //  document.getElementById(uploadButtonId).disabled = true;
   //} else {
@@ -10,26 +9,19 @@ function UploadFile(inputFileId, uploadButtonId, photoImgId, entityName, width, 
   //  enableUploadButton();
   //  return;
   //}
-
-
-
   if ($("input[name=DetalleArchivo]").val() === "") {
     vm.$data.p_ErrorMessage = window.validate_PutDescriptionFile;
     enableUploadButton();
     return;
   }
-
   vm.$data.p_ErrorMessage = "";
-
   //if ($("#" + inputFileId).val() === "") {
   //  vm.$data.p_ErrorMessage = window.validate_SelectFileToUpload;
   //  enableUploadButton();
   //  return;
   //}
-
   var file = ($("#" + inputFileId))[0].files[0];
   var fileName = file.name.toLowerCase();
-
   var isImageFile = false;
   if (EndsWith(fileName, ".jpg") ||
     EndsWith(fileName, ".png") ||
@@ -37,7 +29,6 @@ function UploadFile(inputFileId, uploadButtonId, photoImgId, entityName, width, 
     EndsWith(fileName, ".jpeg")) {
     isImageFile = true;
   }
-
   if (requireImageFile && requireImageFile === true) {
     if (!isImageFile) {
       vm.$data.p_ErrorMessage = "requiere una imagen";
@@ -45,10 +36,8 @@ function UploadFile(inputFileId, uploadButtonId, photoImgId, entityName, width, 
       return;
     }
   }
-
   var name = entityName + "_" + uuidv4();
   var formData = new FormData();
-
   if (file.size === 0) {
     vm.$data.p_ErrorMessage = window.validate_FileSizeMinimum;
     enableUploadButton();
@@ -59,7 +48,6 @@ function UploadFile(inputFileId, uploadButtonId, photoImgId, entityName, width, 
     enableUploadButton();
     return;
   }
-
   // Subimos el archivo
   formData.append("name", name);
   formData.append("file", file);
@@ -76,31 +64,21 @@ function UploadFile(inputFileId, uploadButtonId, photoImgId, entityName, width, 
     success: function (d) {
       // Borramos el Input file
       $("#" + inputFileId).val(null);
-
       // Obtenemos la extension
       var re = /(?:\.([^.]+))?$/;
       var ext = re.exec(file.name)[1];
-
       var filePath = "/UploadedFiles/" + name + "." + ext;
-
       // Si es es una imagen, agregamos el query string para redimiensionar la imagen
       if (isImageFile) {
         filePath = filePath + "?width=" + width + "&rmode=lanczos3";
-        vm.$data.vehiculo.foto = filePath;
+          vm.$data.vehiculo.ImagenesPorVehiculo.push(filePath);
       }
-
       //Habilito el boton UpLoadFile
       enableUploadButton();
       // Y mandamos a actualizar la interface de usuario 
      // UpdateFile(entityName, filePath);
-
     },
-
-    
-
   });
-
-
   function enableUploadButton() {
     if (document.getElementById(uploadButtonId)) {
       document.getElementById(uploadButtonId).disabled = false;
