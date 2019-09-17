@@ -153,6 +153,7 @@ namespace RegiVeSec.Controllers
 
             PdfPTable tblPrueba = new PdfPTable(8);
             tblPrueba.WidthPercentage = 100;
+            document.Open();
             PdfPCell clFechadeIngreso = new PdfPCell(new Phrase("FECHA DE INGRESO", _standardFont));
             clFechadeIngreso.BorderWidthTop = 1;
             clFechadeIngreso.BorderWidthBottom = 1f;
