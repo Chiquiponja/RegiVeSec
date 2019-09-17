@@ -110,6 +110,7 @@
 @*<hr />*@
 <div style="text-align: center;">
     <a href="/Vehiculo/Agregar" class="btn btn-dark">Agregar</a>
+    <a href="/Vehiculo/ExportToPdf" class="btn btn-success">PDF</a>
 </div>
 @section ScriptsSection {
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -135,6 +136,7 @@
             initVue();
             initDataTable();
             vm.obtenerVehiculo(1);
+            vm.obtenerPDF();
         });
     </script>
 }

@@ -18,85 +18,85 @@
             <tbody v-if="vehiculo">
                 <tr>
                     <th scope="row">Fecha De Ingreso :  </th>
-                    <td>{{ vehiculo.fechaDeIngreso }}</td>
+                    <td>{{ vehiculo.FechaDeIngreso }}</td>
                 </tr>
                 <tr>
                     <th scope="row">Numero De Sumario :  </th>
-                    <td v-cloak>{{vehiculo.numeroSumario}}</td>
+                    <td v-cloak>{{vehiculo.NumeroSumario}}</td>
                 </tr>
                 <tr>
                     <th scope="row">Sumario Registrar : </th>
-                    <td v-cloak>{{vehiculo.sumarioRegistrar}}</td>
+                    <td v-cloak>{{vehiculo.SumarioRegistrar}}</td>
                 </tr>
                 <tr>
                     <th scope="row">Tipo :  </th>
-                    <td v-cloak>{{vehiculo.tipo.detalles}}</td>
+                    <td v-cloak>{{vehiculo.Tipo.detalles}}</td>
                 </tr>
                 <tr>
                     <th scope="row">Marca : </th>
-                    <td v-cloak>{{vehiculo.marca}}</td>
+                    <td v-cloak>{{vehiculo.Marca}}</td>
                 </tr>
                 <tr>
                     <th scope="row">Color : </th>
-                    <td v-cloak>{{vehiculo.color}}</td>
+                    <td v-cloak>{{vehiculo.Color}}</td>
                 </tr>
                 <tr>
                     <th scope="row">Modelo :  </th>
-                    <td v-cloak>{{vehiculo.numeroSumario}}</td>
+                    <td v-cloak>{{vehiculo.NumeroSumario}}</td>
                 </tr>
                 <tr>
                     <th scope="row">Dominio : </th>
-                    <td v-cloak>{{vehiculo.dominio}}</td>
+                    <td v-cloak>{{vehiculo.Dominio}}</td>
                 </tr>
                 <tr>
                     <th scope="row">Causa :  </th>
-                    <td v-cloak>{{vehiculo.causa}}</td>
+                    <td v-cloak>{{vehiculo.Causa}}</td>
                 </tr>
 
 
                 <tr>
                     <th scope="row">Magistrado Interviniente :  </th>
-                    <td v-cloak>{{vehiculo.magistradoInterviniente}}</td>
+                    <td v-cloak>{{vehiculo.MagistradoInterviniente}}</td>
                 </tr>
                 <tr>
                     <th scope="row">Dependencia Procedente :  </th>
-                    <td v-cloak>{{vehiculo.dependenciaProcedente}}</td>
+                    <td v-cloak>{{vehiculo.DependenciaProcedente}}</td>
                 </tr>
                 <tr>
                     <th scope="row">Estado : </th>
-                    <td v-cloak>{{vehiculo.estado.detalles}}</td>
+                    <td v-cloak>{{vehiculo.Estado.detalles}}</td>
                 </tr>
                 <tr>
                     <th scope="row">Recibe : </th>
-                    <td v-cloak>{{vehiculo.recibe}}</td>
+                    <td v-cloak>{{vehiculo.Recibe}}</td>
                 </tr>
                 <tr>
                     <th scope="row">Entrega : </th>
-                    <td v-cloak>{{vehiculo.entrega}}</td>
+                    <td v-cloak>{{vehiculo.Entrega}}</td>
                 </tr>
                 <tr>
                     <th scope="row">Ubicacion Actual : </th>
-                    <td v-cloak>{{vehiculo.ubicacionActual}}</td>
+                    <td v-cloak>{{vehiculo.UbicacionActual}}</td>
                 </tr>
                 <tr>
                     <th scope="row">Propietario :  </th>
-                    <td v-cloak>{{vehiculo.propietario}}</td>
+                    <td v-cloak>{{vehiculo.Propietario}}</td>
                 </tr>
                 <tr>
                     <th scope="row">Deposito :  </th>
-                    <td v-cloak>{{vehiculo.deposito}}</td>
+                    <td v-cloak>{{vehiculo.Deposito}}</td>
                 </tr>
                 <tr>
                     <th scope="row">Orden : </th>
-                    <td v-cloak>{{vehiculo.orden}}</td>
+                    <td v-cloak>{{vehiculo.Orden}}</td>
                 </tr>
                 <tr>
                     <th scope="row">Fecha De Entrega :  </th>
-                    <td v-cloak>{{vehiculo.fechaDeEntrega }}</td>
+                    <td v-cloak>{{vehiculo.FechaDeEntrega }}</td>
                 </tr>
                 <tr>
                     <th scope="row">Observaciones : </th>
-                    <td v-cloak>{{vehiculo.observaciones}}</td>
+                    <td v-cloak>{{vehiculo.Observaciones}}</td>
                 </tr>
                
             </tbody>
@@ -104,14 +104,14 @@
         </table>
         <br />
         <div style="text-align: center;">
-            <h3> galeriade del vehiculo</h3>
+            <h3> galeria de vehiculo</h3>
         </div>
         <br />
         <div class="galeria">
             <div class="container">
                 <div class="row">
 
-                    <div class=" col-lg-4 col-md-4 col-sm-12" v-for="item in vehiculo.imagenesPorVehiculo">
+                    <div class=" col-lg-4 col-md-4 col-sm-12" v-for="item in vehiculo.ImagenesPorVehiculo">
 
                         <img :src="item" class=" img-thumbnail img-fluid img-rounded" />
 

@@ -1,15 +1,14 @@
-﻿
-$().ready((function () {
-    
+﻿$().ready(function () {
+
     $("#vehiculoform").validate({
 
 
         rules: {
 
 
-            Propietario  : {
-            required: true,
-            minlength: 3
+            Propietario: {
+                required: true,
+                minlength: 3
 
             },
             FechaDeIngreso: {
@@ -17,28 +16,28 @@ $().ready((function () {
                 minlength: 3
 
             },
-            Dominio:   {
-            required: true,
-            minlength: 3
+            Dominio: {
+                required: true,
+                minlength: 3
 
-        },
+            },
             Tipo: {
-            required: true,
+                required: true,
 
-        },
+            },
             Marca: {
-            required: true,
-            minlength: 3
+                required: true,
+                minlength: 3
 
-        },
-            Color:  {
-            required: true,
-            minlength: 3
+            },
+            Color: {
+                required: true,
+                minlength: 3
 
-        },
+            },
             Modelo: {
-            required: true,
-            minlength: 3
+                required: true,
+                minlength: 3
 
             },
             MagistradoInterviniente: {
@@ -57,37 +56,37 @@ $().ready((function () {
 
             },
             Causa: {
-            required: true,
-            minlength: 3
+                required: true,
+                minlength: 3
 
-        },
+            },
             Estado: {
-            required: true,
+                required: true,
 
-        },
-            NumeroSumario:  {
-            required: true,
-            minlength: 3
+            },
+            NumeroSumario: {
+                required: true,
+                minlength: 3
 
-        },
-            Orden:  {
-            required: true,
-            minlength: 2
+            },
+            Orden: {
+                required: true,
+                minlength: 2
 
-        },
-            DepositoProcedente:  {
-            required: true,
-            minlength: 3
+            },
+            DependenciaProcedente: {
+                required: true,
+                minlength: 3
 
-        },
-            Observaciones:  {
-            required: true,
-            minlength: 3
+            },
+            Observaciones: {
+                required: true,
+                minlength: 3
 
-        },
+            },
             Recibe: {
-            required: true,
-            minlength: 3
+                required: true,
+                minlength: 3
 
             },
             Deposito: {
@@ -104,20 +103,12 @@ $().ready((function () {
                 required: true,
                 minlength: 3
             },
-            Entrega:  {
-            required: true,
-            minlength: 3
-
-            },
-            Nombre: {
+            Entrega: {
                 required: true,
                 minlength: 3
-            },
-            Contrasenia: {
-                required: true,
-                minlength: 8
+
             }
-        
+
 
         },
         messages: {
@@ -168,7 +159,7 @@ $().ready((function () {
                 minlength: "Minimo 3 caracter"
 
             },
-            NumeroSumario: {  
+            NumeroSumario: {
                 required: "Escribi tu Numero Sumario... ",
                 minlength: "Minimo 3 caracter"
 
@@ -183,8 +174,13 @@ $().ready((function () {
                 minlength: "Minimo 3 caracter"
 
             },
+            SumarioRegistrar: {
+                required: "Escribi el Sumario Registrar... ",
+                minlength: "Minimo 3 caracter"
+
+            },
             Observaciones: {
-                required: "Escribi tu  Observaciones... ",
+                required: "Escribi tu Observaciones... ",
                 minlength: "Minimo 3 caracter"
             },
             Recibe: {
@@ -197,33 +193,35 @@ $().ready((function () {
                 minlength: "Minimo 3 caracter"
 
             },
+            MagistradoInterviniente: {
+                required: "Escribi el Magistrado Interviniente... ",
+                minlength: "Minimo 3 caracter"
+
+            },
+            UbicacionActual: {
+                required: "Escribi tu Ubicacion Actual... ",
+                minlength: "Minimo 3 caracter"
+
+            },
             FechaDeEntrega: {
-                required: "Escribi  la Fecha De Entrega... ",
+                required: "Escribi la Fecha De Entrega... ",
                 minlength: "Minimo 3 caracter"
 
             },
             Entrega: {
                 required: "Escribi la Entrega... ",
                 minlength: "Minimo 3 caracter"
-            },
-            Nombre: {
-                required: "Escribi el Nombre... ",
-                minlength: "Minimo 3 caracter"
-            },
-             Contrasenia: {
-                required: "Escribi la Contraseña... ",
-                minlength: "Minimo 8 caracter"
             }
 
 
 
         },
 
-        
+
         submitHandler: function (form) {
             form.submit();
         }
     });
 
-   
-}));
+
+});
