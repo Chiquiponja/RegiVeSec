@@ -145,7 +145,7 @@ namespace RegiVeSec.Controllers
             tblPrueba.AddCell(clCausa);
             tblPrueba.AddCell(clFechaDeEntrega);
 
-            List<VehiculoRegiVeSec> vehiculos = db.Vehiculos.Include(i => i.Tipo).ToList();
+            List<VehiculoRegiVeSec> vehiculos = db.Vehiculos.Include(i => i.Tipo).OrderByDescending(x => x.Id).ToList();
             foreach (var item in vehiculos)
             {
                 tblPrueba.AddCell(item.FechaDeIngreso.ToShortDateString());
@@ -153,8 +153,8 @@ namespace RegiVeSec.Controllers
                 tblPrueba.AddCell(item.Tipo.Detalles);
                 tblPrueba.AddCell(item.Marca);
                 tblPrueba.AddCell(item.Dominio);
-                tblPrueba.AddCell(item.Causa);
                 tblPrueba.AddCell(item.Orden);
+                tblPrueba.AddCell(item.Causa);
                 tblPrueba.AddCell(item.FechaDeEntrega.ToShortDateString());
             }
             tblPrueba.DefaultCell.Padding = 30;
