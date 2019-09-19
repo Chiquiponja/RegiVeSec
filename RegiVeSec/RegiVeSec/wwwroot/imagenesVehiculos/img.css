@@ -5,3 +5,12 @@
 .galeria{
     margin:10px 50px;
 }
+@media (max-width: 600px) {
+    .facet_sidebar {
+        margin: 10px 50px;
+        display: none;
+    }
+}
+.galeria imp1 {
+    margin: 10px 50px;
+}

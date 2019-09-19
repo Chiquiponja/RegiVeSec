@@ -98,23 +98,24 @@
                     <th scope="row">Observaciones : </th>
                     <td v-cloak>{{vehiculo.Observaciones}}</td>
                 </tr>
-               
+
             </tbody>
             <tbody v-else></tbody>
         </table>
         <br />
         <div style="text-align: center;">
-            <h3> galeria de vehiculo</h3>
-        </div>
-        <br />
-        <div class="galeria">
-            <div class="container">
-                <div class="row">
+            <h3> Galeria De Vehiculo</h3>
 
-                    <div class=" col-lg-4 col-md-4 col-sm-12" v-for="item in vehiculo.ImagenesPorVehiculo">
+            <br />
+            <div class="galeria">
+                <div class="container" id="Galeria">
+                    <div class="row">
 
-                        <img :src="item" class=" img-thumbnail img-fluid img-rounded" />
+                        <div class=" col-lg-4 col-md-4 col-sm-12" v-for="item in vehiculo.ImagenesPorVehiculo">
 
+                            <img :src="item" class=" img-thumbnail img-fluid img-rounded" />
+
+                        </div>
                     </div>
                 </div>
             </div>
@@ -125,8 +126,10 @@
         </div>
     </div>
 
-    </div>
-<button type="button" class="btn btn-outline-dark" onclick="javascript:imprim1(imp1);">Imprimir</button>
+</div>
+<button type="button" class="btn btn-outline-dark" media="(max-width: 800px)" onclick="javascript:imprim1(imp1);">Imprimir</button>
+<a href="/Vehiculo/ExportToPdfdetalle" class="btn btn-success">PDF</a>
+
 
 @section ScriptsSection {
     <script src="~/js/Formulario.js"></script>
@@ -147,15 +150,15 @@
             return true;
         }
     </script>
+
     <script>
         $(document).on("click", '[data-toggle="lightbox"]', function (event) {
             event.preventDefault();
             $(this).ekkoLightbox();
+
         });
 
     </script>
-
-
     <link href="~/imagenesVehiculos/img.css" rel="stylesheet" />
 
 }

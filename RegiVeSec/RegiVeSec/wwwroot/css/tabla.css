@@ -11,21 +11,21 @@ button {
     display: none;
 }
 .pagination a.active {
-    background-color: #4251f5;
+    background-color: #0060ba;
     color: white;
 }
 
 .pagination a:hover:not(.active) {
-    background-color: #4251f5;
+    background-color: #0060ba;
 }
 
 .example .pagination > li > a,
 .example .pagination > li > span {
-    border: 1px solid #4251f5;
+    border: 1px solid #0060ba;
 }
 
 .page-link:focus, .page-link:hover {
-    background: #4251f5;
+    background: #0060ba;
     color: #fff;
 }
 .fl-table {
