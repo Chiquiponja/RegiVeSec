@@ -141,6 +141,31 @@ namespace RegiVeSec.Migrations
                         onDelete: ReferentialAction.Cascade);
                 });
 
+            migrationBuilder.CreateTable(
+                name: "ImagenPorVehiculo",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                    VehiculoId = table.Column<int>(nullable: true),
+                    DirecccionDeFoto = table.Column<string>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_ImagenPorVehiculo", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_ImagenPorVehiculo_Vehiculos_VehiculoId",
+                        column: x => x.VehiculoId,
+                        principalTable: "Vehiculos",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateIndex(
+                name: "IX_ImagenPorVehiculo_VehiculoId",
+                table: "ImagenPorVehiculo",
+                column: "VehiculoId");
+
             migrationBuilder.CreateIndex(
                 name: "IX_Vehiculos_EstadoId",
                 table: "Vehiculos",
@@ -164,6 +189,9 @@ namespace RegiVeSec.Migrations
 
             migrationBuilder.DropTable(
                 name: "IdentityUserClaim");
+
+            migrationBuilder.DropTable(
+                name: "ImagenPorVehiculo");
 
             migrationBuilder.DropTable(
                 name: "Vehiculos");

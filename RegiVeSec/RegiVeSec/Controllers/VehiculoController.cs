@@ -97,51 +97,9 @@ namespace RegiVeSec.Controllers
             }
 
         }
-        //public IActionResult PDFvista()
-        //{
-        //    var vehiculos = GetVehiculos();
-        //    return new ViewAsPdf("PDFvista", vehiculos);
-        //}
 
-        public List<VehiculoRegiVeSecDto> GetVehiculos()
-        {
-            {
-                List<VehiculoRegiVeSecDto> VehiculoRegiVeSecsPrueba = new List<VehiculoRegiVeSecDto>();
-
-                foreach (var item in db.Vehiculos.Include(i => i.Tipo).ToList())
-                {
-                    VehiculoRegiVeSecDto dto = new VehiculoRegiVeSecDto();
-
-                    dto.Id = item.Id;
-                    dto.foto = item.foto;
-                    dto.FechaDeIngreso = item.FechaDeIngreso.ToShortDateString();
-                    dto.Propietario = item.Propietario;
-                    dto.Dominio = item.Dominio;
-                    dto.DetallesVehiculo = "Dominio: (" + item.Dominio + ") Tipo: (" + item.Tipo + ") Marca: (" + item.Marca + ") Color: (" + item.Color + ") Modelo: (" + item.Modelo + ") Estado: (" + item.Estado + ") ";
-                    dto.Tipo = item.Tipo;
-                    dto.Marca = item.Marca;
-                    dto.Color = item.Color;
-                    dto.Modelo = item.Modelo;
-                    dto.Causa = item.Causa;
-                    dto.Estado = item.Estado;
-                    dto.NumeroSumario = item.NumeroSumario;
-                    dto.Deposito = item.Deposito;
-                    dto.Orden = item.Orden;
-                    dto.DependenciaProcedente = item.DependenciaProcedente;
-                    dto.Observaciones = item.Observaciones;
-                    dto.Recibe = item.Recibe;
-                    dto.Entrega = item.Entrega;
-                    dto.MagistradoInterviniente = item.MagistradoInterviniente;
-                    dto.SumarioRegistrar = item.SumarioRegistrar;
-                    dto.UbicacionActual = item.UbicacionActual;
-                    dto.FechaDeEntrega = item.FechaDeEntrega.ToShortDateString();
-
-
-                    VehiculoRegiVeSecsPrueba.Add(dto);
-                }
-                return VehiculoRegiVeSecsPrueba;
-            }
-        }
+        
+        
         public ActionResult ExportToPdf(DataTable dt)
         {
             Document document = new Document(iTextSharp.text.PageSize.LETTER, 0, 0, 0, 0);
@@ -427,118 +385,108 @@ namespace RegiVeSec.Controllers
             iniEstados.IniEstados();
 
         }
-        //[HttpPost]
 
-        //public void getXlsxFile(something tbl, ref byte[] bytes)
-        //{
-        //    using (ExcelPackage pck = new ExcelPackage())
-        //    {
-        //        ExcelWorksheet ws = pck.Workbook.Worksheets.Add(tbl);
-        //        ws.Cells["A1"].LoadFromDataTable(tbl, true);
-        //        bytes = pck.GetAsByteArray();
-        //    }
-        //}
-        //public SearchResultVehiculos Listar(int paginaActual)
-        //    {
-        //        //Pagina de a 10 elementos
-
-        //        List<VehiculoRegiVeSecDto> VehiculoRegiVeSecsPrueba = new List<VehiculoRegiVeSecDto>();
-
-        //        var vehiculosPage = db.Vehiculos
-        //            .Skip((paginaActual - 1) * 5)
-        //            .Take(5)
-        //            .ToList();
-
-        //        var totalRegistros = db.Vehiculos.Count();
-
-        //        foreach (var vehiculo in vehiculosPage)
-        //        {
-        //            VehiculoRegiVeSecDto dto = new VehiculoRegiVeSecDto();
-        //            dto.Id = vehiculo.Id;
-        //            dto.FechaDeIngreso = vehiculo.FechaDeIngreso.ToShortDateString();
-        //            dto.Propietario = vehiculo.Propietario;
-        //            dto.Dominio = vehiculo.Dominio;
-        //            dto.DetallesVehiculo = "Dominio: (" + vehiculo.Dominio + ") Tipo: (" + vehiculo.Tipo + ") Marca: (" + vehiculo.Marca + ") Color: (" + vehiculo.Color + ") Modelo: (" + vehiculo.Modelo + ") Estado: (" + vehiculo.Estado + ") ";
-        //            dto.Tipo = vehiculo.Tipo;
-        //            dto.Marca = vehiculo.Marca;
-        //            dto.Color = vehiculo.Color;
-        //            dto.Modelo = vehiculo.Modelo;
-        //            dto.Causa = vehiculo.Causa;
-        //            dto.Estado = vehiculo.Estado;
-        //            dto.NumeroSumario = vehiculo.NumeroSumario;
-        //            dto.Deposito = vehiculo.Deposito;
-        //            dto.Orden = vehiculo.Orden;
-        //            dto.DependenciaProcedente = vehiculo.DependenciaProcedente;
-        //            dto.Observaciones = vehiculo.Observaciones;
-        //            dto.Recibe = vehiculo.Recibe;
-        //            dto.Entrega = vehiculo.Entrega;
-        //dto.MagistradoInterviniente = item.MagistradoInterviniente;
-        //        dto.SumarioRegistrar = item.SumarioRegistrar;
-        //        dto.UbicacionActual = item.UbicacionActual;
-        //            dto.FechaDeEntrega = vehiculo.FechaDeEntrega.ToShortDateString();
-
-
-        //            VehiculoRegiVeSecsPrueba.Add(dto);
-        //        }
-
-        //        return new SearchResultVehiculos
-        //        {
-        //            Vehiculos = VehiculoRegiVeSecsPrueba,
-        //            TotalRegistros = totalRegistros
-        //        };
-
-
-        //        //HttpContext.Session.SetString("Datos", JsonConvert.SerializeObject(VehiculoRegiVeSecsPrueba));
-
-
-        //    }
-       
-
-        public List<VehiculoRegiVeSecDto> Listar()
+        public SearchResultVehiculos Listar(int paginaActual)
         {
+            //Pagina de a 10 elementos
 
             List<VehiculoRegiVeSecDto> VehiculoRegiVeSecsPrueba = new List<VehiculoRegiVeSecDto>();
+            VehiculoRegiVeSecsPrueba = VehiculoRegiVeSecsPrueba.OrderByDescending(x => x.Id).ToList();
+            var vehiculosPage = db.Vehiculos.Include(i => i.Tipo)
+                .Skip((paginaActual - 1) * 5)
+                .Take(5)
+                .ToList();
 
-            foreach (var item in db.Vehiculos.Include(i => i.Tipo).ToList())
+            var totalRegistros = db.Vehiculos.Include(i => i.Tipo).Count();
+
+            foreach (var vehiculo in vehiculosPage )
             {
                 VehiculoRegiVeSecDto dto = new VehiculoRegiVeSecDto();
-               
-                dto.Id = item.Id;
-                dto.foto = item.foto;
-           
-                dto.FechaDeIngreso = item.FechaDeIngreso.ToShortDateString();
-                dto.Propietario = item.Propietario;
-                dto.Dominio = item.Dominio;
-                dto.DetallesVehiculo = "Dominio: (" + item.Dominio + ") Tipo: (" + item.Tipo + ") Marca: (" + item.Marca + ") Color: (" + item.Color + ") Modelo: (" + item.Modelo + ") Estado: (" + item.Estado + ") ";
-                dto.Tipo = item.Tipo;
-                dto.Marca = item.Marca;
-                dto.Color = item.Color;
-                dto.Modelo = item.Modelo;
-                dto.Causa = item.Causa;
-                dto.Estado = item.Estado;
-                dto.NumeroSumario = item.NumeroSumario;
-                dto.Deposito = item.Deposito;
-                dto.Orden = item.Orden;
-                dto.DependenciaProcedente = item.DependenciaProcedente;
-                dto.Observaciones = item.Observaciones;
-                dto.Recibe = item.Recibe;
-                dto.Entrega = item.Entrega;
-                dto.MagistradoInterviniente = item.MagistradoInterviniente;
-                dto.SumarioRegistrar = item.SumarioRegistrar;
-                dto.UbicacionActual = item.UbicacionActual;
-                dto.FechaDeEntrega = item.FechaDeEntrega.ToShortDateString();
-
+                dto.Id = vehiculo.Id;
+                dto.FechaDeIngreso = vehiculo.FechaDeIngreso.ToShortDateString();
+                dto.Propietario = vehiculo.Propietario;
+                dto.Dominio = vehiculo.Dominio;
+                dto.DetallesVehiculo = "Dominio: (" + vehiculo.Dominio + ") Tipo: (" + vehiculo.Tipo + ") Marca: (" + vehiculo.Marca + ") Color: (" + vehiculo.Color + ") Modelo: (" + vehiculo.Modelo + ") Estado: (" + vehiculo.Estado + ") ";
+                dto.Tipo = vehiculo.Tipo;
+                dto.Marca = vehiculo.Marca;
+                dto.Color = vehiculo.Color;
+                dto.Modelo = vehiculo.Modelo;
+                dto.Causa = vehiculo.Causa;
+                dto.Estado = vehiculo.Estado;
+                dto.NumeroSumario = vehiculo.NumeroSumario;
+                dto.Deposito = vehiculo.Deposito;
+                dto.Orden = vehiculo.Orden;
+                dto.DependenciaProcedente = vehiculo.DependenciaProcedente;
+                dto.Observaciones = vehiculo.Observaciones;
+                dto.Recibe = vehiculo.Recibe;
+                dto.Entrega = vehiculo.Entrega;
+                dto.MagistradoInterviniente = vehiculo.MagistradoInterviniente;
+                dto.SumarioRegistrar = vehiculo.SumarioRegistrar;
+                dto.UbicacionActual = vehiculo.UbicacionActual;
+                dto.FechaDeEntrega = vehiculo.FechaDeEntrega.ToShortDateString();
 
                 VehiculoRegiVeSecsPrueba.Add(dto);
             }
+             
 
-            VehiculoRegiVeSecsPrueba = VehiculoRegiVeSecsPrueba.OrderByDescending(x => x.Id).ToList();
+            return new SearchResultVehiculos
+            {
+                Vehiculos = VehiculoRegiVeSecsPrueba,
+                TotalRegistros = totalRegistros
+            };
 
 
-            HttpContext.Session.SetString("Datos", JsonConvert.SerializeObject(VehiculoRegiVeSecsPrueba));
+            //HttpContext.Session.SetString("Datos", JsonConvert.SerializeObject(VehiculoRegiVeSecsPrueba));
 
-            return VehiculoRegiVeSecsPrueba;
+
         }
+
+
+        //public List<VehiculoRegiVeSecDto> Listar()
+        //{
+
+        //    List<VehiculoRegiVeSecDto> VehiculoRegiVeSecsPrueba = new List<VehiculoRegiVeSecDto>();
+
+        //    foreach (var item in db.Vehiculos.Include(i => i.Tipo).ToList())
+        //    {
+        //        VehiculoRegiVeSecDto dto = new VehiculoRegiVeSecDto();
+
+        //        dto.Id = item.Id;
+        //        dto.foto = item.foto;
+
+        //        dto.FechaDeIngreso = item.FechaDeIngreso.ToShortDateString();
+        //        dto.Propietario = item.Propietario;
+        //        dto.Dominio = item.Dominio;
+        //        dto.DetallesVehiculo = "Dominio: (" + item.Dominio + ") Tipo: (" + item.Tipo + ") Marca: (" + item.Marca + ") Color: (" + item.Color + ") Modelo: (" + item.Modelo + ") Estado: (" + item.Estado + ") ";
+        //        dto.Tipo = item.Tipo;
+        //        dto.Marca = item.Marca;
+        //        dto.Color = item.Color;
+        //        dto.Modelo = item.Modelo;
+        //        dto.Causa = item.Causa;
+        //        dto.Estado = item.Estado;
+        //        dto.NumeroSumario = item.NumeroSumario;
+        //        dto.Deposito = item.Deposito;
+        //        dto.Orden = item.Orden;
+        //        dto.DependenciaProcedente = item.DependenciaProcedente;
+        //        dto.Observaciones = item.Observaciones;
+        //        dto.Recibe = item.Recibe;
+        //        dto.Entrega = item.Entrega;
+        //        dto.MagistradoInterviniente = item.MagistradoInterviniente;
+        //        dto.SumarioRegistrar = item.SumarioRegistrar;
+        //        dto.UbicacionActual = item.UbicacionActual;
+        //        dto.FechaDeEntrega = item.FechaDeEntrega.ToShortDateString();
+
+
+        //        VehiculoRegiVeSecsPrueba.Add(dto);
+        //    }
+
+        //    VehiculoRegiVeSecsPrueba = VehiculoRegiVeSecsPrueba.OrderByDescending(x => x.Id).ToList();
+
+
+        //    HttpContext.Session.SetString("Datos", JsonConvert.SerializeObject(VehiculoRegiVeSecsPrueba));
+
+        //    return VehiculoRegiVeSecsPrueba;
+        //}
         [HttpGet]
         [Route("/Vehiculo/Buscar/{filtro}")]
         public List<VehiculoRegiVeSecDto> Buscar(string filtro)
@@ -557,10 +505,12 @@ namespace RegiVeSec.Controllers
             var filtraFecha = DateTime.TryParse(filtros[1], out fechaDesde) && DateTime.TryParse(filtros[2], out fechaHasta);
 
             foreach (var item in db.Vehiculos.Where(x =>
-            ( !filtraTexto || (x.Dominio.ToLower().Contains(textoABuscar) ||
-            x.Propietario.ToLower().Contains(textoABuscar) ||
-            x.Causa.ToLower().Contains(textoABuscar) ||
-            x.Orden.ToLower().Contains(textoABuscar))) &&
+            ( !filtraTexto || (x.NumeroSumario.ToLower().Contains(textoABuscar) ||
+            x.Tipo.Detalles.ToLower().Contains(textoABuscar) ||
+            x.Marca.ToLower().Contains(textoABuscar) ||
+            x.Dominio.ToLower().Contains(textoABuscar) ||
+            x.Orden.ToLower().Contains(textoABuscar) ||
+            x.Causa.ToLower().Contains(textoABuscar))) &&
             (!filtraFecha || (x.FechaDeIngreso >= fechaDesde
             && x.FechaDeIngreso <= fechaHasta))))
             {

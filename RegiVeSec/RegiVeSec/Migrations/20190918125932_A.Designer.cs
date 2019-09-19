@@ -10,14 +10,14 @@ using RegiVeSec.Data;
 namespace RegiVeSec.Migrations
 {
     [DbContext(typeof(Conexionbd))]
-    [Migration("20190909145529_f123")]
-    partial class f123
+    [Migration("20190918125932_A")]
+    partial class A
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "2.2.6-servicing-10079")
+                .HasAnnotation("ProductVersion", "2.2.3-servicing-35854")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 

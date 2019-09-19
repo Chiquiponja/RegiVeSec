@@ -16,14 +16,13 @@
                 <input class="form-control mr-sm-2" type="date" v-model="p_Hasta" name="fecha1" placeholder="Ahora" />
                 <button type="submit" value="Submit" class="btn btn-dark">Buscar</button>
                 <button type="button" @@click="obtenerVehiculo()" class="btn btn-dark">Restaurar</button>
-                @*<button type="button" @@click="BuscarExcel()" class="btn btn-primary">Excel</button>*@
             </div>
         </form>
        
         <div class="row">
                 <div class=" col-md-12  pt-1 ">
                     <div class="table-responsive">
-                            <table class="  table-hover display fl-table table-bordered" id="TablaVehiculos" style="width:100%">
+                            <table class="  table-hover display fl-table table-bordered" style="width:100%">
                                 <thead>
                                     <tr>
                                         <th>Fecha De Ingreso </th>
@@ -59,7 +58,7 @@
                             <hr />
                     </div>
                </div>
-        @*<p class="mt-3" v-cloak>Pagina: {{p_PaginaActual}}</p>
+        <p class="mt-3" v-cloak>Pagina: {{p_PaginaActual}}</p>
         <hr />
         <div id="page">
             <nav aria-label="Page navigation example ">
@@ -103,23 +102,22 @@
                     </li>
                 </ul>
             </nav>
-        </div>*@
+        </div>
         </div>
     </div>
 @*<hr />*@
 <div style="text-align: center;">
     <a href="/Vehiculo/Agregar" class="btn btn-dark">Agregar</a>
-    @*<a href="/Vehiculo/PDFvista" class="btn btn-success">PDF</a>*@
     <a href="/Vehiculo/ExportToPdf" class="btn btn-success">PDF</a>
 
 </div>
 @section ScriptsSection {
-    @*<meta name="viewport" content="width=device-width, initial-scale=1">*@
-    @*<script src="~/cdnhome/ButtonsandDataTables.js"></script>
-    <script src="~/cdnhome/ButtonsforDataTables1.5.6.js"></script>*@
-    @*<script src="~/cdnhome/jQueryJavaScriptLibraryv3.3.1.js"></script>*@
-    @*<script src="~/cdnhome/DataTables1.10.19.js"></script>*@
-    @*<script src="~/cdnhome/jQueryv3.4.0.js"></script>
+    @*<meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="~/cdnhome/ButtonsandDataTables.js"></script>
+    <script src="~/cdnhome/ButtonsforDataTables1.5.6.js"></script>
+    <script src="~/cdnhome/jQueryJavaScriptLibraryv3.3.1.js"></script>
+    <script src="~/cdnhome/DataTables1.10.19.js"></script>
+    <script src="~/cdnhome/jQueryv3.4.0.js"></script>
     <script src="~/cdnhome/JSZipv3.1.3.js"></script>
     <script src="~/cdnhome/Licenseajax.js"></script>
     <script src="~/cdnhome/pdfmakev0.1.53.js"></script>
@@ -127,8 +125,8 @@
     <link href="~/css/tabla.css" rel="stylesheet" />
     <script src="~/js/ListaDeVehiculos.js"></script>
     @*<link href="~/css/DataTables/datatables.css" rel="stylesheet" />
-    <link href="~/css/DataTables/datatables.min.css" rel="stylesheet" />*@
-    @*<script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+    <link href="~/css/DataTables/datatables.min.css" rel="stylesheet" />
+    <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
     <script src="https://cdn.datatables.net/buttons/1.5.6/js/dataTables.buttons.min.js"></script>
     <script src="https://cdn.datatables.net/buttons/1.5.6/js/buttons.html5.min.js"></script>*@
     <script>

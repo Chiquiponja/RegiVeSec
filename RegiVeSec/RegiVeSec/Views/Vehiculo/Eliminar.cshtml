@@ -13,121 +13,121 @@
                 <partial>Id</partial>
             </dt>
             <dd class="col-md-4" v-cloak>
-                {{ vehiculo.id }}
+                {{ vehiculo.Id }}
             </dd>
             <dt class="col-sm-2">
                 <partial>Fecha De Ingreso</partial>
             </dt>
             <dd class="col-md-4" v-cloak>
-                {{ vehiculo.fechaDeIngreso }}
+                {{ vehiculo.FechaDeIngreso }}
             </dd>
             <dt class="col-sm-2">
                 <partial>Propietario</partial>
             </dt>
             <dd class="col-md-4" v-cloak>
-                {{ vehiculo.propietario}}
+                {{ vehiculo.Propietario}}
             </dd>
             <dt class="col-sm-2">
                 <partial>Magistrado Interviniente</partial>
             </dt>
             <dd class="col-md-4" v-cloak>
-                {{ vehiculo.magistradoInterviniente}}
+                {{ vehiculo.MagistradoInterviniente}}
             </dd>
             <dt class="col-sm-2">
                 <partial>Sumario Registar</partial>
             </dt>
             <dd class="col-md-4" v-cloak>
-                {{ vehiculo.sumarioRegistar}}
+                {{ vehiculo.SumarioRegistar}}
             </dd>
             <dt class="col-sm-2">
                 <partial>Ubicacion Actual</partial>
             </dt>
             <dd class="col-md-4" v-cloak>
-                {{ vehiculo.ubicacionActual}}
+                {{ vehiculo.UbicacionActual}}
             </dd>
             <dt class="col-sm-2">
                 <partial>Dominio</partial>
             </dt>
             <dd class="col-md-4" v-cloak>
-                {{ vehiculo.dominio }}
+                {{ vehiculo.Dominio }}
             </dd>
             <dt class="col-sm-2">
                 <partial>Tipo</partial>
             </dt>
             <dd class="col-md-4" v-cloak>
-                {{ vehiculo.tipo.detalles }}
+                {{ vehiculo.Tipo.Detalles }}
             </dd>
             <dt class="col-sm-2">
                 <partial>Marca</partial>
             </dt>
             <dd class="col-md-4" v-cloak>
-                {{ vehiculo.marca}}
+                {{ vehiculo.Marca}}
             </dd>
             <dt class="col-sm-2">
                 <partial>Color</partial>
             </dt>
             <dd class="col-md-4" v-cloak>
-                {{ vehiculo.color}}
+                {{ vehiculo.Color}}
             </dd>
             <dt class="col-sm-2">
                 <partial>Modelo</partial>
             </dt>
             <dd class="col-md-4" v-cloak>
-                {{ vehiculo.modelo}}
+                {{ vehiculo.Modelo}}
             </dd>
             <dt class="col-sm-2">
                 <partial>Causa</partial>
             </dt>
             <dd class="col-md-4" v-cloak>
-                {{ vehiculo.causa}}
+                {{ vehiculo.Causa}}
             </dd>
             <dt class="col-sm-2">
                 <partial>Estado</partial>
             </dt>
             <dd class="col-md-4" v-cloak>
-                {{ vehiculo.estado.detalles }}
+                {{ vehiculo.Estado.Detalles }}
             </dd>
             <dt class="col-sm-2">
                 <partial>Numero Sumario</partial>
             </dt>
             <dd class="col-md-4" v-cloak>
-                {{ vehiculo.numeroSumario}}
+                {{ vehiculo.NumeroSumario}}
             </dd>
             <dt class="col-sm-2">
                 <partial>Deposito</partial>
             </dt>
             <dd class="col-md-4" v-cloak>
-                {{ vehiculo.deposito }}
+                {{ vehiculo.Deposito }}
             </dd>
             <dt class="col-sm-2">
                 <partial>Orden</partial>
             </dt>
             <dd class="col-md-4" v-cloak>
-                {{ vehiculo.orden }}
+                {{ vehiculo.Orden }}
             </dd>
             <dt class="col-sm-2">
                 <partial>Dependencia Procedente</partial>
             </dt>
             <dd class="col-md-4" v-cloak>
-                {{ vehiculo.dependenciaProcedente}}
+                {{ vehiculo.DependenciaProcedente}}
             </dd>
             <dt class="col-sm-2">
                 <partial>Observaciones</partial>
             </dt>
             <dd class="col-md-4" v-cloak>
-                {{ vehiculo.observaciones}}
+                {{ vehiculo.Observaciones}}
             </dd>
             <dt class="col-sm-2">
                 <partial>Recibe </partial>
             </dt>
             <dd class="col-md-4" v-cloak>
-                {{ vehiculo.recibe  }}
+                {{ vehiculo.Recibe  }}
             </dd>
             <dt class="col-sm-2">
                 <partial>Entrega</partial>
             </dt>
             <dd class="col-md-4" v-cloak>
-                {{ vehiculo.entrega }}
+                {{ vehiculo.Entrega }}
             </dd>
 
 
@@ -135,13 +135,13 @@
                 <partial>Fecha De Entrega</partial>
             </dt>
             <dd class="col-md-4" v-cloak>
-                {{ vehiculo.fechaDeEntrega }}
+                {{ vehiculo.FechaDeEntrega }}
             </dd>
         </dl>
         <div style="text-align: center;">
           <form action="/Vehiculo/Delete">
             <a :href="'/Home/Index/' " class="btn btn-outline-dark">Volver Al Inicio</a>
-            <input type="hidden" name="Id" v-model="vehiculo.id" />
+            <input type="hidden" name="Id" v-model="vehiculo.Id" />
             <input type="submit" value="Eliminar" v-on:click="vehiculo" class="btn btn-danger" />
 
           </form>
