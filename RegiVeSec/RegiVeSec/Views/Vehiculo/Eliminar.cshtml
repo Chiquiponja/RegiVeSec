@@ -37,7 +37,7 @@
                 <partial>Sumario Registar</partial>
             </dt>
             <dd class="col-md-4" v-cloak>
-                {{ vehiculo.SumarioRegistar}}
+                {{ vehiculo.SumarioRegistrar}}
             </dd>
             <dt class="col-sm-2">
                 <partial>Ubicacion Actual</partial>
@@ -55,7 +55,7 @@
                 <partial>Tipo</partial>
             </dt>
             <dd class="col-md-4" v-cloak>
-                {{ vehiculo.Tipo.Detalles }}
+                {{ vehiculo.Tipo.detalles }}
             </dd>
             <dt class="col-sm-2">
                 <partial>Marca</partial>
@@ -85,7 +85,7 @@
                 <partial>Estado</partial>
             </dt>
             <dd class="col-md-4" v-cloak>
-                {{ vehiculo.Estado.Detalles }}
+                {{ vehiculo.Estado.detalles }}
             </dd>
             <dt class="col-sm-2">
                 <partial>Numero Sumario</partial>
@@ -129,8 +129,6 @@
             <dd class="col-md-4" v-cloak>
                 {{ vehiculo.Entrega }}
             </dd>
-
-
             <dt class="col-sm-2">
                 <partial>Fecha De Entrega</partial>
             </dt>
@@ -141,7 +139,7 @@
         <div style="text-align: center;">
           <form action="/Vehiculo/Delete">
             <a :href="'/Home/Index/' " class="btn btn-outline-dark">Volver Al Inicio</a>
-            <input type="hidden" name="Id" v-model="vehiculo.id" />
+            <input type="hidden" name="Id" v-model="vehiculo.Id" />
             <input type="submit" value="Eliminar" v-on:click="vehiculo" class="btn btn-danger" />
 
           </form>

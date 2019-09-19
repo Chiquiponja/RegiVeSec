@@ -180,66 +180,6 @@ namespace RegiVeSec.Controllers
                 return imagenes;
             }
 
-        //[HttpGet("/Vehiculo/GetDtoById/{id}")]
-        //public VehiculoRegiVeSecDto GetDtoById(int id)
-        //{
-        //    var entity = GetVehiculoRegiVeSecId(id);
-        //    var result = new VehiculoRegiVeSecDto
-        //    {
-        //        ImagenesPorVehiculo = entity.ImagenesPorVehiculo.Select(x => x.DirecccionDeFoto).ToList(),
-        //        Id = entity.Id,
-        //        Causa = entity.Causa,
-        //        Color = entity.Color,
-        //        DependenciaProcedente = entity.DependenciaProcedente,
-        //        Deposito = entity.Deposito,
-        //        Dominio = entity.Dominio,
-        //        Entrega = entity.Entrega,
-        //        Estado = entity.Estado,
-        //        FechaDeEntrega = Convert.ToString(entity.FechaDeEntrega),
-        //        FechaDeIngreso = Convert.ToString(entity.FechaDeIngreso),
-        //        MagistradoInterviniente = entity.MagistradoInterviniente,
-        //        Marca = entity.Marca,
-        //        Modelo = entity.Modelo,
-        //        NumeroSumario = entity.NumeroSumario,
-        //        Observaciones = entity.Observaciones,
-        //        Orden = entity.Orden,
-        //        Propietario = entity.Propietario,
-        //        Recibe = entity.Recibe,
-        //        SumarioRegistrar = entity.SumarioRegistrar,
-        //        Tipo = entity.Tipo,
-
-        //        UbicacionActual = entity.UbicacionActual
-
-
-
-
-
-        //    };
-        //    return result;
-        //}
-
-        //private void InsertImagenesPorVehiculo(List<string> imagenes, VehiculoRegiVeSec vehiculo)
-        //{
-        //    foreach (var url in imagenes)
-        //    {
-        //        var imagen = new ImagenPorVehiculo
-        //        {
-        //            DirecccionDeFoto = url,
-        //            Vehiculo = vehiculo
-        //        };
-        //        db.ImagenPorVehiculo.Add(imagen);
-
-        //    }
-
-
-        //}
-
-        //public List<ImagenPorVehiculo> GetImagenesPorVehiculo(int idVehiculo)
-        //{
-        //    var imagenes = db.ImagenPorVehiculo.Where(x => x.Vehiculo.Id == idVehiculo).ToList();
-
-        //    return imagenes;
-        //}
 
         [HttpGet("/Vehiculo/GetDtoById/{id}")]
         public VehiculoRegiVeSecDto GetDtoById(int id)
@@ -379,11 +319,13 @@ namespace RegiVeSec.Controllers
         {
             List<VehiculoRegiVeSecDto> VehiculoRegiVeSecsPrueba = new List<VehiculoRegiVeSecDto>();
 
-            VehiculoRegiVeSecsPrueba = VehiculoRegiVeSecsPrueba.OrderByDescending(x => x.Id).ToList();
+            //.ToList();
             var vehiculosPage = db.Vehiculos.Include(i => i.Tipo)
-                .Skip((paginaActual - 1) * 5)
-                .Take(5)
+                .OrderByDescending(x => x.Id)
+                .Skip((paginaActual - 1) * 10)
+                .Take(10)
                 .ToList();
+            
 
             var totalRegistros = db.Vehiculos.Include(i => i.Tipo).Count();
 
@@ -538,6 +480,8 @@ namespace RegiVeSec.Controllers
         {
             ViewData["Id"] = id;
             var VehiculoRegiVeSec = GetVehiculoRegiVeSecId(id);
+            VehiculoRegiVeSec = db.Vehiculos.Include(i => i.Tipo).FirstOrDefault(x => x.Id == id);
+            VehiculoRegiVeSec = db.Vehiculos.Include(i => i.Estado).FirstOrDefault(x => x.Id == id);
 
             if (VehiculoRegiVeSec == null)
             {
