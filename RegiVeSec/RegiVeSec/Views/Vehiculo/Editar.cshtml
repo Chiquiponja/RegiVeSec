@@ -17,7 +17,7 @@
                     <div class="input-group-prepend">
                         <span class="input-group-text" id="basic-addon1">Fecha De Ingreso</span>
                     </div>
-                    <input v-model="vehiculo.FechaDeIngreso" @@keyup.enter="crearvehiculo" type="datetime-local" name="FechaDeIngreso" class="form-control " id="fechaDeIngreso" />
+                    <input v-model="vehiculo.FechaDeIngreso" @@keyup.enter="crearvehiculo" type="datetime" name="FechaDeIngreso" class="form-control " id="FechaDeIngreso" />
                 </div>
 
             </div>
@@ -46,8 +46,8 @@
                     <div class="input-group-prepend">
                         <span class="input-group-text" id="basic-addon1">Estado</span>
                     </div>
-                    <select class="form-control" @@keyup.enter="crearvehiculo" name="Estado" v-model="vehiculo.estado" id="estado" placeholder="Estados" v-cloak>
-                        <option v-for="item in Estados" v-bind:value="item" v-cloak>{{item.Detalles }}</option>
+                    <select class="form-control" @@keyup.enter="crearvehiculo" name="Estado" v-model="vehiculo.Estado" id="Estado" placeholder="Estados" v-cloak>
+                        <option v-for="item in Estados" v-bind:value="item" v-cloak>{{item.detalles }}</option>
                     </select>
                 </div>
 
@@ -77,8 +77,8 @@
                     <div class="input-group-prepend">
                         <span class="input-group-text" id="basic-addon1">Tipo</span>
                     </div>
-                    <select class="form-control" @@keyup.enter="crearvehiculo" name="Tipo" v-model="vehiculo.tipo" id="tipo" placeholder="Tipos" v-cloak>
-                        <option v-for="item in Tipos" v-bind:value="item" v-cloak>{{item.Detalles }}</option>
+                    <select class="form-control" @@keyup.enter="crearvehiculo" name="Tipo" v-model="vehiculo.Tipo" id="Tipo" placeholder="Tipos" v-cloak>
+                        <option v-for="item in Tipos" v-bind:value="item" v-cloak>{{item.detalles }}</option>
                     </select>
                 </div>
             </div>
@@ -188,7 +188,7 @@
                     <div class="input-group-prepend">
                         <span class="input-group-text" id="basic-addon1">Fecha De Entrega</span>
                     </div>
-                    <input v-model="vehiculo.FechaDeEntrega" @@keyup.enter="crearvehiculo" name="FechaDeEntrega" type="datetime-local" class="form-control" id="fechaDeEntrega" />
+                    <input v-model="vehiculo.FechaDeEntrega" @@keyup.enter="crearvehiculo" name="FechaDeEntrega" type="datetime" class="form-control" id="fechaDeEntrega" />
                 </div>
 
             </div>
