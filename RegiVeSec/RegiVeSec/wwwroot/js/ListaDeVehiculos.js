@@ -331,12 +331,12 @@ function initVue() {
                         //}
 
                         console.log(data);
-                        //if (dataTable != null) {
-                        //    dataTable.destroy();
-                        //}
+                        if (dataTable != null) {
+                            dataTable.destroy();
+                        }
                         vm.$data.vehiculo = data;
                         Vue.nextTick(function () {
-                            //initDataTable();
+                            initDataTable();
                         })
 
                     })

@@ -31,18 +31,7 @@ namespace RegiVeSec.Controllers
         }
 
         [Authorize]
-        public IActionResult Eliminar(int id)
-        {
-            ViewData["Id"] = id;
-            var VehiculoRegiVeSec = GetVehiculoRegiVeSecId(id);
-
-            if (VehiculoRegiVeSec == null)
-            {
-                ViewData["ErrorMessage"] = ($"El Vehiculo con id: {id} no existe en la base de datos");
-                return View("Error");
-            }
-            return View();
-        }
+       
         [Authorize]
 
         public IActionResult Detalles(int id)
@@ -388,9 +377,8 @@ namespace RegiVeSec.Controllers
 
         public SearchResultVehiculos Listar(int paginaActual)
         {
-            //Pagina de a 10 elementos
-
             List<VehiculoRegiVeSecDto> VehiculoRegiVeSecsPrueba = new List<VehiculoRegiVeSecDto>();
+
             VehiculoRegiVeSecsPrueba = VehiculoRegiVeSecsPrueba.OrderByDescending(x => x.Id).ToList();
             var vehiculosPage = db.Vehiculos.Include(i => i.Tipo)
                 .Skip((paginaActual - 1) * 5)
@@ -504,7 +492,7 @@ namespace RegiVeSec.Controllers
             var fechaDesde = new DateTime();
             var filtraFecha = DateTime.TryParse(filtros[1], out fechaDesde) && DateTime.TryParse(filtros[2], out fechaHasta);
 
-            foreach (var item in db.Vehiculos.Where(x =>
+            foreach (var item in db.Vehiculos.Include(i => i.Tipo).Where(x =>
             ( !filtraTexto || (x.NumeroSumario.ToLower().Contains(textoABuscar) ||
             x.Tipo.Detalles.ToLower().Contains(textoABuscar) ||
             x.Marca.ToLower().Contains(textoABuscar) ||
@@ -522,7 +510,6 @@ namespace RegiVeSec.Controllers
                 dto.FechaDeIngreso = item.FechaDeIngreso.ToShortDateString();
                 dto.Propietario = item.Propietario;
                 dto.Dominio = item.Dominio;
-                dto.DetallesVehiculo = "Dominio: (" + item.Dominio + ") Tipo: (" + item.Tipo + ") Marca: (" + item.Marca + ") Color: (" + item.Color + ") Modelo: (" + item.Modelo + ") Estado: (" + item.Estado + ") ";
                 dto.Tipo = item.Tipo;
                 dto.Marca = item.Marca;
                 dto.Color = item.Color;
@@ -546,118 +533,19 @@ namespace RegiVeSec.Controllers
             }
             return VehiculoRegiVeSecsPrueba;
         }
-        //public JsonResult getEmployeeList(string sortColumnName = "FirstName", string sortOrder = "asc", int pageSize = 3, int currentPage = 1)
-        //{
-        //    List<VehiculoRegiVeSec> List = new List<VehiculoRegiVeSec>();
-        //    int totalPage = 0;
-        //    int totalRecord = 0;
 
-        //    using (MyDatabaseEntities dc = new MyDatabaseEntities())
-        //    {
-        //        var emp = dc.Employees;
-        //        totalRecord = emp.Count();
-        //        if (pageSize > 0)
-        //        {
-        //            totalPage = totalRecord / pageSize + ((totalRecord % pageSize) > 0 ? 1 : 0);
-        //            List = emp.OrderBy(sortColumnName + " " + sortOrder).Skip(pageSize * (currentPage - 1)).Take(pageSize).ToList();
-        //        }
-        //        else
-        //        {
-        //            List = emp.ToList();
-        //        }
-        //    }
-
-        //    return new JsonResult
-        //    {
-        //        //Data = new { List = List, totalPage = totalPage, sortColumnName = sortColumnName, sortOrder = sortOrder, currentPage = currentPage},
-        //        Data = new { List = List, totalPage = totalPage, sortColumnName = sortColumnName, sortOrder = sortOrder, currentPage = currentPage, pageSize = pageSize },
-        //        JsonRequestBehavior = JsonRequestBehavior.AllowGet
-        //    };
-        //}
-        [HttpGet]
-        [Route("/Vehiculo/Products")]
-        
-        public ActionResult Products(int page = 1, int sortBy = 1, bool isAsc = true, string search = null)
+        public IActionResult Eliminar(int id)
         {
-            IEnumerable<VehiculoRegiVeSec> products = db.Vehiculos.Where(
-                    p => search == null
-                    || p.Propietario.Contains(search)
-                    || p.Dominio.Contains(search)
-                    || p.Causa.Contains(search));
+            ViewData["Id"] = id;
+            var VehiculoRegiVeSec = GetVehiculoRegiVeSecId(id);
 
-            #region Sorting
-            switch (sortBy)
+            if (VehiculoRegiVeSec == null)
             {
-                case 1:
-                    products = isAsc ? products.OrderBy(p => p.Id) : products.OrderByDescending(p => p.Id);
-                    break;
-
-                case 2:
-                    products = isAsc ? products.OrderBy(p => p.Propietario) : products.OrderByDescending(p => p.Propietario);
-                    break;
-
-                case 3:
-                    products = isAsc ? products.OrderBy(p => p.Dominio) : products.OrderByDescending(p => p.Dominio);
-                    break;
-
-                case 4:
-                    products = isAsc ? products.OrderBy(p => p.Orden) : products.OrderByDescending(p => p.Orden);
-                    break;
-
-                case 5:
-                    products = isAsc ? products.OrderBy(p => p.Causa) : products.OrderByDescending(p => p.Causa);
-                    break;
+                ViewData["ErrorMessage"] = ($"El Vehiculo con id: {id} no existe en la base de datos");
+                return View("Error");
             }
-            #endregion
-            int pageSize = 10;
-            ViewBag.TotalPages = (int)Math.Ceiling((double)products.Count() / pageSize);
-
-            products = products
-                .Skip((page - 1) * pageSize)
-                .Take(pageSize)
-                .ToList();
-
-            ViewBag.CurrentPage = page;
-            ViewBag.PageSize = pageSize;
-            ViewBag.Search = search;
-
-            ViewBag.SortBy = sortBy;
-            ViewBag.IsAsc = isAsc;
-
-            return View(products);
-        }
-        [HttpPost]
-        [Route("/Vehiculo/Tabla")]
-        public ActionResult<List<VehiculoRegiVeSec>> Tabla()
-        {
-            int start = Convert.ToInt32(Request.Form["start"]);
-            int pageSize = 10;
-            int length = Convert.ToInt32(Request.Form["length"]);
-            string searchValue = Request.Form["search[value]"];
-            string sortColumnName = Request.Form["columns[" + Request.Form["order[0][column]"] + "][name]"];
-            string sortDirection = Request.Form["order[0][dir]"];
-            var query = this.db.Vehiculos.AsQueryable();
-            query = query.Skip(start).Take(pageSize);
-
-
-            //public JsonResult Table([ModelBinder(typeof(DataTablesBinder))] IDataTablesRequest requestmodel)
-            //var result = query.Skip(requestmodel.Start).Take(requestmodel.Length).Select(x => new { x.CompanyTypeName, x.CompanyTypeDescription });
-            List<VehiculoRegiVeSec> empList = new List<VehiculoRegiVeSec>();
-
-            empList = db.Vehiculos.ToList();
-            int totalrows = empList.Count;
-            if (!string.IsNullOrEmpty(searchValue))//filter
-            {
-                empList = empList.
-                    Where(x => x.Marca.ToLower().Contains(searchValue.ToLower()) || x.Deposito.ToLower().Contains(searchValue.ToLower()) || x.Propietario.ToLower().Contains(searchValue.ToLower()) || x.Causa.ToString().Contains(searchValue.ToLower()) || x.Color.ToString().Contains(searchValue.ToLower())).ToList<VehiculoRegiVeSec>();
-            }
-            int totalrowsafterfiltering = empList.Count;
-
-            empList = empList.Skip(start).Take(length).ToList<VehiculoRegiVeSec>();
-
-            return new JsonResult(empList);
-
-        }
+            return View();
+        } 
 
         public async Task<IActionResult> Delete(VehiculoRegiVeSec en)
         {
