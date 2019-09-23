@@ -172,13 +172,26 @@
                     </div>
                 </div>
                 <hr />
+                <div class="galeria">
+                    <div class="container">
+                        <div class="row">
 
-                <div class="col-md-12">
-                    <div class="col-md-4">
-                        <div v-for="item in vehiculo.ImagenesPorVehiculo">
-                            <img :src="item" class="img-thumbnail" />
+                            <div class=" col-lg-4 col-md-4 col-sm-12" v-for="item in vehiculo.ImagenesPorVehiculo">
+                                <input type='submit' value='BORRAR' style='background:url("item") left center no-repeat;padding-left:20px;' />
+                                <img :src="item" class=" img-thumbnail img-fluid img-rounded" />
+
+                            </div>
                         </div>
                     </div>
+                </div>
+                <hr />
+                <br />
+                <div class="col-md-12">
+                    @*<div class="col-md-4">
+                            <div v-for="item in vehiculo.ImagenesPorVehiculo">
+                                <img :src="item" class="img-thumbnail" />
+                            </div>
+                        </div>*@
 
                     <div class="col-md-8">
                         <h3> inserte fotos del vehiculo</h3>
@@ -226,6 +239,7 @@
 </div>
 
 @section ScriptsSection {
+    <link href="~/imagenesVehiculos/img.css" rel="stylesheet" />
     <link href="~/css/registro.css" rel="stylesheet" />
     <script src="~/js/Formulario.js"></script>
     <script src="~/imagenesVehiculos/jquery.js"></script>
@@ -234,16 +248,16 @@
     @*<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>*@
     <script src="~/js/Vehiculo-validator.js"></script>
     <script>
-            $("#vehiculoform").validate();
+        $("#vehiculoform").validate();
     </script>
     <script>
 
 
-            $(document).ready(function () {
-                    vm.ObtenerTipos();
-                vm.ObtenerEstados();
+        $(document).ready(function () {
+            vm.ObtenerTipos();
+            vm.ObtenerEstados();
 
-            });
+        });
 
     </script>
 
