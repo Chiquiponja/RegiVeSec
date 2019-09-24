@@ -159,7 +159,7 @@ namespace RegiVeSec.Controllers
             tblPrueba.AddCell(clCausa);
             tblPrueba.AddCell(clFechaDeEntrega);
 
-            List<VehiculoRegiVeSec> vehiculos = db.Vehiculos.Include(i => i.Tipo).OrderByDescending(x => x.Id).ToList();
+            List<VehiculoRegiVeSec> vehiculos = db.Vehiculos.Include(i => i.Tipo).OrderByDescending(x => x.FechaDeIngreso).ToList();
             foreach (var item in vehiculos)
             {
                 tblPrueba.AddCell(item.FechaDeIngreso.ToShortDateString());
@@ -184,7 +184,7 @@ namespace RegiVeSec.Controllers
            
                 return new FileStreamResult(ms, "aplication/pdf")
                 {
-                    FileDownloadName = string.Format("Archivo{0}.pdf", DateTime.Now.ToShortDateString())
+                    FileDownloadName = string.Format("RegiVeSec Archivo {0}.pdf", DateTime.Now.ToShortDateString())
                 };
             
         }
@@ -337,7 +337,7 @@ namespace RegiVeSec.Controllers
 
             //.ToList();
             var vehiculosPage = db.Vehiculos.Include(i => i.Tipo)
-                .OrderByDescending(x => x.FechaDeIngreso.ToShortDateString())
+                .OrderByDescending(x => x.FechaDeIngreso)
                 .Skip((paginaActual - 1) * 10)
                 .Take(10)
                 .ToList();
