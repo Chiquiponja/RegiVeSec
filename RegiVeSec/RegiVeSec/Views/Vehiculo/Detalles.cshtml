@@ -6,7 +6,7 @@
 <h1>Detalles</h1>
 
 <div id="appAutos">
-    <div id="imp1">
+    <div id="areaImprimir">
         <table class="table table-bordered">
             <thead>
                 <tr>
@@ -120,15 +120,17 @@
                 </div>
             </div>
         </div>
-        <div style="text-align: center;">
 
-            <a :href="'/Home/Index/' " class="btn btn-outline-dark">Volver Al Inicio</a>
-        </div>
     </div>
+    <div style="text-align: center;">
 
+        <a :href="'/Home/Index/' " class="btn btn-dark">Volver Al Inicio</a>
+        <input type="button" class="btn btn-dark" onclick="printDiv('areaImprimir')" value="Imprimir" />
+    </div>
 </div>
-<button type="button" class="btn btn-outline-dark" media="(max-width: 800px)" onclick="javascript:imprim1(imp1);">Imprimir</button>
-<a href="/Vehiculo/ExportToPdfdetalle" class="btn btn-success">PDF</a>
+
+
+@*<a href="'/Vehiculo/ExportToPdf/' + vehiculo.id" class="btn btn-success">PDF</a>*@
 
 
 @section ScriptsSection {
@@ -139,26 +141,18 @@
             });
     </script>
     <script>
-        function imprim1(imp1) {
-            var printContents = document.getElementById('imp1').innerHTML;
-            w = window.open();
-            w.document.write(printContents);
-            w.document.close(); // necessary for IE >= 10
-            w.focus(); // necessary for IE >= 10
-            w.print();
-            w.close();
-            return true;
+        function printDiv(nombreDiv) {
+            var contenido = document.getElementById(nombreDiv).innerHTML;
+            var contenidoOriginal = document.body.innerHTML;
+
+            document.body.innerHTML = contenido;
+
+            window.print();
+
+            document.body.innerHTML = contenidoOriginal;
         }
     </script>
 
-    <script>
-        $(document).on("click", '[data-toggle="lightbox"]', function (event) {
-            event.preventDefault();
-            $(this).ekkoLightbox();
-
-        });
-
-    </script>
     <link href="~/imagenesVehiculos/img.css" rel="stylesheet" />
 
 }

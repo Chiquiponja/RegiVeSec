@@ -25,14 +25,14 @@
                             <table class="  table-hover display fl-table table-bordered" style="width:100%">
                                 <thead>
                                     <tr>
-                                        <th>Fecha De Ingreso </th>
-                                        <th>Numero De Sumario </th>
+                                        <th>Fecha de Ingreso </th>
+                                        <th>Numero de Sumario </th>
                                         <th>Tipo  </th>
                                         <th>Marca  </th>
                                         <th>Dominio  </th>
                                         <th>Orden </th>
                                         <th> Causa </th>
-                                        <th>Fecha De Entrega</th>
+                                        <th>Fecha de Entrega</th>
                                         <th> </th>
                                     </tr>
                                 </thead>
@@ -91,12 +91,12 @@
                         </button>
                     </li>
                     <li class="page-item ">
-                        <a class="page-link" @@click="obtenerVehiculo(next)" :disabled="limitarPaginacion(next)">
+                        <a class="page-link" @@click="obtenerVehiculo(next)" >
                             <span aria-hidden="true" style="color:dodgerblue" :disabled="limitarPaginacion(next)">></span>
                         </a>
                     </li>
                     <li class="page-item">
-                        <a class="page-link" @@click="obtenerVehiculo(final)" :disabled="limitarPaginacion(final)">
+                        <a class="page-link" @@click="obtenerVehiculo(final)" >
                             <span aria-hidden="true" style="color:dodgerblue" :disabled="limitarPaginacion(final)">&raquo;</span>
                         </a>
                     </li>
@@ -108,7 +108,7 @@
 @*<hr />*@
 <div style="text-align: center;">
     <a href="/Vehiculo/Agregar" class="btn btn-dark">Agregar</a>
-    <a href="/Vehiculo/ExportToPdf" class="btn btn-success">PDF</a>
+    <a href="/Vehiculo/ExportToPdf" class="btn btn-dark">PDF</a>
 
 </div>
 @section ScriptsSection {

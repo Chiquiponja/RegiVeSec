@@ -50,13 +50,13 @@ function initVue() {
             },
             next: function () {
                 if (this.p_PaginaActual)
-                    return this.p_PaginaActual + 1;
+                    return this.p_PaginaActual +1;
                 else
                     return this.p_PaginaActual;
             },
             final: function () {
                 if (this.p_PaginaActual)
-                    return this.p_PaginaActual + 6;
+                    return this.p_PaginaActual +2;
                 else
                     return this.p_PaginaActual;
             }
@@ -156,7 +156,8 @@ function initVue() {
                           console.log("La solicitud ha fallado: " + textStatus);
                       }
                   });
-              },
+            },
+            
             BuscarVehiculo: function () {
 
 
