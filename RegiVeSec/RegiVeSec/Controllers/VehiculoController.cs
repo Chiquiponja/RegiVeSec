@@ -201,10 +201,10 @@ namespace RegiVeSec.Controllers
             MemoryStream ms = new MemoryStream();
 
             PdfWriter pw = PdfWriter.GetInstance(document, ms);
-            iTextSharp.text.Font _standardFont = new iTextSharp.text.Font(iTextSharp.text.Font.FontFamily.HELVETICA, 8, iTextSharp.text.Font.NORMAL, BaseColor.WHITE);
+            iTextSharp.text.Font _standardFont = new iTextSharp.text.Font(iTextSharp.text.Font.FontFamily.HELVETICA, 8, iTextSharp.text.Font.NORMAL, BaseColor.BLACK);
 
 
-            PdfPTable tblPrueba = new PdfPTable(8);
+            PdfPTable tblPrueba = new PdfPTable(2);
             tblPrueba.WidthPercentage = 100;
             document.Open();
             var parrafo = new Paragraph(string.Format(" Archivo {0}  ", DateTime.Now.ToShortDateString()));
@@ -221,65 +221,46 @@ namespace RegiVeSec.Controllers
             document.Add(Chunk.NEWLINE);
 
 
-
-            PdfPCell clFechadeIngreso = new PdfPCell(new Phrase("FECHA DE INGRESO", _standardFont));
-            clFechadeIngreso.BorderWidthTop = 1;
-            clFechadeIngreso.BorderWidthBottom = 1f;
-            clFechadeIngreso.BackgroundColor = BaseColor.BLACK;
-            PdfPCell clNumerodeSumario = new PdfPCell(new Phrase("NUMERO DE SUMARIO", _standardFont));
-            clNumerodeSumario.BorderWidthLeft = 1;
-            clNumerodeSumario.BorderWidthBottom = 1f;
-            clNumerodeSumario.BackgroundColor = BaseColor.BLACK;
-            PdfPCell clTipo = new PdfPCell(new Phrase("TIPO", _standardFont));
-            clTipo.BorderWidthRight = 1;
-            clTipo.BorderWidthBottom = 1f;
-            clTipo.BackgroundColor = BaseColor.BLACK;
-            PdfPCell clMarca = new PdfPCell(new Phrase("MARCA", _standardFont));
-            clMarca.BorderWidthTop = 1;
-            clMarca.BorderWidthBottom = 1f;
-            clMarca.BackgroundColor = BaseColor.BLACK;
-            PdfPCell clDominio = new PdfPCell(new Phrase("DOMINIO", _standardFont));
-            clDominio.BorderWidthLeft = 1;
-            clDominio.BorderWidthBottom = 1f;
-            clDominio.BackgroundColor = BaseColor.BLACK;
-            PdfPCell clOrden = new PdfPCell(new Phrase("ORDEN", _standardFont));
-            clOrden.BorderWidthRight = 1;
-            clOrden.BorderWidthBottom = 1f;
-            clOrden.BackgroundColor = BaseColor.BLACK;
-            PdfPCell clCausa = new PdfPCell(new Phrase("CAUSA", _standardFont));
-            clCausa.BorderWidthTop = 1;
-            clCausa.BorderWidthBottom = 1f;
-            clCausa.BackgroundColor = BaseColor.BLACK;
-            PdfPCell clFechaDeEntrega = new PdfPCell(new Phrase("FECHA DE ENTREGA", _standardFont));
-            clFechaDeEntrega.BorderWidthLeft = 1;
-            clFechaDeEntrega.BorderWidthBottom = 1f;
-            clFechaDeEntrega.BackgroundColor = BaseColor.BLACK;
-
-
-            tblPrueba.AddCell(clFechadeIngreso);
-            tblPrueba.AddCell(clNumerodeSumario);
-            tblPrueba.AddCell(clTipo);
-            tblPrueba.AddCell(clMarca);
-            tblPrueba.AddCell(clDominio);
-            tblPrueba.AddCell(clOrden);
-            tblPrueba.AddCell(clCausa);
-            tblPrueba.AddCell(clFechaDeEntrega);
-
             foreach (var item in vehiculos)
             {
+                PdfPCell clFechadeIngreso = new PdfPCell(new Phrase("FECHA DE INGRESO", _standardFont));
+                clFechadeIngreso.BackgroundColor = BaseColor.GRAY;
+                tblPrueba.AddCell(clFechadeIngreso);
                 tblPrueba.AddCell(item.FechaDeIngreso.ToShortDateString());
+                PdfPCell clNumerodeSumario = new PdfPCell(new Phrase("NUMERO DE SUMARIO", _standardFont));
+                clNumerodeSumario.BackgroundColor = BaseColor.WHITE;
+                tblPrueba.AddCell(clNumerodeSumario);
                 tblPrueba.AddCell(item.NumeroSumario);
+                PdfPCell clTipo = new PdfPCell(new Phrase("TIPO", _standardFont));
+                clTipo.BackgroundColor = BaseColor.GRAY;
+                tblPrueba.AddCell(clTipo);
                 tblPrueba.AddCell(item.Tipo.Detalles);
+                PdfPCell clMarca = new PdfPCell(new Phrase("MARCA", _standardFont));
+                clMarca.BackgroundColor = BaseColor.WHITE;
+                tblPrueba.AddCell(clMarca);
                 tblPrueba.AddCell(item.Marca);
+                PdfPCell clDominio = new PdfPCell(new Phrase("DOMINIO", _standardFont));
+                clDominio.BackgroundColor = BaseColor.GRAY;
+                tblPrueba.AddCell(clDominio);
                 tblPrueba.AddCell(item.Dominio);
+                PdfPCell clOrden = new PdfPCell(new Phrase("ORDEN", _standardFont));
+                clOrden.BackgroundColor = BaseColor.WHITE;
+                tblPrueba.AddCell(clOrden);
                 tblPrueba.AddCell(item.Orden);
+                PdfPCell clCausa = new PdfPCell(new Phrase("CAUSA", _standardFont));
+                clCausa.BackgroundColor = BaseColor.GRAY;
+                tblPrueba.AddCell(clCausa);
                 tblPrueba.AddCell(item.Causa);
+                PdfPCell clFechaDeEntrega = new PdfPCell(new Phrase("FECHA DE ENTREGA", _standardFont));
+                clFechaDeEntrega.BackgroundColor = BaseColor.WHITE;
+                tblPrueba.AddCell(clFechaDeEntrega);
+
                 tblPrueba.AddCell(item.FechaDeEntrega.ToShortDateString());
             }
-            tblPrueba.DefaultCell.Padding = 30;
-            tblPrueba.WidthPercentage = 100;
-            tblPrueba.HorizontalAlignment = Element.ALIGN_LEFT;
-            tblPrueba.DefaultCell.BorderWidth = 1;
+            //tblPrueba.DefaultCell.Padding = 30;
+            //tblPrueba.WidthPercentage = 100;
+            //tblPrueba.HorizontalAlignment = Element.ALIGN_LEFT;
+            //tblPrueba.DefaultCell.BorderWidth = 1;
             document.Add(tblPrueba);
             document.Close();
             byte[] bytesStrem = ms.ToArray();
