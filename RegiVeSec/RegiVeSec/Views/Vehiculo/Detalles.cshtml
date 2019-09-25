@@ -6,102 +6,208 @@
 <h1>Detalles</h1>
 
 <div id="appAutos">
-    <div id="areaImprimir">
-        <table class="table table-bordered">
-            <thead>
-                <tr>
-                    <th scope="col">Campo</th>
-                    <th scope="col">Detalle</th>
-                </tr>
+        <div class="row" id="historial">
+            <div class="col-md-6 mb-6" >
 
-            </thead>
-            <tbody v-if="vehiculo">
-                <tr>
-                    <th scope="row">Fecha De Ingreso :  </th>
-                    <td>{{ vehiculo.FechaDeIngreso }}</td>
-                </tr>
-                <tr>
-                    <th scope="row">Numero De Sumario :  </th>
-                    <td v-cloak>{{vehiculo.NumeroSumario}}</td>
-                </tr>
-                <tr>
-                    <th scope="row">Sumario Registrar : </th>
-                    <td v-cloak>{{vehiculo.SumarioRegistrar}}</td>
-                </tr>
-                <tr>
-                    <th scope="row">Tipo :  </th>
-                    <td v-cloak>{{vehiculo.Tipo.detalles}}</td>
-                </tr>
-                <tr>
-                    <th scope="row">Marca : </th>
-                    <td v-cloak>{{vehiculo.Marca}}</td>
-                </tr>
-                <tr>
-                    <th scope="row">Color : </th>
-                    <td v-cloak>{{vehiculo.Color}}</td>
-                </tr>
-                <tr>
-                    <th scope="row">Modelo :  </th>
-                    <td v-cloak>{{vehiculo.NumeroSumario}}</td>
-                </tr>
-                <tr>
-                    <th scope="row">Dominio : </th>
-                    <td v-cloak>{{vehiculo.Dominio}}</td>
-                </tr>
-                <tr>
-                    <th scope="row">Causa :  </th>
-                    <td v-cloak>{{vehiculo.Causa}}</td>
-                </tr>
+                <div class="input-group mb-3 ">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text" id="basic-addon1">Fecha De Ingreso</span>
+                    </div>
+                    <input readonly="readonly" v-model="vehiculo.FechaDeIngreso" @@keyup.enter="crearvehiculo" type="datetime" name="FechaDeIngreso" class="form-control " id="FechaDeIngreso" />
+                </div>
 
+            </div>
+            <div class="col-md-6 mb-6">
 
-                <tr>
-                    <th scope="row">Magistrado Interviniente :  </th>
-                    <td v-cloak>{{vehiculo.MagistradoInterviniente}}</td>
-                </tr>
-                <tr>
-                    <th scope="row">Dependencia Procedente :  </th>
-                    <td v-cloak>{{vehiculo.DependenciaProcedente}}</td>
-                </tr>
-                <tr>
-                    <th scope="row">Estado : </th>
-                    <td v-cloak>{{vehiculo.Estado.detalles}}</td>
-                </tr>
-                <tr>
-                    <th scope="row">Recibe : </th>
-                    <td v-cloak>{{vehiculo.Recibe}}</td>
-                </tr>
-                <tr>
-                    <th scope="row">Entrega : </th>
-                    <td v-cloak>{{vehiculo.Entrega}}</td>
-                </tr>
-                <tr>
-                    <th scope="row">Ubicacion Actual : </th>
-                    <td v-cloak>{{vehiculo.UbicacionActual}}</td>
-                </tr>
-                <tr>
-                    <th scope="row">Propietario :  </th>
-                    <td v-cloak>{{vehiculo.Propietario}}</td>
-                </tr>
-                <tr>
-                    <th scope="row">Deposito :  </th>
-                    <td v-cloak>{{vehiculo.Deposito}}</td>
-                </tr>
-                <tr>
-                    <th scope="row">Orden : </th>
-                    <td v-cloak>{{vehiculo.Orden}}</td>
-                </tr>
-                <tr>
-                    <th scope="row">Fecha De Entrega :  </th>
-                    <td v-cloak>{{vehiculo.FechaDeEntrega }}</td>
-                </tr>
-                <tr>
-                    <th scope="row">Observaciones : </th>
-                    <td v-cloak>{{vehiculo.Observaciones}}</td>
-                </tr>
+                <div class="input-group  mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text" id="basic-addon1">Dependencia Procedente</span>
+                    </div>
+                    <input readonly="readonly" v-model="vehiculo.DependenciaProcedente" @@keyup.enter="crearvehiculo" name="DependenciaProcedente" class="form-control" id="dependenciaProcedente" />
+                </div>
 
-            </tbody>
-            <tbody v-else></tbody>
-        </table>
+            </div>
+            <div class="col-md-6 mb-6">
+
+                <div class="input-group  mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text" id="basic-addon1">Numero De Sumario</span>
+                    </div>
+                    <input readonly="readonly" v-model="vehiculo.NumeroSumario" @@keyup.enter="crearvehiculo" name="NumeroSumario" class="form-control" id="numeroSumario" />
+                </div>
+
+            </div>
+            <div class="col-md-6 mb-6">
+                <div class="input-group  mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text" id="basic-addon1">Estado</span>
+                    </div>
+                    <input readonly="readonly" v-model="vehiculo.Estado.detalles" @@keyup.enter="crearvehiculo" name="Recibe" class="form-control" id="recibe" />
+                </div>
+
+            </div>
+            <div class="col-md-6 mb-6">
+
+                <div class="input-group  mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text" id="basic-addon1">Sumario Registrar</span>
+                    </div>
+                    <input readonly="readonly" v-model="vehiculo.SumarioRegistrar" @@keyup.enter="crearvehiculo" name="SumarioRegistrar" class="form-control " id="SumarioRegistrar" />
+                </div>
+
+            </div>
+            <div class="col-md-6 mb-6">
+
+                <div class="input-group  mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text" id="basic-addon1">Recibe</span>
+                    </div>
+                    <input readonly="readonly" v-model="vehiculo.Recibe" @@keyup.enter="crearvehiculo" name="Recibe" class="form-control" id="recibe" />
+                </div>
+
+            </div>
+            <div class="col-md-6 mb-6">
+                <div class="input-group  mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text" id="basic-addon1">Tipo</span>
+                    </div>
+                    <input readonly="readonly" v-model="vehiculo.Tipo.detalles" @@keyup.enter="crearvehiculo" name="Recibe" class="form-control" id="recibe" />
+                </div>
+            </div>
+            <div class="col-md-6 mb-6">
+
+                <div class="input-group  mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text" id="basic-addon1">Entrega</span>
+                    </div>
+                    <input readonly="readonly" v-model="vehiculo.Entrega" @@keyup.enter="crearvehiculo" name="Entrega" class="form-control" id="entrega" />
+                </div>
+
+            </div>
+            <div class="col-md-6 mb-6">
+
+                <div class="input-group  mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text" id="basic-addon1">Marca</span>
+                    </div>
+                    <input readonly="readonly" v-model="vehiculo.Marca" @@keyup.enter="crearvehiculo" name="Marca" class="form-control" id="marca" />
+                </div>
+
+            </div>
+            <div class="col-md-6 mb-6">
+
+                <div class="input-group  mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text" id="basic-addon1">Ubicacion Actual</span>
+                    </div>
+                    <input readonly="readonly" v-model="vehiculo.UbicacionActual" @@keyup.enter="crearvehiculo" name="UbicacionActual" class="form-control " id="UbicacionActual" />
+                </div>
+
+            </div>
+            <div class="col-md-6 mb-6">
+
+                <div class="input-group  mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text" id="basic-addon1">Color</span>
+                    </div>
+                    <input readonly="readonly" v-model="vehiculo.Color" @@keyup.enter="crearvehiculo" name="Color" class="form-control" id="color" />
+                </div>
+
+            </div>
+            <div class="col-md-6 mb-6">
+
+                <div class="input-group  mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text" id="basic-addon1">Propietario</span>
+                    </div>
+                    <input readonly="readonly" v-model="vehiculo.Propietario" @@keyup.enter="crearvehiculo" name="Propietario" class="form-control " id="propietario" />
+                </div>
+
+            </div>
+            <div class="col-md-6 mb-6">
+
+                <div class="input-group  mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text" id="basic-addon1">Modelo</span>
+                    </div>
+                    <input readonly="readonly" v-model="vehiculo.Modelo" @@keyup.enter="crearvehiculo" name="Modelo" class="form-control" id="modelo" />
+                </div>
+
+            </div>
+            <div class="col-md-6 mb-6">
+
+                <div class="input-group  mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text" id="basic-addon1">Deposito</span>
+                    </div>
+                    <input readonly="readonly" v-model="vehiculo.Deposito" @@keyup.enter="crearvehiculo" name="Deposito" class="form-control" id="Deposito" />
+                </div>
+
+            </div>
+            <div class="col-md-6 mb-6">
+
+                <div class="input-group  mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text" id="basic-addon1">Dominio</span>
+                    </div>
+                    <input readonly="readonly" v-model="vehiculo.Dominio" @@keyup.enter="crearvehiculo" name="Dominio" class="form-control" id="dominio" />
+                </div>
+
+            </div>
+            <div class="col-md-6 mb-6">
+
+                <div class="input-group  mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text" id="basic-addon1">Orden</span>
+                    </div>
+                    <input readonly="readonly" v-model="vehiculo.Orden" @@keyup.enter="crearvehiculo" name="Orden" class="form-control" type="number" id="orden" />
+                </div>
+
+            </div>
+            <div class="col-md-6 mb-6">
+
+                <div class="input-group  mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text" id="basic-addon1">Causa</span>
+                    </div>
+                    <input readonly="readonly" v-model="vehiculo.Causa" @@keyup.enter="crearvehiculo" name="Causa" class="form-control" id="causa" />
+                </div>
+
+            </div>
+            <div class="col-md-6 mb-6">
+
+                <div class="input-group  mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text" id="basic-addon1">Fecha De Entrega</span>
+                    </div>
+                    <input readonly="readonly" v-model="vehiculo.FechaDeEntrega" @@keyup.enter="crearvehiculo" name="FechaDeEntrega" type="datetime" class="form-control" id="FechaDeEntrega" />
+                </div>
+
+            </div>
+            <div class="col-md-6 mb-6">
+
+                <div class="input-group  mb-3">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text" id="basic-addon1">Magistrado Interviniente</span>
+                    </div>
+                    <input readonly="readonly" v-model="vehiculo.MagistradoInterviniente" @@keyup.enter="crearvehiculo" name="MagistradoInterviniente" class="form-control " id="MagistradoInterviniente" />
+                </div>
+
+            </div>
+
+            <div class="col-md-12 mb-12">
+
+                <div class="input-group  mb-">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text" id="basic-addon1">Observaciones           </span>
+                    </div>
+                    <textarea readonly="readonly" v-model="vehiculo.Observaciones" rows="10" cols="50" @@keyup.enter="crearvehiculo" name="Observaciones" class="form-control" id="observaciones"></textarea>
+                </div>
+
+            </div>
+
+        </div>
+
         <br />
         <div style="text-align: center;">
             <h3> Galeria De Vehiculo</h3>
@@ -125,34 +231,31 @@
     <div style="text-align: center;">
 
         <a :href="'/Home/Index/' " class="btn btn-dark">Volver Al Inicio</a>
-        <input type="button" class="btn btn-dark" onclick="printDiv('areaImprimir')" value="Imprimir" />
+        @*<input type="button" class="btn btn-dark" onclick="printDiv('areaImprimir')" value="Imprimir" />*@
     </div>
-</div>
 
-
-@*<a href="'/Vehiculo/ExportToPdf/' + vehiculo.id" class="btn btn-success">PDF</a>*@
+<a href="javascript:imprSelec('historial')">Imprimir</a>
+<a href="/Vehiculo/ExportToPdfDetalles" class="btn btn-success">PDF</a>
 
 
 @section ScriptsSection {
+    <link href="~/css/registroDetalle.css" rel="stylesheet" />
     <script src="~/js/Formulario.js"></script>
     <script>
             $(document).ready(function () {
                 vm.obtenerAutoById(@ViewData["Id"]);
             });
     </script>
-    <script>
-        function printDiv(nombreDiv) {
-            var contenido = document.getElementById(nombreDiv).innerHTML;
-            var contenidoOriginal = document.body.innerHTML;
-
-            document.body.innerHTML = contenido;
-
-            window.print();
-
-            document.body.innerHTML = contenidoOriginal;
-        }
-    </script>
+   <script>
+       function imprSelec(historial){
+  var ficha=document.getElementById(historial);
+  var ventimp=window.open(' ','popimpr');
+  ventimp.document.write(ficha.innerHTML);
+  ventimp.document.close();
+  ventimp.print();
+  ventimp.close();
+}
+   </script>
 
     <link href="~/imagenesVehiculos/img.css" rel="stylesheet" />
-
 }

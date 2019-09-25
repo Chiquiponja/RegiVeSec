@@ -13,7 +13,8 @@ function initVue() {
             p_Texto: "",
             p_PaginaActual: 1,
             p_TotalRegistros: 0,
-            p_PaginaContar: 0
+            p_PaginaContar: 0,
+            p_TotalPaginas:0
         },
         computed: {
             previousinicio: function () {
@@ -50,13 +51,13 @@ function initVue() {
             },
             next: function () {
                 if (this.p_PaginaActual)
-                    return this.p_PaginaActual +1;
+                    return this.p_TotalPaginas;
                 else
-                    return this.p_PaginaActual;
+                    return this.cant;
             },
             final: function () {
                 if (this.p_PaginaActual)
-                    return this.p_PaginaActual +2;
+                    return this.p_TotalPaginas;
                 else
                     return this.p_PaginaActual;
             }
@@ -108,12 +109,12 @@ function initVue() {
         methods: {
             limitarPaginacion: function (boton) {
 
-          var cant = parseInt(this.p_TotalRegistros / 5);
-          if (this.p_TotalRegistros % 5 > 0) cant++;
+          var cant = parseInt(this.p_TotalRegistros / 10);
+          if (this.p_TotalRegistros % 10 > 0) cant++;
 
           return cant < boton;
 
-          },
+            },
             obtenerVehiculo: function (numeroPagina) {
                 vm.$data.p_Desde = "";
                 vm.$data.p_Hasta = "";
@@ -127,6 +128,7 @@ function initVue() {
                         vm.$data.vehiculo = data.vehiculos;
                         vm.$data.p_TotalRegistros = data.totalRegistros;
                         vm.$data.p_PaginaActual = nroPagina;
+                        vm.$.p_TotalPaginas = totalPaginas;
                         //vm.$data.vehiculo = data;
                         //if (dataTable != null) {
                         //    dataTable.destroy();

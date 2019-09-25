@@ -188,7 +188,117 @@ namespace RegiVeSec.Controllers
                 };
             
         }
-       
+        public IActionResult ExportToPdfDetalles(int id)
+        {
+            
+            List<VehiculoRegiVeSec> vehiculos = db.Vehiculos.Include(i => i.Tipo).Where(x => x.Id == id).ToList();
+           
+            ViewData["Id"] = id;
+            var VehiculoRegiVeSec = GetVehiculoRegiVeSecId(id);
+            VehiculoRegiVeSec = db.Vehiculos.Include(i => i.Tipo).FirstOrDefault(x => x.Id == id);
+            VehiculoRegiVeSec = db.Vehiculos.Include(i => i.Estado).FirstOrDefault(x => x.Id == id);
+            Document document = new Document(iTextSharp.text.PageSize.LETTER, 0, 0, 0, 0);
+            MemoryStream ms = new MemoryStream();
+
+            PdfWriter pw = PdfWriter.GetInstance(document, ms);
+            iTextSharp.text.Font _standardFont = new iTextSharp.text.Font(iTextSharp.text.Font.FontFamily.HELVETICA, 8, iTextSharp.text.Font.NORMAL, BaseColor.WHITE);
+
+
+            PdfPTable tblPrueba = new PdfPTable(8);
+            tblPrueba.WidthPercentage = 100;
+            document.Open();
+            var parrafo = new Paragraph(string.Format(" Archivo {0}  ", DateTime.Now.ToShortDateString()));
+            parrafo.SpacingBefore = 5;
+            parrafo.SpacingAfter = 2;
+            parrafo.Alignment = 2; //0-Left, 1 middle,2 Right
+            document.Add(parrafo);
+            document.Add(Chunk.NEWLINE);
+            var parrafo2 = new Paragraph("REGISTRO DE VEHICULOS SINESTRADOS");
+            parrafo2.SpacingBefore = 1;
+            parrafo2.SpacingAfter = 0;
+            parrafo2.Alignment = 1; //0-Left, 1 middle,2 Right
+            document.Add(parrafo2);
+            document.Add(Chunk.NEWLINE);
+
+
+
+            PdfPCell clFechadeIngreso = new PdfPCell(new Phrase("FECHA DE INGRESO", _standardFont));
+            clFechadeIngreso.BorderWidthTop = 1;
+            clFechadeIngreso.BorderWidthBottom = 1f;
+            clFechadeIngreso.BackgroundColor = BaseColor.BLACK;
+            PdfPCell clNumerodeSumario = new PdfPCell(new Phrase("NUMERO DE SUMARIO", _standardFont));
+            clNumerodeSumario.BorderWidthLeft = 1;
+            clNumerodeSumario.BorderWidthBottom = 1f;
+            clNumerodeSumario.BackgroundColor = BaseColor.BLACK;
+            PdfPCell clTipo = new PdfPCell(new Phrase("TIPO", _standardFont));
+            clTipo.BorderWidthRight = 1;
+            clTipo.BorderWidthBottom = 1f;
+            clTipo.BackgroundColor = BaseColor.BLACK;
+            PdfPCell clMarca = new PdfPCell(new Phrase("MARCA", _standardFont));
+            clMarca.BorderWidthTop = 1;
+            clMarca.BorderWidthBottom = 1f;
+            clMarca.BackgroundColor = BaseColor.BLACK;
+            PdfPCell clDominio = new PdfPCell(new Phrase("DOMINIO", _standardFont));
+            clDominio.BorderWidthLeft = 1;
+            clDominio.BorderWidthBottom = 1f;
+            clDominio.BackgroundColor = BaseColor.BLACK;
+            PdfPCell clOrden = new PdfPCell(new Phrase("ORDEN", _standardFont));
+            clOrden.BorderWidthRight = 1;
+            clOrden.BorderWidthBottom = 1f;
+            clOrden.BackgroundColor = BaseColor.BLACK;
+            PdfPCell clCausa = new PdfPCell(new Phrase("CAUSA", _standardFont));
+            clCausa.BorderWidthTop = 1;
+            clCausa.BorderWidthBottom = 1f;
+            clCausa.BackgroundColor = BaseColor.BLACK;
+            PdfPCell clFechaDeEntrega = new PdfPCell(new Phrase("FECHA DE ENTREGA", _standardFont));
+            clFechaDeEntrega.BorderWidthLeft = 1;
+            clFechaDeEntrega.BorderWidthBottom = 1f;
+            clFechaDeEntrega.BackgroundColor = BaseColor.BLACK;
+
+
+            tblPrueba.AddCell(clFechadeIngreso);
+            tblPrueba.AddCell(clNumerodeSumario);
+            tblPrueba.AddCell(clTipo);
+            tblPrueba.AddCell(clMarca);
+            tblPrueba.AddCell(clDominio);
+            tblPrueba.AddCell(clOrden);
+            tblPrueba.AddCell(clCausa);
+            tblPrueba.AddCell(clFechaDeEntrega);
+
+            foreach (var item in vehiculos)
+            {
+                tblPrueba.AddCell(item.FechaDeIngreso.ToShortDateString());
+                tblPrueba.AddCell(item.NumeroSumario);
+                tblPrueba.AddCell(item.Tipo.Detalles);
+                tblPrueba.AddCell(item.Marca);
+                tblPrueba.AddCell(item.Dominio);
+                tblPrueba.AddCell(item.Orden);
+                tblPrueba.AddCell(item.Causa);
+                tblPrueba.AddCell(item.FechaDeEntrega.ToShortDateString());
+            }
+            tblPrueba.DefaultCell.Padding = 30;
+            tblPrueba.WidthPercentage = 100;
+            tblPrueba.HorizontalAlignment = Element.ALIGN_LEFT;
+            tblPrueba.DefaultCell.BorderWidth = 1;
+            document.Add(tblPrueba);
+            document.Close();
+            byte[] bytesStrem = ms.ToArray();
+            ms = new MemoryStream();
+            ms.Write(bytesStrem, 0, bytesStrem.Length);
+            ms.Position = 0;
+
+            
+
+            if (VehiculoRegiVeSec == null)
+            {
+                ViewData["ErrorMessage"] = ($"El Vehiculo con id: {id} no existe en la base de datos");
+                return View("Error");
+            }
+            return new FileStreamResult(ms, "aplication/pdf")
+            {
+                FileDownloadName = string.Format("RegiVeSec Archivo {0}.pdf", DateTime.Now.ToShortDateString())
+            };
+        }
         public List<ImagenPorVehiculo> GetImagenesPorVehiculo(int idVehiculo)
             {
                 var imagenes = db.ImagenPorVehiculo.Where(x => x.Vehiculo.Id == idVehiculo).ToList();
@@ -335,15 +445,14 @@ namespace RegiVeSec.Controllers
         {
             List<VehiculoRegiVeSecDto> VehiculoRegiVeSecsPrueba = new List<VehiculoRegiVeSecDto>();
 
-            //.ToList();
+            var totalRegistros = db.Vehiculos.Count();
+            var totalPaginas = (int)Math.Ceiling(totalRegistros / (double)10);
+
             var vehiculosPage = db.Vehiculos.Include(i => i.Tipo)
                 .OrderByDescending(x => x.FechaDeIngreso)
                 .Skip((paginaActual - 1) * 10)
                 .Take(10)
                 .ToList();
-            
-
-            var totalRegistros = db.Vehiculos.Include(i => i.Tipo).Count();
 
             foreach (var vehiculo in vehiculosPage )
             {
@@ -378,7 +487,8 @@ namespace RegiVeSec.Controllers
             return new SearchResultVehiculos
             {
                 Vehiculos = VehiculoRegiVeSecsPrueba,
-                TotalRegistros = totalRegistros
+                TotalRegistros = totalRegistros,
+                TotalPaginas= totalPaginas
             };
 
 

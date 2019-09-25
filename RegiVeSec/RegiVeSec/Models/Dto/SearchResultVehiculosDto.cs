@@ -9,5 +9,6 @@ namespace RegiVeSec.Models.Dto
     {
         public List<VehiculoRegiVeSecDto> Vehiculos { get; set; }
         public int TotalRegistros { get; set; }
+        public int TotalPaginas { get; set; }
     }
 }
