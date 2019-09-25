@@ -39,7 +39,11 @@
 
         },
 
-        methods: {
+      methods: {
+
+          DeleteItem:function(list, index) {
+              list.splice(index, 1);
+          },
             crearvehiculo: function () {
 
                 var data = vm.$data.vehiculo;

@@ -176,8 +176,8 @@
                     <div class="container">
                         <div class="row">
 
-                            <div class=" col-lg-4 col-md-4 col-sm-12" v-for="item in vehiculo.ImagenesPorVehiculo">
-                                <input type='submit' value='BORRAR' style='background:url("item") left center no-repeat;padding-left:20px;' />
+                            <div class=" col-lg-4 col-md-4 col-sm-12" v-for="(item,index) in vehiculo.ImagenesPorVehiculo">
+                                <input type='button' @@click="DeleteItem(vehiculo.ImagenesPorVehiculo,index)" value='BORRAR' style='background:url("item") left center no-repeat;padding-left:20px;' />
                                 <img :src="item" class=" img-thumbnail img-fluid img-rounded" />
 
                             </div>
