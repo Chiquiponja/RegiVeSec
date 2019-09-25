@@ -8,13 +8,14 @@ function initVue() {
         el: '#app',
         data: {
             vehiculo: [],
+            totalPaginas: 0,
             p_Desde: "",
             p_Hasta: "",
             p_Texto: "",
             p_PaginaActual: 1,
             p_TotalRegistros: 0,
             p_PaginaContar: 0,
-            p_TotalPaginas:0
+            p_TotalPaginas: 0
         },
         computed: {
             previousinicio: function () {
@@ -50,11 +51,14 @@ function initVue() {
                     return this.p_PaginaActual;
             },
             next: function () {
-                if (this.p_PaginaActual)
-                    return this.p_TotalPaginas;
-                else
-                    return this.cant;
+                if (this.p_PaginaActual == this.p_TotalPaginas)
+                    return this.p_PaginaActual;
+                //if (this.p_PaginaActual = this.p_TotalPaginas)
+                //    return this.p_PaginaActual;
+                else 
+                    return this.p_PaginaActual + 1;
             },
+
             final: function () {
                 if (this.p_PaginaActual)
                     return this.p_TotalPaginas;
@@ -128,7 +132,8 @@ function initVue() {
                         vm.$data.vehiculo = data.vehiculos;
                         vm.$data.p_TotalRegistros = data.totalRegistros;
                         vm.$data.p_PaginaActual = nroPagina;
-                        vm.$.p_TotalPaginas = totalPaginas;
+                        vm.$data.p_TotalPaginas = data.totalPaginas;
+                    
                         //vm.$data.vehiculo = data;
                         //if (dataTable != null) {
                         //    dataTable.destroy();

@@ -592,6 +592,29 @@ namespace RegiVeSec.Controllers
 
 
         }
+  
+        //public async Task<IActionResult> DeleteImagen(ImagenPorVehiculo en)
+        //{
+
+        //    try
+        //    {
+        //        //throw new Exception("No se pudo Eliminar el Registro.");
+        //        en = GetVehiculoRegiVeSecId(en.Id);
+
+
+        //        db.Remove(en);
+        //        await db.SaveChangesAsync();
+
+        //        return Redirect("/Home/Index/");
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        ViewData["ErrorMessage"] = ex.Message;
+        //        return View("Error");
+        //    }
+
+
+        //}
 
         public VehiculoRegiVeSec GetVehiculoRegiVeSecId(int id)
         {
