@@ -191,7 +191,7 @@ namespace RegiVeSec.Controllers
         public IActionResult ExportToPdfDetalles(int id)
         {
             
-            List<VehiculoRegiVeSec> vehiculos = db.Vehiculos.Include(i => i.Tipo).Where(x => x.Id == id).ToList();
+            List<VehiculoRegiVeSec> vehiculos = db.Vehiculos.Include(i => i.Tipo).Include(i => i.Tipo).Where(x => x.Id == id).ToList();
            
             ViewData["Id"] = id;
             var VehiculoRegiVeSec = GetVehiculoRegiVeSecId(id);
@@ -223,38 +223,95 @@ namespace RegiVeSec.Controllers
 
             foreach (var item in vehiculos)
             {
-                PdfPCell clFechadeIngreso = new PdfPCell(new Phrase("FECHA DE INGRESO", _standardFont));
+                PdfPCell clFechadeIngreso = new PdfPCell(new Phrase("Fecha de Ingreso", _standardFont));
                 clFechadeIngreso.BackgroundColor = BaseColor.GRAY;
                 tblPrueba.AddCell(clFechadeIngreso);
                 tblPrueba.AddCell(item.FechaDeIngreso.ToShortDateString());
-                PdfPCell clNumerodeSumario = new PdfPCell(new Phrase("NUMERO DE SUMARIO", _standardFont));
+                PdfPCell clNumerodeSumario = new PdfPCell(new Phrase("Numero Sumario", _standardFont));
                 clNumerodeSumario.BackgroundColor = BaseColor.WHITE;
                 tblPrueba.AddCell(clNumerodeSumario);
                 tblPrueba.AddCell(item.NumeroSumario);
-                PdfPCell clTipo = new PdfPCell(new Phrase("TIPO", _standardFont));
+                PdfPCell clTipo = new PdfPCell(new Phrase("Tipo", _standardFont));
                 clTipo.BackgroundColor = BaseColor.GRAY;
                 tblPrueba.AddCell(clTipo);
                 tblPrueba.AddCell(item.Tipo.Detalles);
-                PdfPCell clMarca = new PdfPCell(new Phrase("MARCA", _standardFont));
+                PdfPCell clMarca = new PdfPCell(new Phrase("Marca", _standardFont));
                 clMarca.BackgroundColor = BaseColor.WHITE;
                 tblPrueba.AddCell(clMarca);
                 tblPrueba.AddCell(item.Marca);
-                PdfPCell clDominio = new PdfPCell(new Phrase("DOMINIO", _standardFont));
+                PdfPCell clDominio = new PdfPCell(new Phrase("Dominio", _standardFont));
                 clDominio.BackgroundColor = BaseColor.GRAY;
                 tblPrueba.AddCell(clDominio);
                 tblPrueba.AddCell(item.Dominio);
-                PdfPCell clOrden = new PdfPCell(new Phrase("ORDEN", _standardFont));
+                PdfPCell clOrden = new PdfPCell(new Phrase("Orden", _standardFont));
                 clOrden.BackgroundColor = BaseColor.WHITE;
                 tblPrueba.AddCell(clOrden);
                 tblPrueba.AddCell(item.Orden);
-                PdfPCell clCausa = new PdfPCell(new Phrase("CAUSA", _standardFont));
+                PdfPCell clCausa = new PdfPCell(new Phrase("Causa", _standardFont));
                 clCausa.BackgroundColor = BaseColor.GRAY;
                 tblPrueba.AddCell(clCausa);
                 tblPrueba.AddCell(item.Causa);
-                PdfPCell clFechaDeEntrega = new PdfPCell(new Phrase("FECHA DE ENTREGA", _standardFont));
+                PdfPCell clSumarioRegistrar = new PdfPCell(new Phrase("SumarioRegistrar", _standardFont));
+                clSumarioRegistrar.BackgroundColor = BaseColor.WHITE;
+                tblPrueba.AddCell(clSumarioRegistrar);
+                tblPrueba.AddCell(item.SumarioRegistrar);
+
+                PdfPCell clColor = new PdfPCell(new Phrase("Color", _standardFont));
+                clColor.BackgroundColor = BaseColor.GRAY;
+                tblPrueba.AddCell(clColor);
+                tblPrueba.AddCell(item.Color);
+
+                PdfPCell clMagistradoInterviniente = new PdfPCell(new Phrase("Magistrado Interviniente", _standardFont));
+                clMagistradoInterviniente.BackgroundColor = BaseColor.WHITE;
+                tblPrueba.AddCell(clMagistradoInterviniente);
+                tblPrueba.AddCell(item.MagistradoInterviniente);
+
+
+                PdfPCell clDependenciaProcedente = new PdfPCell(new Phrase("DependenciaProcedente", _standardFont));
+                clDependenciaProcedente.BackgroundColor = BaseColor.GRAY;
+                tblPrueba.AddCell(clDependenciaProcedente);
+                tblPrueba.AddCell(item.DependenciaProcedente);
+
+                PdfPCell clEstado = new PdfPCell(new Phrase("Estado", _standardFont));
+                clEstado.BackgroundColor = BaseColor.WHITE;
+                tblPrueba.AddCell(clEstado);
+                tblPrueba.AddCell(item.Estado.Detalles);
+
+                PdfPCell clRecibe = new PdfPCell(new Phrase("Recibe", _standardFont));
+                clRecibe.BackgroundColor = BaseColor.GRAY;
+                tblPrueba.AddCell(clRecibe);
+                tblPrueba.AddCell(item.Recibe);
+
+                PdfPCell clEntrega = new PdfPCell(new Phrase("Entrega", _standardFont));
+                clEntrega.BackgroundColor = BaseColor.WHITE;
+                tblPrueba.AddCell(clEntrega);
+                tblPrueba.AddCell(item.Entrega);
+
+                PdfPCell clUbicacionActual = new PdfPCell(new Phrase("Ubicacion Actual", _standardFont));
+                clUbicacionActual.BackgroundColor = BaseColor.GRAY;
+                tblPrueba.AddCell(clUbicacionActual);
+                tblPrueba.AddCell(item.UbicacionActual);
+
+                PdfPCell clPropietario = new PdfPCell(new Phrase("Propietario", _standardFont));
+                clPropietario.BackgroundColor = BaseColor.WHITE;
+                tblPrueba.AddCell(clPropietario);
+                tblPrueba.AddCell(item.Propietario);
+
+
+                PdfPCell clDeposito = new PdfPCell(new Phrase("Deposito", _standardFont));
+                clDeposito.BackgroundColor = BaseColor.GRAY;
+                tblPrueba.AddCell(clDeposito);
+                tblPrueba.AddCell(item.Deposito);
+
+                //PdfPCell clOrden = new PdfPCell(new Phrase("Orden", _standardFont));
+                //clOrden.BackgroundColor = BaseColor.WHITE;
+                //tblPrueba.AddCell(clOrden);
+                //tblPrueba.AddCell(item.Orden);
+
+                PdfPCell clFechaDeEntrega = new PdfPCell(new Phrase("Fecha de Entrega", _standardFont));
                 clFechaDeEntrega.BackgroundColor = BaseColor.WHITE;
                 tblPrueba.AddCell(clFechaDeEntrega);
-
+            
                 tblPrueba.AddCell(item.FechaDeEntrega.ToShortDateString());
             }
             //tblPrueba.DefaultCell.Padding = 30;
