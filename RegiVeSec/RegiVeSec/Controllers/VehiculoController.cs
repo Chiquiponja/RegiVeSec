@@ -474,7 +474,8 @@ namespace RegiVeSec.Controllers
 
 
                 db.Vehiculos.Add(nuevoVehiculo);
-                InsertImagenesPorVehiculo(vehiculoRegiVeSecDto.ImagenesPorVehiculo, nuevoVehiculo);
+                //InsertImagenesPorVehiculo(vehiculoRegiVeSecDto.ImagenesPorVehiculo, nuevoVehiculo);
+                UpdateImagenes(nuevoVehiculo, vehiculoRegiVeSecDto.ImagenesPorVehiculo);
                 await db.SaveChangesAsync();
 
                 return Redirect("/Home/Index");
@@ -660,29 +661,33 @@ namespace RegiVeSec.Controllers
 
 
         }
-  
-        //public async Task<IActionResult> DeleteImagen(ImagenPorVehiculo en)
-        //{
 
-        //    try
-        //    {
-        //        //throw new Exception("No se pudo Eliminar el Registro.");
-        //        en = GetVehiculoRegiVeSecId(en.Id);
-
-
-        //        db.Remove(en);
-        //        await db.SaveChangesAsync();
-
-        //        return Redirect("/Home/Index/");
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        ViewData["ErrorMessage"] = ex.Message;
-        //        return View("Error");
-        //    }
+        private void UpdateImagenes(VehiculoRegiVeSec vehiculo,List<string> imagenes ) 
+        {
+         
+            var imagenesGuardadas = db.ImagenPorVehiculo.Where(x=>x.Vehiculo.Id==vehiculo.Id).ToList();
+            var imgenesBorrar = imagenesGuardadas.Where( x=> imagenes.All(f=> f!=x.DirecccionDeFoto));
+            var imagenesNuevas =imagenes.Where(x=> imagenesGuardadas.All(f=>f.DirecccionDeFoto!=x));
 
 
-        //}
+            
+            foreach (var item in imgenesBorrar)
+            {
+                db.ImagenPorVehiculo.Remove(item);
+                
+            }
+
+
+            foreach (var item in imagenesNuevas)
+            {
+                db.ImagenPorVehiculo.Add(new ImagenPorVehiculo
+                {
+                   DirecccionDeFoto=item,
+                   Vehiculo=vehiculo
+                });
+            }
+   
+        }
 
         public VehiculoRegiVeSec GetVehiculoRegiVeSecId(int id)
         {
@@ -729,6 +734,7 @@ namespace RegiVeSec.Controllers
             {
                 //throw new Exception("No se pudo Editar el Registro.");
                 db.Vehiculos.Update(nuevoVehiculo);
+                UpdateImagenes(nuevoVehiculo, vehiculoRegiVeSecDto.ImagenesPorVehiculo);
                 await db.SaveChangesAsync();
                 return Redirect("/Home/Index/");
             }

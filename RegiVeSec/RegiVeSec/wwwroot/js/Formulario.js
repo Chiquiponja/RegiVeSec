@@ -97,7 +97,7 @@
                         }
                     });
             },
-            ObtenerEdit: function () {
+            EditarVehiculo: function () {
 
                 var data = vm.$data.vehiculo;
                 $.ajax({
@@ -143,6 +143,8 @@
                     url: "/Vehiculo/GetDtoById/" + id,
                 })
                     .done(function (data) {
+                        vm.$data.vehiculo.Vehiculo = data.vehiculo;
+                        vm.$data.vehiculo.Id = data.id;
                         vm.$data.vehiculo.Causa = data.causa;
                         vm.$data.vehiculo.Color = data.color;
                         vm.$data.vehiculo.DependenciaProcedente = data.dependenciaProcedente;
