@@ -343,6 +343,8 @@ namespace RegiVeSec.Controllers
                 imagen.Alignment = Element.ALIGN_TOP;
                 imagen.ScaleAbsolute(120f, 120f);
 
+
+
                 document.Add(imagen);
             }
 
