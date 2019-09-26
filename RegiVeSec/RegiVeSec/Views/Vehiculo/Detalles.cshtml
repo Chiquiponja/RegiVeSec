@@ -6,7 +6,7 @@
 <h1>Detalles</h1>
 
 <div id="appAutos">
-        <div class="row" id="historial">
+        <div class="row">
             <div class="col-md-6 mb-6" >
 
                 <div class="input-group mb-3 ">
@@ -226,15 +226,10 @@
                 </div>
             </div>
         </div>
-
-    </div>
-    <div style="text-align: center;">
-
-        <a :href="'/Home/Index/' " class="btn btn-dark">Volver Al Inicio</a>
-        @*<input type="button" class="btn btn-dark" onclick="printDiv('areaImprimir')" value="Imprimir" />*@
-    </div>
-
-<a href="javascript:imprSelec('historial')">Imprimir</a>
+        <div style="text-align: center;">
+            <a :href="'/Home/Index/'  " class="btn btn-dark">Volver Al Inicio</a>
+        </div>
+</div>
 <a href="/Vehiculo/ExportToPdfDetalles" class="btn btn-success">PDF</a>
 
 
@@ -247,16 +242,5 @@
                 vm.obtenerExportToPdfDetallesById(@ViewData["Id"]);
             });
     </script>
-   <script>
-       function imprSelec(historial){
-  var ficha=document.getElementById(historial);
-  var ventimp=window.open(' ','popimpr');
-  ventimp.document.write(ficha.innerHTML);
-  ventimp.document.close();
-  ventimp.print();
-  ventimp.close();
-}
-   </script>
-
     <link href="~/imagenesVehiculos/img.css" rel="stylesheet" />
 }

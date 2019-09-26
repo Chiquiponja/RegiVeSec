@@ -172,9 +172,6 @@
                         vm.$data.vehiculo.Tipos = data.tipos;
                         vm.$data.vehiculo.UbicacionActual = data.ubicacionActual;
 
-
-
-
                         vm.$forceUpdate();
                         return true;
                     })

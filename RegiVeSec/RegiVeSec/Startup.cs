@@ -15,6 +15,8 @@ using Microsoft.AspNetCore.Session;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.UI;
 using Rotativa.AspNetCore;
+using System.IO;
+using System.Web.Mvc;
 
 namespace RegiVeSec
 {
@@ -76,7 +78,6 @@ namespace RegiVeSec
                     template: "{controller=Home}/{action=Index}/{id?}");
             });
             //RotativaConfiguration.Setup(env);
-
 
 
         }

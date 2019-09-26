@@ -72,7 +72,6 @@ $().ready(function () {
         },
             Orden :  {
             required: true,
-            minlength: 2
 
         },
             DependenciaProcedente:  {

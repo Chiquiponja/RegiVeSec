@@ -17,6 +17,7 @@ using System.Data;
 using Microsoft.AspNetCore.Html;
 using System.Net.Http;
 using RegiVeSec.Models.Dto;
+using Microsoft.AspNetCore.Hosting;
 
 namespace RegiVeSec.Controllers
 {
@@ -24,10 +25,12 @@ namespace RegiVeSec.Controllers
     {
         private Conexionbd db = new Conexionbd();
         public SqlConnection conectarbd = new SqlConnection();
+        private readonly IHostingEnvironment _hostingEnvironment;
      
-        public VehiculoController(Conexionbd _db)
+        public VehiculoController(Conexionbd _db, IHostingEnvironment hostingEnvironment)
         {
             db = _db;
+            _hostingEnvironment = hostingEnvironment;
         }
 
         [Authorize]
@@ -93,7 +96,6 @@ namespace RegiVeSec.Controllers
         {
             Document document = new Document(iTextSharp.text.PageSize.LETTER, 0, 0, 0, 0);
             MemoryStream ms = new MemoryStream();
-
             PdfWriter pw = PdfWriter.GetInstance(document, ms);
             iTextSharp.text.Font _standardFont = new iTextSharp.text.Font(iTextSharp.text.Font.FontFamily.HELVETICA, 8, iTextSharp.text.Font.NORMAL, BaseColor.WHITE);
              
@@ -199,11 +201,9 @@ namespace RegiVeSec.Controllers
             VehiculoRegiVeSec = db.Vehiculos.Include(i => i.Estado).FirstOrDefault(x => x.Id == id);
             Document document = new Document(iTextSharp.text.PageSize.LETTER, 0, 0, 0, 0);
             MemoryStream ms = new MemoryStream();
-
             PdfWriter pw = PdfWriter.GetInstance(document, ms);
             iTextSharp.text.Font _standardFont = new iTextSharp.text.Font(iTextSharp.text.Font.FontFamily.HELVETICA, 8, iTextSharp.text.Font.NORMAL, BaseColor.BLACK);
-
-
+            
             PdfPTable tblPrueba = new PdfPTable(2);
             tblPrueba.WidthPercentage = 100;
             document.Open();
@@ -303,22 +303,50 @@ namespace RegiVeSec.Controllers
                 tblPrueba.AddCell(clDeposito);
                 tblPrueba.AddCell(item.Deposito);
 
-                //PdfPCell clOrden = new PdfPCell(new Phrase("Orden", _standardFont));
-                //clOrden.BackgroundColor = BaseColor.WHITE;
-                //tblPrueba.AddCell(clOrden);
-                //tblPrueba.AddCell(item.Orden);
+                PdfPCell clModelo = new PdfPCell(new Phrase("Modelo", _standardFont));
+                clModelo.BackgroundColor = BaseColor.WHITE;
+                tblPrueba.AddCell(clModelo);
+                tblPrueba.AddCell(item.Modelo);
 
                 PdfPCell clFechaDeEntrega = new PdfPCell(new Phrase("Fecha de Entrega", _standardFont));
-                clFechaDeEntrega.BackgroundColor = BaseColor.WHITE;
+                clFechaDeEntrega.BackgroundColor = BaseColor.GRAY;
                 tblPrueba.AddCell(clFechaDeEntrega);
-            
                 tblPrueba.AddCell(item.FechaDeEntrega.ToShortDateString());
+
+                PdfPCell clObservaciones = new PdfPCell(new Phrase("Observaciones", _standardFont));
+                clObservaciones.BackgroundColor = BaseColor.WHITE;
+                tblPrueba.AddCell(clObservaciones);
+                tblPrueba.AddCell(item.Observaciones);
+                PdfPCell imagen = new PdfPCell(new Phrase("Imagen", _standardFont));
+                imagen.BackgroundColor = BaseColor.GRAY;
             }
-            //tblPrueba.DefaultCell.Padding = 30;
-            //tblPrueba.WidthPercentage = 100;
-            //tblPrueba.HorizontalAlignment = Element.ALIGN_LEFT;
-            //tblPrueba.DefaultCell.BorderWidth = 1;
+            tblPrueba.DefaultCell.Padding = 30;
+            tblPrueba.WidthPercentage = 100;
+            tblPrueba.HorizontalAlignment = Element.ALIGN_LEFT;
+            tblPrueba.DefaultCell.BorderWidth = 1;
+            
             document.Add(tblPrueba);
+
+            var imagenes = db.ImagenPorVehiculo.Where(x => x.Vehiculo.Id == id).ToList();
+            var webRootPath = _hostingEnvironment.WebRootPath;
+
+            foreach (var item in imagenes)
+            {
+                iTextSharp.text.Image imagen = iTextSharp.text.Image.GetInstance(webRootPath + item.DirecccionDeFoto);
+                imagen.Alignment = Element.ALIGN_LEFT;
+                imagen.ScaleAbsolute(120f, 120f);
+                
+                imagen.Alignment = Element.ALIGN_CENTER;
+                imagen.ScaleAbsolute(120f, 120f);
+                imagen.Alignment = Element.ALIGN_RIGHT;
+                imagen.ScaleAbsolute(120f, 120f);
+                imagen.Alignment = Element.ALIGN_TOP;
+                imagen.ScaleAbsolute(120f, 120f);
+
+                document.Add(imagen);
+            }
+
+            
             document.Close();
             byte[] bytesStrem = ms.ToArray();
             ms = new MemoryStream();

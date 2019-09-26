@@ -68,11 +68,13 @@ function UploadFile(inputFileId, uploadButtonId, photoImgId, entityName, width, 
       var re = /(?:\.([^.]+))?$/;
       var ext = re.exec(file.name)[1];
       var filePath = "/UploadedFiles/" + name + "." + ext;
-      // Si es es una imagen, agregamos el query string para redimiensionar la imagen
-      if (isImageFile) {
-        filePath = filePath + "?width=" + width + "&rmode=lanczos3";
-          vm.$data.vehiculo.ImagenesPorVehiculo.push(filePath);
-      }
+      //// Si es es una imagen, agregamos el query string para redimiensionar la imagen
+      //if (isImageFile) {
+      //  filePath = filePath + "?width=" + width + "&rmode=lanczos3";
+      //  }
+
+        vm.$data.vehiculo.ImagenesPorVehiculo.push(filePath);
+
       //Habilito el boton UpLoadFile
       enableUploadButton();
       // Y mandamos a actualizar la interface de usuario 
