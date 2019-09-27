@@ -41,18 +41,21 @@ namespace RegiVeSec.Controllers
         {
             ViewData["Id"] = id;
 
-            //var VehiculoRegiVeSec = GetVehiculoRegiVeSecId(id);
+            var VehiculoRegiVeSec = GetVehiculoRegiVeSecId(id);
+                        VehiculoRegiVeSec = db.Vehiculos.Include(i => i.Tipo).FirstOrDefault(x => x.Id == id);
+            VehiculoRegiVeSec = db.Vehiculos.Include(i => i.Estado).FirstOrDefault(x => x.Id == id);
 
-            //if (VehiculoRegiVeSec == null)
-            //{
-            //    ViewData["ErrorMessage"] = ($"El Vehiculo con id: {id} no existe en la base de datos");
-            //    return View("Error");
-            //}
+            if (VehiculoRegiVeSec == null)
+            {
+                ViewData["ErrorMessage"] = ($"El Vehiculo con id: {id} no existe en la base de datos");
+                return View("Error");
+            }
             return View();
         }
         [HttpPost]
-        public async Task<IActionResult> Details([FromBody]VehiculoRegiVeSecDto vehiculoRegiVeSecDto)
+        public async Task<IActionResult> Details([FromBody]VehiculoRegiVeSecDto vehiculoRegiVeSecDto )
         {
+           
             var DetalleVehiculo = new VehiculoRegiVeSec();
             DetalleVehiculo.Color = vehiculoRegiVeSecDto.Color;
             DetalleVehiculo.foto = vehiculoRegiVeSecDto.foto;
@@ -77,6 +80,7 @@ namespace RegiVeSec.Controllers
             DetalleVehiculo.UbicacionActual = vehiculoRegiVeSecDto.UbicacionActual;
             DetalleVehiculo.Estado = db.Estados.FirstOrDefault(x => x.Id == vehiculoRegiVeSecDto.Estado.Id);
             DetalleVehiculo.Tipo = db.Tipos.FirstOrDefault(x => x.Id == vehiculoRegiVeSecDto.Tipo.Id);
+
             try
             {
                 //throw new Exception("No se pudo guardar el vehiculo.");
@@ -84,6 +88,7 @@ namespace RegiVeSec.Controllers
             }
             catch (Exception ex)
             {
+               
                 ViewData["ErrorMessage"] = ex.Message;
                 return View("Error");
             }

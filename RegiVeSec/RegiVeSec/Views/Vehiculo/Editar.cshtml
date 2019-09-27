@@ -235,10 +235,10 @@
         <br />
         <div class="col-md-12">
             @*<div class="col-md-4">
-                <div v-for="item in vehiculo.ImagenesPorVehiculo">
-                    <img :src="item" class="img-thumbnail" />
-                </div>
-            </div>*@
+                    <div v-for="item in vehiculo.ImagenesPorVehiculo">
+                        <img :src="item" class="img-thumbnail" />
+                    </div>
+                </div>*@
 
             <div class="col-md-8">
                 <h3> inserte fotos del vehiculo</h3>
@@ -258,14 +258,12 @@
     </form>
 </div>
 @section ScriptsSection {
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="~/imagenesVehiculos/jquery.js"></script>
     <script src="~/imagenesVehiculos/img.js"></script>
-
     <link href="~/css/registro.css" rel="stylesheet" />
     <script src="~/js/Formulario.js"></script>
-    @*<script src="~/js/Vehiculo-validator.js"></script>*@
-
+    <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.1/dist/jquery.validate.js"></script>
+    <script src="~/js/Vehiculo-validator.js"></script>
     @*<script>
         $("#vehiculoform").validate();
     </script>*@
