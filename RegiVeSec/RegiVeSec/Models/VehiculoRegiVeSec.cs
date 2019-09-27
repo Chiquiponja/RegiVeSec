@@ -61,7 +61,7 @@ namespace RegiVeSec.Models
         [Required]
         public string DependenciaProcedente { get; set; }
 
-        [MaxLength(30)]
+       
         [Required]
         public string Observaciones { get; set; }
 

@@ -78,7 +78,7 @@ namespace RegiVeSec
                     template: "{controller=Home}/{action=Index}/{id?}");
             });
             //RotativaConfiguration.Setup(env);
-
+           
 
         }
     }

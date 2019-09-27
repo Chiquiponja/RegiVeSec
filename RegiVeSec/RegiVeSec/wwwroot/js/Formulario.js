@@ -193,7 +193,7 @@
                   // URL a la que se enviará la solicitud Ajax
                   url: "/Vehiculo/ExportToPdfDetalles/" + id,
               })
-                 
+
           },
            
         }

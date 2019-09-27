@@ -190,6 +190,7 @@ namespace RegiVeSec.Controllers
                 };
             
         }
+
         public IActionResult ExportToPdfDetalles(int id)
         {
             
@@ -342,9 +343,6 @@ namespace RegiVeSec.Controllers
                 imagen.ScaleAbsolute(120f, 120f);
                 imagen.Alignment = Element.ALIGN_TOP;
                 imagen.ScaleAbsolute(120f, 120f);
-
-
-
                 document.Add(imagen);
             }
 
@@ -354,8 +352,6 @@ namespace RegiVeSec.Controllers
             ms = new MemoryStream();
             ms.Write(bytesStrem, 0, bytesStrem.Length);
             ms.Position = 0;
-
-            
 
             if (VehiculoRegiVeSec == null)
             {
